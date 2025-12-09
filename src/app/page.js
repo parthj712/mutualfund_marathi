@@ -1,13 +1,26 @@
+"use client"
+
+import MainHome from "@/Componenets/MainHome/MainHome";
+import NavigationBar from "@/Componenets/NavigationBar/NavigationBar";
+import UpperNavbar from "@/Componenets/UpperNavbar/UpperNavbar";
+import { useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 
 export default function Home() {
+
+  const theme = useTheme();
+
+  // BREAKPOINTS
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
   return (
     <>
-      <div className="space-y-4 text-3xl">
-        <p>हे पॉपिन्स (default) आहे.</p>
-        <p className="font-noto">हे नोटो सॅन्स आहे.</p>
-        <p className="font-mukta">हे मुख्ता आहे.</p>
-      </div>
+      <>
+        <MainHome />
+      </>
 
 
 
