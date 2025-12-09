@@ -9,7 +9,7 @@ export default function RedButton({ children, onClick, sx, ...rest }) {
             onClick={onClick}
             sx={{
                 backgroundColor: "#E50000",
-                borderRadius: "12px",
+                borderRadius: "10px",
                 paddingX: 3,
                 paddingY: 1,
                 fontSize: "18px",

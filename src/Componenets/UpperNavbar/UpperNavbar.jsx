@@ -18,7 +18,8 @@ export default function UpperNavbar() {
             <Container
                 maxWidth="lg"
                 sx={{
-                    py: 1.5,
+                    pt: 2,
+                    pb : 1.5,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
