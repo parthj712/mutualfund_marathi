@@ -24,7 +24,7 @@ export default function VideoCard({ url, title, desc, duration }) {
         >
 
             {/* LEFT — FIXED SIZE THUMBNAIL */}
-            <div className="w-[220px] h-[130px] overflow-hidden rounded-lg flex-shrink-0">
+            <div className=" md:w-full lg:w-[300px] h-[200px] overflow-hidden rounded-lg flex-shrink-0">
                 <iframe
                     className="w-full h-full rounded-lg"
                     src={`https://www.youtube.com/embed/${videoId}`}
@@ -38,7 +38,7 @@ export default function VideoCard({ url, title, desc, duration }) {
             <Box display="flex" flexDirection="column" gap={1.5} flex="1" p={2}>
 
                 {/* PLAY + DURATION RED PILL */}
-                <div className="flex items-center gap-1 bg-red-600 text-white px-3 py-1 rounded-full w-fit relative overflow-hidden">
+                <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={1} px={2} py={1} className={`bg-red-600 text-white rounded-md w-fit relative overflow-hidden`}>
 
                     {/* Play Icon */}
                     <FaPlay className="text-white text-[14px]" />
@@ -48,12 +48,12 @@ export default function VideoCard({ url, title, desc, duration }) {
                         className={`
                             ml-2 text-xs font-semibold 
                             transform transition-all duration-300
-                            ${hover ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}
+                            
                         `}
                     >
                         ⏱ {duration}
                     </span>
-                </div>
+                </Box>
 
                 {/* TITLE */}
                 <Typography fontSize={isMobile ? "16px":  isTablet ? "18px" : "20px"} fontWeight={600}>
