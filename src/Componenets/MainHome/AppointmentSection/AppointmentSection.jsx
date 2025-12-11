@@ -28,7 +28,7 @@ export default function AppointmentSection() {
 
 
             {/* MAIN CONTAINER */}
-            <div className="w-full max-w-8xl flex flex-col lg:flex-row gap-10">
+            <div className="w-full max-w-8xl flex flex-col lg:flex-row gap-2 lg:gap-10 md:gap-10">
 
                 {/* LEFT RED CARD */}
                 <Box
@@ -74,6 +74,7 @@ export default function AppointmentSection() {
                 {/* RIGHT BLUE FORM */}
                 <Box
                     // ml={isMobile ? 4 : isTablet ? 4 : 0}
+                    ml={isTablet ? 4.8 : 0}
                     display="flex"
                     flexDirection="column"
                     gap={isMobile ? 4 : isTablet ? 4 : 6}
