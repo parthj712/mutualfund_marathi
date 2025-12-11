@@ -4,6 +4,7 @@ import CardsSection from './Cards/CardsSection'
 import VideoList from './Video/VideoList/VideoList'
 import CardList from './OurServices/CardList/CardList'
 import FundCategoryList from './Graphs/FundCategoryList/FundCategoryList'
+import AppointmentSection from './AppointmentSection/AppointmentSection'
 
 const MainHome = () => {
   return (
@@ -13,6 +14,7 @@ const MainHome = () => {
       <VideoList/>
       <CardList/>
       <FundCategoryList/>
+      <AppointmentSection/>
     </div>
   )
 }
