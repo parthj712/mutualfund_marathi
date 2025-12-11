@@ -7,6 +7,7 @@ import { MdOutlineDirectionsCar } from "react-icons/md";
 import { FaShieldHeart } from "react-icons/fa6";
 import { FaHeartbeat } from "react-icons/fa";
 import CommonInfoCard from "../CommonInfoCard/CommonInfoCard";
+import GradientHeading from "@/Componenets/Common/GradientHeading/GradientHeading";
 
 export default function CardList() {
 
@@ -41,8 +42,10 @@ export default function CardList() {
     ];
 
     return (
-        <Box p={isMobile ? 3 : 10}>
-            <Box className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <Box display={"flex"} flexDirection={"column"} gap={10} p={isMobile ? 3 : 10}>
+
+            <GradientHeading text="आमच्या सेवा" />
+            <Box className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                 {cards.map((c, i) => (
                     <CommonInfoCard
                         key={i}
