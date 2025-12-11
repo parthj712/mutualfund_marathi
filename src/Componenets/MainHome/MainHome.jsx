@@ -1,8 +1,9 @@
 import React from 'react'
 import HeroSlider from './HeroSlider/HeroSlider'
 import CardsSection from './Cards/CardsSection'
-import VideoList from './VideoList/VideoList'
-import CardList from './CardList/CardList'
+import VideoList from './Video/VideoList/VideoList'
+import CardList from './OurServices/CardList/CardList'
+import FundCategoryList from './Graphs/FundCategoryList/FundCategoryList'
 
 const MainHome = () => {
   return (
@@ -11,6 +12,7 @@ const MainHome = () => {
       <CardsSection/>
       <VideoList/>
       <CardList/>
+      <FundCategoryList/>
     </div>
   )
 }

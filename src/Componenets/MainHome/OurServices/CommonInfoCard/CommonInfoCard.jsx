@@ -9,7 +9,7 @@ export default function CommonInfoCard({ icon, title, desc }) {
             display={"flex"}
             flexDirection={"column"}
             gap={3}
-            p={5}
+            p={4}
             alignItems={"flex-start"}
             justifyContent={"space-between"}
             className="
