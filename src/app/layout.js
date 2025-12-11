@@ -6,6 +6,9 @@ import NavigationBar from "@/Componenets/NavigationBar/NavigationBar";
 import HeaderWrapper from "@/Componenets/Header/HeaderWrapper";
 import Footer from "@/Componenets/Footer/Footer";
 import CopyrightBar from "@/Componenets/CopyrightBar/CopyrightBar";
+import RouteLoader from "@/Componenets/Loader/RouteLoader";
+import TopProgressBar from "@/Componenets/Loader/TopProgressBar";
+import "../styles/nprogress-custom.css";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -38,6 +41,8 @@ export default function RootLayout({ children }) {
     <html lang="mr" className={`${poppins.variable} ${notoSans.variable} ${mukta.variable}`}>
       <body>
         <ThemeRegistry>
+<TopProgressBar />   
+          <RouteLoader />
 
           <HeaderWrapper />
 

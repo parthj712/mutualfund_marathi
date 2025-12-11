@@ -1,0 +1,8 @@
+#nprogress .bar {
+  background: #E60000 !important; /* Your brand red */
+  height: 4px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #E60000, 0 0 5px #E60000 !important;
+}
