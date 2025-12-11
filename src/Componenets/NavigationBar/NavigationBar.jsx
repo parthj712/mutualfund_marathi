@@ -18,6 +18,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion } from "framer-motion";
 import RedButton from "../Common/RedButton";
+import Image from "next/image";
+
 
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
@@ -52,12 +54,22 @@ export default function NavigationBar() {
                     justifyContent: "space-between",
                 }}
             >
+
+                {/* LEFT — Mobile Menu Icon */}
+                <IconButton
+                    sx={{ display: { xs: "block", lg: "none" } }}
+                    onClick={() => setOpen(true)}
+                >
+                    <MenuIcon fontSize="large" />
+                </IconButton>
+
                 {/* Desktop Menu */}
                 <Box
                     sx={{
                         display: { xs: "none", lg: "flex" },
                         gap: 5,
                         alignItems: "center",
+                        mx: "auto",
                     }}
                 >
                     {navItems.map((item) => (
@@ -68,7 +80,6 @@ export default function NavigationBar() {
                                     whileHover="hover"
                                     sx={{ position: "relative", display: "inline-block", cursor: "pointer" }}
                                 >
-                                    {/* TEXT */}
                                     <motion.p
                                         variants={{
                                             hover: { color: "#4f46e5" }
@@ -83,7 +94,6 @@ export default function NavigationBar() {
                                         {item.name}
                                     </motion.p>
 
-                                    {/* UNDERLINE */}
                                     <motion.span
                                         variants={{
                                             hover: { scaleX: 1 }
@@ -102,26 +112,29 @@ export default function NavigationBar() {
                                         }}
                                     />
                                 </Box>
-
                             </Link>
-
                         </Box>
                     ))}
                 </Box>
 
-                {/* Right Red Button */}
+                {/* RIGHT — Mobile Logo */}
+                <Box sx={{ display: { xs: "block", lg: "none" } }}>
+                    <Image
+                        src="/Tlogo.png"
+                        alt="Logo"
+                        width={45}
+                        height={45}
+                        style={{ borderRadius: "50%" }}
+                    />
+                </Box>
+
+                {/* Desktop Right Button */}
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                     <RedButton sx={{ px: 3, py: 1.2 }}>साइन इन</RedButton>
                 </Box>
 
-                {/* Mobile Menu Button */}
-                <IconButton
-                    sx={{ display: { xs: "block", lg: "none" } }}
-                    onClick={() => setOpen(true)}
-                >
-                    <MenuIcon fontSize="large" />
-                </IconButton>
             </Toolbar>
+
 
             {/* MOBILE DRAWER MENU */}
             <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
