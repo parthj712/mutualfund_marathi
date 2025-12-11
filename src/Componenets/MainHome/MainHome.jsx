@@ -7,6 +7,7 @@ import FundCategoryList from './Graphs/FundCategoryList/FundCategoryList'
 import AppointmentSection from './AppointmentSection/AppointmentSection'
 import DisclaimerBox from './DisclaimerBox/DisclaimerBox'
 import { Box } from '@mui/material'
+import Testimonials from './Testimonials/Testimonials'
 
 const MainHome = () => {
   return (
@@ -17,6 +18,7 @@ const MainHome = () => {
         <VideoList />
         <CardList />
         <FundCategoryList />
+        <Testimonials/>
         <AppointmentSection />
         <DisclaimerBox />
       </Box>
