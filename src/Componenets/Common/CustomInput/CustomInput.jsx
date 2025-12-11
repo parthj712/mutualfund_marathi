@@ -18,13 +18,13 @@ export default function CustomInput({ label, multiline = false, rows = 1 }) {
                     borderRadius: "10px",
                 },
                 "& .MuiFilledInput-input": {
-                    padding: "14px",
+                    padding: "16px",
                     fontSize: "16px",
                     fontWeight: 700,
                     color: "#000",
                 },
                 "& .MuiInputLabel-root": {
-                    fontSize: "16px",
+                    fontSize: "18px",
                     color: "#000",
                     fontWeight : 500
                 },
