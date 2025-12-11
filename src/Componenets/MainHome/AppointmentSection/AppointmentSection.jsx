@@ -77,7 +77,7 @@ export default function AppointmentSection() {
                     ml={isTablet ? 4.8 : 0}
                     display="flex"
                     flexDirection="column"
-                    gap={isMobile ? 4 : isTablet ? 4 : 6}
+                    gap={isMobile ? 4 : isTablet ? 4 : 4}
                     p={isMobile ? 6 : isTablet ? 6 : 10}
                     className="bg-[#003B65] text-white rounded-tl-3xl rounded-bl-3xl lg:w-[55%] md:w-[95%] w-full "
                 >

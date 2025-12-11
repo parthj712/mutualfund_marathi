@@ -37,7 +37,7 @@ export default function FundCategoryList() {
                 <GradientHeading text="जास्त परतावा = स्मार्ट जोखिम + इक्विटी गुंतवणूक." />
 
                 {/* Graph Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-30 md:gap-16">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-40 md:gap-16">
                     {categories.map((item, i) => (
                         <FundCategoryCard
                             key={i}
