@@ -30,21 +30,31 @@ export default function Footer() {
 
 
             {/* MAIN BLUE SECTION */}
-            <Box p={isMobile ? 3 : 8} display={"flex"} flexDirection={"column"} gap={4} color={"white"} className="w-full max-w-8xl mx-auto relative">
-
+            <Box
+                p={isMobile ? 3 : 8}
+                display="flex"
+                flexDirection="column"
+                gap={4}
+                color="white"
+                className="w-full max-w-8xl mx-auto relative"
+                sx={{
+                    background: "linear-gradient(90deg, #1C76A9 0%,  #004A74 100%)",
+                  
+                }}
+            >
 
                 {/* Background diagonal tone (optional like screenshot) */}
-                <div className="absolute inset-0 w-full h-full">
+                {/* <div className="absolute inset-0 w-full h-full">
                     <Image
                         src="/Footer.png"   // <-- Your background image
                         alt="Footer Background"
                         fill
                         className="object-cover"  // adjust opacity as needed
                     />
-                </div>
+                </div> */}
 
 
-                <Box py={isMobile || isTablet ? 8 : 0} className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
+                <Box py={isMobile || isTablet ? 4 : 0} className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
                     {isDesktop && (
                         <Image
                             src="/Logo.jpeg"
@@ -55,9 +65,9 @@ export default function Footer() {
                     )}
 
                     {/* LEFT COLUMN — LOGO + ADDRESS */}
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 items-start">
 
-                        <Box display={"flex"} flexDirection={"column"} gap={2}>
+                        <Box display={"flex"} flexDirection={"column"} gap={2} textAlign={"left"}>
                             <GradientUnderlineHeading text="नोंदणीकृत पत्ता" />
                             <p className="leading-relaxed mt-2 text-[18px]">
                                 301, श्री संस्कृती, <br />
@@ -122,7 +132,7 @@ export default function Footer() {
                     </Box>
                 </Box>
 
-                <Box display={"flex"} flexDirection={"column"} gap={4} pt={4}>
+                <Box display={"flex"} flexDirection={"column"} gap={4} pt={isMobile ? 2 : 4}>
 
                     {/* PARAGRAPH SECTION */}
                     <p className="text-[18px] leading-relaxed mt-10 opacity-90 relative">

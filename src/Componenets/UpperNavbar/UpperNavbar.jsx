@@ -19,10 +19,10 @@ export default function UpperNavbar() {
                 maxWidth="lg"
                 sx={{
                     pt: 2,
-                    pb : 1.5,
+                    pb: 1.5,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
 
                     // Layout changes using breakpoints
                     flexDirection: isMobile ? "column" : "row",
@@ -41,12 +41,12 @@ export default function UpperNavbar() {
                     }}
                 >
                     <Box>
-                        <Typography fontWeight={500} fontSize={13}>संपर्क:</Typography>
+                        <Typography fontWeight={500} fontSize={13}>सुजय</Typography>
                         <Typography fontWeight={600} fontSize={15}>9503718779</Typography>
                     </Box>
 
                     <Box>
-                        <Typography fontWeight={500} fontSize={13}>सहाय्य:</Typography>
+                        <Typography fontWeight={500} fontSize={13}>सदानंद</Typography>
                         <Typography fontWeight={600} fontSize={15}>9518752605</Typography>
                     </Box>
 
@@ -57,41 +57,36 @@ export default function UpperNavbar() {
                 </Box>
 
                 {/* LOGO + TEXT */}
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: isMobile ? "column" : "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: isMobile ? 1 : 6,
+
+                <img
+                    src="/Tlogo.png"
+                    alt="Logo"
+                    style={{
+                        height: isMobile ? 40 : 50,
+                        objectFit: "contain",
+                        borderRadius: 5,
+                        alignItems : "center"
                     }}
-                >
-                    <img
-                        src="/Logo.jpeg"
-                        alt="Logo"
-                        style={{
-                            height: isMobile ? 40 : 50,
-                            objectFit: "contain",
-                            borderRadius: 5,
-                        }}
-                    />
-                    <Typography
-                        fontWeight={600}
-                        fontSize={isMobile ? 14 : isTablet ? 15 : 16}
-                    >
-                        AMFI नोंदणीकृत म्युच्युअल फंड वितरक
-                    </Typography>
-                </Box>
+                />
+
+
 
                 {/* SOCIAL ICONS */}
                 <Box
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        gap: 2,
+                        justifyContent : "center",
+                        gap: 6,
                         mt: isMobile ? 1 : 0,
                     }}
                 >
+                    <Typography
+                        fontWeight={600}
+                        fontSize={isMobile ? 14 : isTablet ? 15 : 16}
+                    >
+                        AMFI नोंदणीकृत म्युच्युअल फंड वितरक
+                    </Typography>
                     <InstagramIcon sx={{ fontSize: 26, cursor: "pointer" }} />
                     <FacebookIcon sx={{ fontSize: 26, cursor: "pointer" }} />
                 </Box>

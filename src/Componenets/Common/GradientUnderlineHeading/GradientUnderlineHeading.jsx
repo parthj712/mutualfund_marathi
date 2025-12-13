@@ -2,13 +2,13 @@
 
 import { Typography } from "@mui/material";
 
-export default function GradientUnderlineHeading({ text, size }) {
+export default function GradientUnderlineHeading({ text, size, className = "" }) {
     const fontSize = size || "20px";   // ✅ Default size
     const underlineWidth = size ? "40%" : "4rem";
     // If custom size is big → underline grows a bit
 
     return (
-        <div className="flex flex-col items-start gap-1">
+        <div className={` flex flex-col items-start gap-1 ${className}`}>
             {/* Heading */}
             <Typography
                 fontWeight={600}

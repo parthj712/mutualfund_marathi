@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 
 export default function GradientHeading({ text, className = "" }) {
     return (
-        <div className={`w-full flex flex-col items-center gap-1 ${className}`}>
+        <div className={`w-full flex flex-col items-start md:items-center lg:items-center gap-1 ${className}`}>
 
             <Box>
 

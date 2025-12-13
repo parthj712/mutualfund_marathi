@@ -52,14 +52,28 @@ export default function Testimonials() {
 
 
     return (
-        <Box p={isMobile ? 3 : 10} display={"flex"} flexDirection={"column"} alignItems={"center"} className="w-full bg-[#003B65] text-white py-16 px-4">
-            <Box className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
+        <Box px={isMobile ? 4 : isTablet ? 6 : 10}
+            py={isMobile ? 6 : isTablet ? 6 : 10} display={"flex"} flexDirection={"column"} alignItems={"center"} sx={{
+                background: `
+      linear-gradient(
+        90deg,
+        rgba(0, 74, 116, 0.9) 0%,
+        rgba(0, 74, 116, 93) 100%
+      ),
+      url("/BG/bg1.jpg")
+    `,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "left center",
+                
+            }} className="w-full bg-[#003B65] text-white py-16 px-4">
+            <Box className="max-w-6xl mx-auto flex flex-col items-center  gap-6">
 
                 {/* TOP HEADING */}
                 <GradientUnderlineHeading text="आमचे गुंतवणूकदार काय म्हणतात" size={"24px"} />
 
                 {/* SUBHEADING */}
-                <Typography fontSize={isMobile ? "18px"  : "20px"} py={4}>
+                <Typography fontSize={isMobile ? "18px" : "20px"} py={4}>
                     आमच्या विश्वासार्ह सेवे, कौशल्यामुळे आणि व्यावसायिक सेवे मुळे ग्राहक आमच्यावर विश्वास ठेवतात.
                 </Typography>
 

@@ -51,89 +51,86 @@ export default function NavigationBar() {
                     mx: "auto",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    justifyContent: {
+                        xs: "space-between", // ✅ mobile & tablet
+                        lg: "flex-start",    // ✅ desktop
+                    },
                 }}
             >
 
-                {/* LEFT — Mobile Menu Icon */}
-                <IconButton
-                    sx={{ display: { xs: "block", lg: "none" } }}
-                    onClick={() => setOpen(true)}
-                >
-                    <MenuIcon fontSize="large" />
-                </IconButton>
-
-                {/* Desktop Menu */}
+                {/* LEFT — Mobile Menu | Desktop Logo */}
                 <Box
                     sx={{
-                        display: { xs: "none", lg: "flex" },
-                        gap: 5,
+                        display: "flex",
                         alignItems: "center",
-                        mx: "auto",
+                        order: { xs: 1, lg: 0 },
+                        gap: 1, // small internal spacing safety
+                    }}
+                >
+                    <IconButton
+                        sx={{ display: { xs: "flex", lg: "none" } }}
+                        onClick={() => setOpen(true)}
+                    >
+                        <MenuIcon fontSize="large" />
+                    </IconButton>
+
+                    <Box sx={{ display: { xs: "none", lg: "flex" } }}>
+                        <Image
+                            src="/Logo.jpeg"
+                            alt="Logo"
+                            width={120}
+                            height={150}
+                            style={{ borderRadius: "10%" }}
+                        />
+                    </Box>
+                </Box>
+
+
+                {/* CENTER — Desktop Navigation */}
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        display: { xs: "none", lg: "flex" },
+                        justifyContent: "center",
+                        gap: 5,
                     }}
                 >
                     {navItems.map((item) => (
-                        <Box key={item.name}>
-                            <Link href={item.path} style={{ textDecoration: "none" }}>
-                                <Box
-                                    component={motion.div}
-                                    whileHover="hover"
-                                    sx={{ position: "relative", display: "inline-block", cursor: "pointer" }}
-                                >
-                                    <motion.p
-                                        variants={{
-                                            hover: { color: "#4f46e5" }
-                                        }}
-                                        style={{
-                                            fontSize: "18px",
-                                            fontWeight: 600,
-                                            margin: 0,
-                                            color: "#333",
-                                        }}
-                                    >
-                                        {item.name}
-                                    </motion.p>
-
-                                    <motion.span
-                                        variants={{
-                                            hover: { scaleX: 1 }
-                                        }}
-                                        initial={{ scaleX: 0 }}
-                                        transition={{ duration: 0.35, ease: "easeInOut" }}
-                                        style={{
-                                            position: "absolute",
-                                            left: 0,
-                                            bottom: -3,
-                                            width: "100%",
-                                            height: "3px",
-                                            backgroundColor: "#ED0000",
-                                            borderRadius: "4px",
-                                            transformOrigin: "left",
-                                        }}
-                                    />
-                                </Box>
-                            </Link>
-                        </Box>
+                        <Link key={item.name} href={item.path} style={{ textDecoration: "none" }}>
+                            <Typography fontSize={18} fontWeight={600} color="#333">
+                                {item.name}
+                            </Typography>
+                        </Link>
                     ))}
                 </Box>
 
-                {/* RIGHT — Mobile Logo */}
-                <Box sx={{ display: { xs: "block", lg: "none" } }}>
-                    <Image
-                        src="/Tlogo.png"
-                        alt="Logo"
-                        width={45}
-                        height={45}
-                        style={{ borderRadius: "50%" }}
-                    />
-                </Box>
+                {/* RIGHT — Mobile Logo | Desktop Button */}
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        order: { xs: 2, lg: 1 }, // ⭐ logo on right in mobile
+                    }}
+                >
+                    {/* Mobile Logo */}
+                    <Box sx={{ display: { xs: "flex", lg: "none" } }}>
+                        <Image
+                            src="/Tlogo.png"
+                            alt="Logo"
+                            width={40}
+                            height={40}
+                            style={{ borderRadius: "50%" }}
+                        />
+                    </Box>
 
-                {/* Desktop Right Button */}
-                <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                    <RedButton sx={{ px: 3, py: 1.2 }}>साइन इन</RedButton>
+                    {/* Desktop Button */}
+                    <Box sx={{ display: { xs: "none", lg: "block" } }}>
+                        <RedButton sx={{ px: 3, py: 1.2 }}>साइन इन</RedButton>
+                    </Box>
                 </Box>
-
             </Toolbar>
+
+
 
 
             {/* MOBILE DRAWER MENU */}

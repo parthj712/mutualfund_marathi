@@ -42,7 +42,8 @@ export default function CardList() {
     ];
 
     return (
-        <Box display={"flex"} flexDirection={"column"} gap={10} p={isMobile ? 3 : 10}>
+        <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 10} px={isMobile ? 4 : isTablet ? 6 : 10}
+            py={isMobile ? 2 : isTablet ? 6 : 10}>
 
             <GradientHeading text="आमच्या सेवा" />
             <Box className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
