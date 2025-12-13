@@ -41,27 +41,33 @@ export default function RootLayout({ children }) {
   return (
     <html lang="mr" className={`${poppins.variable} ${notoSans.variable} ${mukta.variable}`}>
       <body>
+        <div className="global-bg">
 
-        <div className="global-rs-bg" />
+          {/* LEFT BIG ₹ */}
+          <div className="bg-left-rs" />
 
-        <ThemeRegistry>
-          <PageTransition>
-            <TopProgressBar />
-            <RouteLoader />
+          {/* RIGHT SMALL IMAGE */}
+          <div className="bg-right-image" />
 
-            <HeaderWrapper />
+          <ThemeRegistry>
+            <PageTransition>
+              <TopProgressBar />
+              <RouteLoader />
+              <HeaderWrapper />
 
+              <main className="site-content">
+                {children}
+              </main>
 
-            <main className="site-content">
-              {children}
-            </main>
+              <Footer />
+              <CopyrightBar />
+            </PageTransition>
+          </ThemeRegistry>
 
-
-            <Footer />
-            <CopyrightBar />
-          </PageTransition>
-        </ThemeRegistry>
+        </div>
       </body>
+
+
     </html>
   );
 }
