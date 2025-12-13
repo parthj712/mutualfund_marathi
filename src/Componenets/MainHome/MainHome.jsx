@@ -8,19 +8,42 @@ import AppointmentSection from './AppointmentSection/AppointmentSection'
 import DisclaimerBox from './DisclaimerBox/DisclaimerBox'
 import { Box } from '@mui/material'
 import Testimonials from './Testimonials/Testimonials'
+import ScrollReveal from '../Common/ScrollReveal/ScrollReveal'
 
 const MainHome = () => {
   return (
     <div>
       <Box display={"flex"} flexDirection={"column"} gap={6}>
         <HeroSlider />
-        <CardsSection />
+
+        <ScrollReveal>
+          <CardsSection />
+        </ScrollReveal>
+
+
         <VideoList />
-        <CardList />
-        <FundCategoryList />
-        <Testimonials/>
-        <AppointmentSection />
-        <DisclaimerBox />
+
+        <ScrollReveal>
+          <CardList />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <FundCategoryList />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <Testimonials />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <Box sx={{ overflowX: "hidden" }}>
+            <AppointmentSection />
+          </Box>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <DisclaimerBox />
+        </ScrollReveal>
       </Box>
     </div>
   )

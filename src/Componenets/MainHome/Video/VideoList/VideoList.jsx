@@ -3,6 +3,7 @@
 
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import VideoCard from "../VideoCard/VideoCard";
+import ScrollReveal from "@/Componenets/Common/ScrollReveal/ScrollReveal";
 
 
 export default function VideoList() {
@@ -42,7 +43,9 @@ export default function VideoList() {
             <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-10">
                 {videos.map((v, i) => (
                     <div key={i} className="mb-4">
-                        <VideoCard {...v} />
+                        <ScrollReveal>
+                            <VideoCard {...v} />
+                        </ScrollReveal>
                     </div>
                 ))}
             </div>

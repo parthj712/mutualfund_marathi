@@ -2,8 +2,14 @@
 
 import { Box, Typography } from "@mui/material";
 import { FiChevronRight } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+
 
 export default function CommonInfoCard({ icon, title, desc }) {
+
+    const reduceMotion = useReducedMotion();
+
     return (
         <Box
             display={"flex"}
@@ -23,19 +29,36 @@ export default function CommonInfoCard({ icon, title, desc }) {
                 borderRight: "4px solid #E60000",
             }}
         >
+       
             {/* ICON */}
-            <div
+            <motion.div
                 className="
-                    w-12 h-12 rounded-full flex items-center justify-center
-                    transition-all duration-300 
-                    group-hover:scale-110   /* Icon becomes bigger */
-                "
+    w-12 h-12 rounded-full flex items-center justify-center
+    group-hover:scale-110
+  "
                 style={{
-                    background: "linear-gradient(135deg, #004A74, #E60000)",
+                    background: "linear-gradient(135deg, #004A74, #E60000, #004A74)",
+                    backgroundSize: "200% 200%",
                 }}
+                animate={
+                    reduceMotion
+                        ? {}
+                        : { backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }
+                }
+                transition={{
+                    duration: 4,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                }}
+                whileHover={{
+                    scale: 1.15,
+                    transition: { duration: 0.3 },
+                }}
+
             >
                 <span className="text-white text-xl">{icon}</span>
-            </div>
+            </motion.div>
+
 
             {/* TITLE + DESCRIPTION */}
             <Box display={"flex"} flexDirection={"column"} gap={1.5}>

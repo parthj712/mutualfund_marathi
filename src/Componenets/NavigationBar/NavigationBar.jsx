@@ -19,9 +19,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { motion } from "framer-motion";
 import RedButton from "../Common/RedButton";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
+
 
 
 export default function NavigationBar() {
+
+    const pathname = usePathname();
+
+
     const [open, setOpen] = useState(false);
 
     const navItems = [
@@ -64,16 +71,31 @@ export default function NavigationBar() {
                         display: "flex",
                         alignItems: "center",
                         order: { xs: 1, lg: 0 },
-                        gap: 1, // small internal spacing safety
+                        gap: 1,
+                        minWidth: 48, // prevents layout shift
                     }}
                 >
-                    <IconButton
-                        sx={{ display: { xs: "flex", lg: "none" } }}
-                        onClick={() => setOpen(true)}
-                    >
-                        <MenuIcon fontSize="large" />
-                    </IconButton>
+                    {/* MOBILE MENU ICON */}
+                    <AnimatePresence mode="wait">
+                        {!open && (
+                            <motion.div
+                                key="menu-icon"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ duration: 0.25, ease: "easeOut" }}
+                            >
+                                <IconButton
+                                    sx={{ display: { xs: "flex", lg: "none" } }}
+                                    onClick={() => setOpen(true)}
+                                >
+                                    <MenuIcon fontSize="large" />
+                                </IconButton>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
+                    {/* DESKTOP LOGO */}
                     <Box sx={{ display: { xs: "none", lg: "flex" } }}>
                         <Image
                             src="/Logo.jpeg"
@@ -86,6 +108,7 @@ export default function NavigationBar() {
                 </Box>
 
 
+
                 {/* CENTER — Desktop Navigation */}
                 <Box
                     sx={{
@@ -95,13 +118,55 @@ export default function NavigationBar() {
                         gap: 5,
                     }}
                 >
-                    {navItems.map((item) => (
-                        <Link key={item.name} href={item.path} style={{ textDecoration: "none" }}>
-                            <Typography fontSize={18} fontWeight={600} color="#333">
-                                {item.name}
-                            </Typography>
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        const isActive = pathname === item.path;
+
+                        return (
+                            <Link key={item.name} href={item.path} style={{ textDecoration: "none" }}>
+                                <Box
+                                    component={motion.div}
+                                    initial="rest"
+                                    animate={isActive ? "active" : "rest"}
+                                    whileHover="hover"
+                                    sx={{ position: "relative", cursor: "pointer" }}
+                                >
+                                    {/* TEXT */}
+                                    <Typography
+                                        fontSize={18}
+                                        fontWeight={600}
+                                        sx={{
+                                            color: isActive ? "#4f46e5" : "#333",
+                                            transition: "color 0.3s ease",
+                                        }}
+                                    >
+                                        {item.name}
+                                    </Typography>
+
+                                    {/* UNDERLINE */}
+                                    <motion.span
+                                        variants={{
+                                            rest: { scaleX: 0 },
+                                            hover: { scaleX: 1 },
+                                            // active: { scaleX: 1 },
+                                        }}
+                                        transition={{ duration: 0.35, ease: "easeInOut" }}
+                                        style={{
+                                            position: "absolute",
+                                            left: 0,
+                                            bottom: -6,
+                                            width: "100%",
+                                            height: "3px",
+                                            backgroundColor: "#ED0000",
+                                            borderRadius: "4px",
+                                            transformOrigin: "left",
+                                        }}
+                                    />
+                                </Box>
+                            </Link>
+                        );
+                    })}
+
+
                 </Box>
 
                 {/* RIGHT — Mobile Logo | Desktop Button */}
@@ -143,7 +208,7 @@ export default function NavigationBar() {
                         flexDirection: "column",
                         gap: 2,
                     }}
-                >
+                >   
                     {/* Close Button */}
                     <IconButton
                         sx={{ alignSelf: "flex-end" }}
@@ -153,22 +218,35 @@ export default function NavigationBar() {
                     </IconButton>
 
                     <List>
-                        {navItems.map((item) => (
-                            <ListItemButton
-                                key={item.name}
-                                component={Link}
-                                href={item.path}
-                                onClick={() => setOpen(false)}
-                            >
-                                <ListItemText
-                                    primary={item.name}
-                                    primaryTypographyProps={{
-                                        fontSize: 18,
-                                        fontWeight: 600,
+                        {navItems.map((item) => {
+                            const isActive = pathname === item.path;
+
+                            return (
+                                <ListItemButton
+                                    key={item.name}
+                                    component={Link}
+                                    href={item.path}
+                                    onClick={() => setOpen(false)}
+                                    sx={{
+                                        backgroundColor: isActive ? "#E6EAFF" : "transparent",
+                                        borderRadius: 2,
+                                        "&:hover": {
+                                            backgroundColor: "#E6EAFF",
+                                        },
                                     }}
-                                />
-                            </ListItemButton>
-                        ))}
+                                >
+                                    <ListItemText
+                                        primary={item.name}
+                                        primaryTypographyProps={{
+                                            fontSize: 18,
+                                            fontWeight: 600,
+                                            color: isActive ? "#1C76A9" : "#333",
+                                        }}
+                                    />
+                                </ListItemButton>
+                            );
+                        })}
+
                     </List>
 
                     <RedButton sx={{ px: 4, py: 1.5 }}>साइन इन</RedButton>

@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Loader from "./Loader";
 
-
 export default function RouteLoader() {
     const pathname = usePathname();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const isFirstLoad = useRef(true);
 
-    // Initial load
     useEffect(() => {
-        setLoading(true);
-        const timer = setTimeout(() => setLoading(false), 800); // small delay for polish
-        return () => clearTimeout(timer);
-    }, []);
+        // ⛔ Skip loader on first visit
+        if (isFirstLoad.current) {
+            isFirstLoad.current = false;
+            return;
+        }
 
-    // On route change
-    useEffect(() => {
+        // ✅ Show loader on route change
         setLoading(true);
         const timer = setTimeout(() => setLoading(false), 600);
+
         return () => clearTimeout(timer);
     }, [pathname]);
 
