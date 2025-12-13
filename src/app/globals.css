@@ -41,3 +41,60 @@ body {
 .body-text {
   font-family: var(--font-noto);
 } */
+
+
+.global-bg {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+.bg-left-rs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: url("/BG/RS.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 24%;
+  opacity: 0.12;
+}
+
+
+.bg-right-image {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/BG/RS1.png");
+  background-repeat: no-repeat;
+  background-position: right 65%;
+  background-size: 18%;
+  opacity: 0.10;
+}
+
+
+.site-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+@media (max-width: 768px) {
+  .bg-right-image {
+    display: none;
+  }
+}
+
+
+@keyframes floatRight {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(25px); }
+}
+
+.bg-right-image {
+  animation: floatRight 16s ease-in-out infinite alternate;
+}

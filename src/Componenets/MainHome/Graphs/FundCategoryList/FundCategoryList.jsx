@@ -32,7 +32,7 @@ export default function FundCategoryList() {
         >
 
             {/* Make content centered + same width as cards */}
-            <div className="w-full flex flex-col items-center gap-14">
+            <div className="w-full flex flex-col items-center gap-20">
 
                 <GradientHeading text="जास्त परतावा = स्मार्ट जोखिम + इक्विटी गुंतवणूक." />
 

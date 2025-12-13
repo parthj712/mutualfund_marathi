@@ -4,6 +4,8 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { getYouTubeID } from "../VideoList/utils/getYouTubeID";
 import { FaPlay } from "react-icons/fa";
 import { useState } from "react";
+import { motion } from "framer-motion";
+
 
 export default function VideoCard({ url, title, desc, duration }) {
     const videoId = getYouTubeID(url);
@@ -17,11 +19,13 @@ export default function VideoCard({ url, title, desc, duration }) {
 
     return (
         <Box
-        display={"flex"} flexDirection={isMobile || isTablet ? "column" : "row"}
+            display={"flex"}
+            flexDirection={isMobile || isTablet ? "column" : "row"}
             className="gap-5 p-4 bg-white rounded-lg shadow hover:shadow-md transition-all"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
+
 
             {/* LEFT — FIXED SIZE THUMBNAIL */}
             <div className=" md:w-full lg:w-[300px] h-[200px] overflow-hidden rounded-lg flex-shrink-0">
@@ -56,17 +60,17 @@ export default function VideoCard({ url, title, desc, duration }) {
                 </Box>
 
                 {/* TITLE */}
-                <Typography fontSize={isMobile ? "16px":  isTablet ? "18px" : "20px"} fontWeight={600}>
+                <Typography fontSize={isMobile ? "16px" : isTablet ? "18px" : "20px"} fontWeight={600}>
                     {title}
                 </Typography>
 
                 {/* DESCRIPTION */}
 
-                <Typography fontSize={isMobile ? "14px":  isTablet ? "15px" : "14px"} fontWeight={500}>
+                <Typography fontSize={isMobile ? "14px" : isTablet ? "15px" : "14px"} fontWeight={500}>
                     {desc}
                 </Typography>
                 <p className="text-[1px] md:text-[14px] lg:text-[14px] leading-relaxed">
-                    
+
                 </p>
             </Box>
 

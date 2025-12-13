@@ -20,20 +20,10 @@ export default function AppointmentSection() {
 
 
     return (
-        <div className="w-full max-w-8xl flex flex-col items-center">
-
-            {/* MAIN HEADING */}
 
 
-            {/* <GradientHeading text="अपॉइंटमेंट" />
-
-                <Typography my={4} fontSize={"20px"} fontWeight={600}>
-                    तुमचा प्रस्ताव आम्हाला पाठवा
-                </Typography> */}
-
-
-            {/* MAIN CONTAINER */}
-            <div className="w-full max-w-8xl flex flex-col lg:flex-col gap-2 lg:gap-2 md:gap-10">
+        <Box py={12}>
+            <div className="py-20 w-full max-w-8xl flex flex-col lg:flex-col gap-2 lg:gap-6 md:gap-10">
 
                 <Box alignItems={"center"} px={isMobile ? 4 : isTablet ? 6 : 10}>
                     <GradientHeading text="अपॉइंटमेंट" />
@@ -52,12 +42,13 @@ export default function AppointmentSection() {
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         mr={isMobile ? 4 : isTablet ? 0 : 0}
+                        ml={isMobile ? 0 : isTablet ? 0 : 10}
                         display="flex"
                         flexDirection="column"
                         gap={isMobile ? 4 : 6}
-                        px={isMobile ? 4 : isTablet ? 6 : 10}
-                        py={isMobile ? 6 : isTablet ? 6 : 10}
-                        className="bg-[#ff4255] lg:bg-[#ED0000] text-white rounded-tr-3xl rounded-br-3xl lg:w-[45%] md:w-[92%] w-full"
+                        px={isMobile ? 4 : isTablet ? 6 : 6}
+                        py={isMobile ? 6 : isTablet ? 6 : 6}
+                        className="bg-[#ff4255] lg:bg-[#ED0000] text-white rounded-tr-3xl md:rounded-tr-3xl rounded-br-3xl md:rounded-br-3xl lg:rounded-3xl lg:w-[35%] md:w-[92%] w-full"
                     >
 
 
@@ -99,13 +90,14 @@ export default function AppointmentSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                        ml={isTablet ? 4.8 : 0}
+                        ml={isTablet ? 6 : 0}
+                        mr={isMobile ? 0 : isTablet ? 0 : 10}
                         display="flex"
                         flexDirection="column"
                         gap={isMobile ? 4 : 4}
-                        px={isMobile ? 4 : isTablet ? 6 : 10}
-                        py={isMobile ? 6 : isTablet ? 6 : 10}
-                        className="bg-[#005896] text-white rounded-tl-3xl rounded-bl-3xl lg:w-[55%] md:w-[95%] w-full"
+                        px={isMobile ? 4 : isTablet ? 6 : 6}
+                        py={isMobile ? 6 : isTablet ? 6 : 6}
+                        className="bg-[#005896] text-white rounded-tl-3xl md:rounded-tl-3xl lg:rounded-3xl rounded-bl-3xl md:rounded-bl-3xl lg:rounded-3xl lg:w-[65%] md:w-[95%] w-full"
                     >
 
                         {/* Icon */}
@@ -120,10 +112,10 @@ export default function AppointmentSection() {
                         <CustomInput label="संदेश" multiline rows={3} />
 
                         {/* Submit Button */}
-                        <RedButton bg={"#E60000"} sx={{ px: 4, py: 1.5 }}>संदेश पाठवा</RedButton>
+                        <RedButton bg={"#FF1F1F"} sx={{ px: 4, py: 1.5 }}>संदेश पाठवा</RedButton>
                     </Box>
                 </div>
             </div>
-        </div>
+        </Box>
     );
 }

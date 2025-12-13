@@ -13,7 +13,7 @@ import ScrollReveal from '../Common/ScrollReveal/ScrollReveal'
 const MainHome = () => {
   return (
     <div>
-      <Box display={"flex"} flexDirection={"column"} gap={6}>
+      <Box display={"flex"} flexDirection={"column"}>
         <HeroSlider />
 
         <ScrollReveal>
