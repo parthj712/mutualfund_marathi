@@ -22,8 +22,8 @@ export default function CustomInput({ label, multiline = false, rows = 1 }) {
                 disableUnderline: true,
             }}
             sx={{
-                backgroundColor: "rgba(255, 230, 230, 1)", // light pink
-                borderRadius: isMobile ? "6px" : "10px",
+                backgroundColor: "#FFF5F5", // light pink
+                borderRadius: isMobile ? "10px" : "10px",
                 "& .MuiFilledInput-root": {
                     borderRadius: "10px",
                 },

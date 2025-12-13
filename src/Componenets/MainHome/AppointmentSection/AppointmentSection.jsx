@@ -6,6 +6,8 @@ import RedButton from "@/Componenets/Common/RedButton";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import ContactPageRoundedIcon from '@mui/icons-material/ContactPageRounded';
+import { motion } from "framer-motion";
+
 
 export default function AppointmentSection() {
 
@@ -44,15 +46,20 @@ export default function AppointmentSection() {
                 <div className="flex flex-col lg:flex-row gap-2 lg:gap-10 md:gap-10">
                     {/* LEFT RED CARD */}
                     <Box
+                        component={motion.div}
+                        initial={{ opacity: 0, x: -80 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
                         mr={isMobile ? 4 : isTablet ? 0 : 0}
                         display="flex"
                         flexDirection="column"
                         gap={isMobile ? 4 : 6}
                         px={isMobile ? 4 : isTablet ? 6 : 10}
                         py={isMobile ? 6 : isTablet ? 6 : 10}
-
                         className="bg-[#ff4255] lg:bg-[#ED0000] text-white rounded-tr-3xl rounded-br-3xl lg:w-[45%] md:w-[92%] w-full"
                     >
+
 
 
                         {/* Icon */}
@@ -87,15 +94,20 @@ export default function AppointmentSection() {
 
                     {/* RIGHT BLUE FORM */}
                     <Box
-                        // ml={isMobile ? 4 : isTablet ? 4 : 0}
+                        component={motion.div}
+                        initial={{ opacity: 0, x: 80 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
                         ml={isTablet ? 4.8 : 0}
                         display="flex"
                         flexDirection="column"
-                        gap={isMobile ? 4 : isTablet ? 4 : 4}
+                        gap={isMobile ? 4 : 4}
                         px={isMobile ? 4 : isTablet ? 6 : 10}
                         py={isMobile ? 6 : isTablet ? 6 : 10}
-                        className="bg-[#005896] text-white rounded-tl-3xl rounded-bl-3xl lg:w-[55%] md:w-[95%] w-full "
+                        className="bg-[#005896] text-white rounded-tl-3xl rounded-bl-3xl lg:w-[55%] md:w-[95%] w-full"
                     >
+
                         {/* Icon */}
                         <div className="w-12 h-12 flex items-center justify-center text-2xl rounded-full bg-white/20">
                             <ContactPageRoundedIcon />
@@ -108,7 +120,7 @@ export default function AppointmentSection() {
                         <CustomInput label="संदेश" multiline rows={3} />
 
                         {/* Submit Button */}
-                        <RedButton bg={"#ED0000"} sx={{ px: 4, py: 1.5 }}>संदेश पाठवा</RedButton>
+                        <RedButton bg={"#E60000"} sx={{ px: 4, py: 1.5 }}>संदेश पाठवा</RedButton>
                     </Box>
                 </div>
             </div>

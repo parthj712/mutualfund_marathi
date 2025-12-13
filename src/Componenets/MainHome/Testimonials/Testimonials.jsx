@@ -5,6 +5,8 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import GradientUnderlineHeading from "@/Componenets/Common/GradientUnderlineHeading/GradientUnderlineHeading";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useInView, animate } from "framer-motion";
+import { useRef } from "react";
 
 
 
@@ -17,6 +19,15 @@ export default function Testimonials() {
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
+    // 🔢 Counter state
+    const [count, setCount] = useState(0);
+
+    // 👀 Observe when section is visible
+    const counterRef = useRef(null);
+    const isInView = useInView(counterRef, { once: true, margin: "-100px" });
+
 
 
     const testimonials = [
@@ -50,6 +61,21 @@ export default function Testimonials() {
     }, []);
 
 
+    useEffect(() => {
+        if (!isInView) return;
+
+        const controls = animate(0, 250, {
+            duration: 2.5,
+            ease: "easeOut",
+            onUpdate(value) {
+                setCount(Math.floor(value));
+            },
+        });
+
+        return () => controls.stop();
+    }, [isInView]);
+
+
 
     return (
         <Box px={isMobile ? 4 : isTablet ? 6 : 10}
@@ -65,7 +91,7 @@ export default function Testimonials() {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "left center",
-                
+
             }} className="w-full bg-[#003B65] text-white py-16 px-4">
             <Box className="max-w-6xl mx-auto flex flex-col items-center  gap-6">
 
@@ -81,12 +107,18 @@ export default function Testimonials() {
                 <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
 
                     {/* LEFT SIDE — 250+ Number */}
-                    <div className="flex flex-col items-start lg:items-start lg:text-left text-center">
+                    <div
+                        ref={counterRef}
+                        className="flex flex-col items-start lg:items-start lg:text-left text-center"
+                    >
+
                         <Typography
-                            fontSize={isMobile ? "80px" : isTablet ? "90px" : "132px"} fontWeight={600}
+                            fontSize={isMobile ? "80px" : isTablet ? "90px" : "132px"}
+                            fontWeight={600}
                         >
-                            250+
+                            {count}+
                         </Typography>
+
 
                         <Typography fontSize={isMobile ? "30px" : isTablet ? "32px" : "52px"}>
                             ग्राहकांना सेवा दिली

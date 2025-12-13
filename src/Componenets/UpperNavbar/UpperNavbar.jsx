@@ -42,17 +42,52 @@ export default function UpperNavbar() {
                 >
                     <Box>
                         <Typography fontWeight={500} fontSize={13}>सुजय</Typography>
-                        <Typography fontWeight={600} fontSize={15}>9503718779</Typography>
+                        <Typography
+                            component="a"
+                            href="tel:+919503718779"
+                            fontWeight={600}
+                            fontSize={15}
+                            sx={{
+                                textDecoration: "none",
+                                color: "inherit",
+                                cursor: "pointer",
+                            }}
+                        >
+                            9503718779
+                        </Typography>
+
                     </Box>
 
                     <Box>
                         <Typography fontWeight={500} fontSize={13}>सदानंद</Typography>
-                        <Typography fontWeight={600} fontSize={15}>9518752605</Typography>
+                        <Typography
+                            component="a"
+                            href="tel:+919518752605"
+                            fontWeight={600}
+                            fontSize={15}
+                            sx={{ textDecoration: "none", color: "inherit" }}
+                        >
+                            9518752605
+                        </Typography>
+
                     </Box>
 
                     <Box>
                         <Typography fontWeight={500} fontSize={13}>ईमेल:</Typography>
-                        <Typography fontWeight={600} fontSize={15}>admin@thakurfinserv.com</Typography>
+                        <Typography
+                            component="a"
+                            href="mailto:admin@thakurfinserv.com"
+                            fontWeight={600}
+                            fontSize={15}
+                            sx={{
+                                textDecoration: "none",
+                                color: "inherit",
+                                cursor: "pointer",
+                            }}
+                        >
+                            admin@thakurfinserv.com
+                        </Typography>
+
                     </Box>
                 </Box>
 
@@ -65,7 +100,7 @@ export default function UpperNavbar() {
                         height: isMobile ? 40 : 50,
                         objectFit: "contain",
                         borderRadius: 5,
-                        alignItems : "center"
+                        alignItems: "center"
                     }}
                 />
 
@@ -76,7 +111,7 @@ export default function UpperNavbar() {
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent : "center",
+                        justifyContent: "center",
                         gap: 6,
                         mt: isMobile ? 1 : 0,
                     }}

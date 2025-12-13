@@ -9,6 +9,7 @@ import CopyrightBar from "@/Componenets/CopyrightBar/CopyrightBar";
 import RouteLoader from "@/Componenets/Loader/RouteLoader";
 import TopProgressBar from "@/Componenets/Loader/TopProgressBar";
 import "../styles/nprogress-custom.css";
+import PageTransition from "@/Componenets/Common/ScrollReveal/PageTransition";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -44,17 +45,21 @@ export default function RootLayout({ children }) {
         <div className="global-rs-bg" />
 
         <ThemeRegistry>
-          <TopProgressBar />
-          <RouteLoader />
+          <PageTransition>
+            <TopProgressBar />
+            <RouteLoader />
 
-          <HeaderWrapper />
+            <HeaderWrapper />
 
-          <main className="site-content">
-            {children}
-          </main>
 
-          <Footer />
-          <CopyrightBar />
+            <main className="site-content">
+              {children}
+            </main>
+
+
+            <Footer />
+            <CopyrightBar />
+          </PageTransition>
         </ThemeRegistry>
       </body>
     </html>
