@@ -2,30 +2,38 @@
 
 import { Button } from "@mui/material";
 
-export default function RedButton({ children, onClick, sx, ...rest }) {
+export default function RedButton({
+    children,
+    onClick,
+    sx,
+    bg,          // optional background color
+    textColor,   // optional text color
+    ...rest
+}) {
     return (
         <Button
             variant="contained"
             onClick={onClick}
             sx={{
-                backgroundColor: "#E50000",
+                backgroundColor: bg || "", // ✅ default red
                 borderRadius: "10px",
-                paddingX: 3,
-                paddingY: 1,
+                px: 3,
+                py: 1,
                 fontSize: "18px",
                 fontWeight: 600,
-                color: "white",
+                color: textColor || "white",     // ✅ default white
                 textTransform: "none",
                 "&:hover": {
-                    backgroundColor: "#cc0000",
+                    backgroundColor: bg
+                        ? bg
+                        : "003859",                  // darker red hover
+                    opacity: 0.9,
                 },
                 ...sx,
             }}
             {...rest}
         >
-            <p>
-                {children}
-            </p>
+            {children}
         </Button>
     );
 }

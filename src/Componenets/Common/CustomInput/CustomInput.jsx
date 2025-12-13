@@ -1,6 +1,16 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 export default function CustomInput({ label, multiline = false, rows = 1 }) {
+
+    const theme = useTheme();
+
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
     return (
         <TextField
             label={label}
@@ -13,20 +23,20 @@ export default function CustomInput({ label, multiline = false, rows = 1 }) {
             }}
             sx={{
                 backgroundColor: "rgba(255, 230, 230, 1)", // light pink
-                borderRadius: "10px",
+                borderRadius: isMobile ? "6px" : "10px",
                 "& .MuiFilledInput-root": {
                     borderRadius: "10px",
                 },
                 "& .MuiFilledInput-input": {
-                    padding: "16px",
-                    fontSize: "16px",
+                    padding: "14px",
+                    fontSize: isMobile ? "14px" :  "16px",
                     fontWeight: 700,
                     color: "#000",
                 },
                 "& .MuiInputLabel-root": {
-                    fontSize: "18px",
+                    fontSize: isMobile ? "15px" :  "16px",
                     color: "#000",
-                    fontWeight : 500
+                    fontWeight: 600
                 },
                 "& .MuiInputLabel-shrink": {
                     color: "#000",

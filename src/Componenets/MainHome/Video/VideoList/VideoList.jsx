@@ -31,13 +31,14 @@ export default function VideoList() {
             url: "https://youtu.be/lhse5j6N34s?si=1C_qIeJQ5pvS0zrF",
             title: "म्युचुअल फंडात ऑनलाईन गुंतवणूक कशी करावी?",
             desc: "प्रत्येक म्युचुअल फंड त्यांच्या संकेतस्थळावर ऑनलाइन गुंतवणुकीची सुविधा देत असतो. त्याचप्रमाणे आजकाल अनेक ऑनलाइन संकेतस्थळे हि सुविधा देत असतात. आमच्या या वेबसाईटवरून किंवा आमच्या मोबाईल app मधून सुद्धा आपण ऑनलाइन गुंतवणूक करू शकता. याचप्रमाणे आम्ही म्युचुअल फंडाचे खाते पेपरलेस ऑनलाइन उघडण्याची सुविधा सुरु केली आहे.",
-             duration: "0:45",
+            duration: "0:45",
         },
     ];
 
 
     return (
-        <Box p={isMobile ? 3 : 10}>
+        <Box px={isMobile ? 4 : isTablet ? 6 : 10}
+            py={isMobile ? 2 : isTablet ? 6 : 10}>
             <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-10">
                 {videos.map((v, i) => (
                     <div key={i} className="mb-4">

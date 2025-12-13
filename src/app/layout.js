@@ -40,16 +40,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="mr" className={`${poppins.variable} ${notoSans.variable} ${mukta.variable}`}>
       <body>
+
+        <div className="global-rs-bg" />
+
         <ThemeRegistry>
-<TopProgressBar />   
+          <TopProgressBar />
           <RouteLoader />
 
           <HeaderWrapper />
 
-          {children}
+          <main className="site-content">
+            {children}
+          </main>
 
-          <Footer/>
-          <CopyrightBar/>
+          <Footer />
+          <CopyrightBar />
         </ThemeRegistry>
       </body>
     </html>

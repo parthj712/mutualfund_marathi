@@ -38,7 +38,7 @@ export default function VideoCard({ url, title, desc, duration }) {
             <Box display="flex" flexDirection="column" gap={1.5} flex="1" p={2}>
 
                 {/* PLAY + DURATION RED PILL */}
-                <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={1} px={2} py={1} className={`bg-red-600 text-white rounded-md w-fit relative overflow-hidden`}>
+                <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={1} px={2} py={1} className={`bg-[#ff4659] md:bg-[#ff4659] lg:bg-red-600 text-white rounded-md w-fit relative overflow-hidden`}>
 
                     {/* Play Icon */}
                     <FaPlay className="text-white text-[14px]" />
