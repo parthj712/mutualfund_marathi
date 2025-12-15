@@ -48,7 +48,7 @@ export default function AppointmentSection() {
                         gap={isMobile ? 4 : 6}
                         px={isMobile ? 4 : isTablet ? 6 : 6}
                         py={isMobile ? 6 : isTablet ? 6 : 6}
-                        className="bg-[#ff4255] lg:bg-[#ED0000] text-white rounded-tr-3xl md:rounded-tr-3xl rounded-br-3xl md:rounded-br-3xl lg:rounded-3xl lg:w-[35%] md:w-[92%] w-full"
+                        className="bg-[#fe3c4f] lg:bg-[#ED0000] text-white rounded-tr-3xl md:rounded-tr-3xl rounded-br-3xl md:rounded-br-3xl lg:rounded-3xl lg:w-[35%] md:w-[92%] w-full"
                     >
 
 
@@ -82,6 +82,8 @@ export default function AppointmentSection() {
                             <p className="text-[20px] leading-relaxed">admin@thakurfinserv.com</p>
                         </Box>
                     </Box>
+
+                
 
                     {/* RIGHT BLUE FORM */}
                     <Box
