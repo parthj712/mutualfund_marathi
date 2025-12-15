@@ -6,21 +6,19 @@ import { motion } from "framer-motion";
 import { useReducedMotion } from "framer-motion";
 
 
-export default function CommonInfoCard({ icon, title, desc }) {
-
+export default function CommonInfoCard({ icon, title, desc, iconBg }) {
     const reduceMotion = useReducedMotion();
 
     return (
         <Box
-            display={"flex"}
-            flexDirection={"column"}
+            display="flex"
+            flexDirection="column"
             gap={3}
             p={4}
-            alignItems={"flex-start"}
-            justifyContent={"space-between"}
+            alignItems="flex-start"
+            justifyContent="space-between"
             className="
-                group   /* IMPORTANT: allows child hover effects */
-                bg-white rounded-2xl shadow
+                group bg-white rounded-2xl shadow
                 w-full transition-all duration-300 hover:shadow-2xl
                 relative cursor-pointer
             "
@@ -29,74 +27,63 @@ export default function CommonInfoCard({ icon, title, desc }) {
                 borderRight: "4px solid #E60000",
             }}
         >
-       
             {/* ICON */}
             <motion.div
-                className="
-    w-12 h-12 rounded-full flex items-center justify-center
-    group-hover:scale-110
-  "
+                className="w-12 h-12 rounded-full flex items-center justify-center"
                 style={{
-                    background: "linear-gradient(135deg, #004A74, #E60000, #004A74)",
-                    backgroundSize: "200% 200%",
+                    background: iconBg,
+                    backgroundSize: "300% 300%",
                 }}
                 animate={
                     reduceMotion
                         ? {}
-                        : { backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }
+                        : {
+                            backgroundPosition: [
+                                "0% 50%",
+                                "100% 50%",
+                                "0% 50%",
+                            ],
+                        }
                 }
                 transition={{
-                    duration: 4,
-                    ease: "easeInOut",
+                    duration: 10,
+                    ease: "linear",
                     repeat: Infinity,
                 }}
-                whileHover={{
-                    scale: 1.15,
-                    transition: { duration: 0.3 },
-                }}
-
+                whileHover={{ scale: 1.15 }}
             >
                 <span className="text-white text-xl">{icon}</span>
             </motion.div>
 
 
+
             {/* TITLE + DESCRIPTION */}
-            <Box display={"flex"} flexDirection={"column"} gap={1.5}>
-                {/* TITLE */}
-                <Typography fontSize="20px" fontWeight={700} className="text-left">
+            <Box display="flex" flexDirection="column" gap={1.5}>
+                <Typography fontSize="22px" fontWeight={700}>
                     {title}
                 </Typography>
 
-                {/* DESCRIPTION with 3-line clamp */}
                 <Typography
                     fontWeight={500}
-                    fontSize="16px"
-                    className="text-left leading-relaxed"
+                    fontSize="18px"
                     sx={{
                         display: "-webkit-box",
                         WebkitLineClamp: 3,
                         WebkitBoxOrient: "vertical",
                         overflow: "hidden",
-                        textOverflow: "ellipsis",
                     }}
                 >
                     {desc}
                 </Typography>
             </Box>
 
-            {/* BOTTOM ARROW */}
-            <div className="flex justify-end mt-2 w-full">
-                <div
-                    className="
-                        p-2 rounded-full 
-                        transition-all duration-300
-                        group-hover:bg-gray-200   /* grey bg on card hover */
-                    "
-                >
+            {/* ARROW */}
+            <div className="flex justify-end w-full">
+                <div className="p-2 rounded-full lg:group-hover:bg-gray-200 ">
                     <FiChevronRight className="text-[30px]" />
                 </div>
             </div>
-
         </Box>
     );
 }
+

@@ -13,7 +13,7 @@ export default function FundCategoryCard({ imgSrc, title }) {
         >
             {/* GRAPH IMAGE */}
             <motion.div
-                className="relative w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 flex items-center justify-center"
+                className="relative w-32 h-32 md:w-32 md:h-32 lg:w-40 lg:h-40 flex items-center justify-center"
                 variants={{
                     hidden: { scale: 0, rotate: -30, opacity: 0 },
                     show: { scale: 1, rotate: 0, opacity: 1 },

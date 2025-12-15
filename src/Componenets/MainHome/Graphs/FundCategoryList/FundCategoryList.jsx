@@ -24,7 +24,7 @@ export default function FundCategoryList() {
 
     return (
         <Box
-            p={isMobile ? 3 : 10}
+            p={isMobile ? 4 : 10}
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
@@ -34,7 +34,7 @@ export default function FundCategoryList() {
             {/* Make content centered + same width as cards */}
             <div className="w-full flex flex-col items-center gap-20">
 
-                <GradientHeading text="जास्त परतावा = स्मार्ट जोखिम + इक्विटी गुंतवणूक." />
+                <GradientHeading text="योग्य जोखिम, अधिक परतावा" />
 
                 {/* Graph Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-40 md:gap-16">

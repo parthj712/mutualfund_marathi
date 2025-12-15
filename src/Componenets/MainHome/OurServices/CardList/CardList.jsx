@@ -25,24 +25,29 @@ export default function CardList() {
         {
             icon: <FaRupeeSign />,
             title: "म्युच्युअल फंड",
-            desc: "म्युच्युअल फंड ही अशी आर्थिक साधने आहेत जी विविध गुंतवणूक पोर्टफोलिओमध्ये गुंतवणूक करतात.",
+            desc: "म्युच्युअल फंड ही अशी आर्थिक साधने आहेत...",
+            iconBg: "linear-gradient(135deg, #1D976C, #93F9B9)", // 💰 finance green
         },
         {
             icon: <TimeToLeaveIcon />,
             title: "सामान्य विमा",
-            desc: "कार, मोटरसायकल किंवा स्कूटर असलेल्या मोटर विमा अनिवार्य आहे...",
+            desc: "कार, मोटरसायकल किंवा स्कूटर असलेल्या...",
+            iconBg: "linear-gradient(135deg, #396afc, #2948ff)", // 🚗 travel blue
         },
         {
             icon: <FaShieldHeart />,
             title: "जीवन विमा",
-            desc: "जीवन विमा हे एक आर्थिक उत्पादन आहे जे पॉलिसीधारकाला संरक्षण देते...",
+            desc: "जीवन विमा हे एक आर्थिक उत्पादन आहे...",
+            iconBg: "linear-gradient(135deg, #CB356B, #BD3F32)", // ❤️ protection red
         },
         {
             icon: <FaHeartbeat />,
             title: "आरोग्य विमा",
-            desc: "गेल्या दशकात भारतात वाढत्या आरोग्यखर्चामुळे लोकांना अधिक गरज भासली आहे...",
+            desc: "गेल्या दशकात भारतात वाढत्या आरोग्यखर्चामुळे...",
+            iconBg: "linear-gradient(135deg, #56ab2f, #a8e063)", // 💚 health green
         },
     ];
+
 
     return (
         <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 10} px={isMobile ? 4 : isTablet ? 6 : 10}
@@ -82,7 +87,9 @@ export default function CardList() {
                             icon={c.icon}
                             title={c.title}
                             desc={c.desc}
+                            iconBg={c.iconBg}
                         />
+
                     </motion.div>
                 ))}
 

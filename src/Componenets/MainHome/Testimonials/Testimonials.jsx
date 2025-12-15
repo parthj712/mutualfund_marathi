@@ -26,7 +26,10 @@ export default function Testimonials() {
 
     // 👀 Observe when section is visible
     const counterRef = useRef(null);
-    const isInView = useInView(counterRef, { once: true, margin: "-100px" });
+    const isInView = useInView(counterRef, { once: true, amount: 0.4 });
+
+    const countRef = useRef(null);
+
 
 
 
@@ -61,14 +64,17 @@ export default function Testimonials() {
     }, []);
 
 
+
     useEffect(() => {
         if (!isInView) return;
 
         const controls = animate(0, 250, {
-            duration: 2.5,
+            duration: 1.8,
             ease: "easeOut",
             onUpdate(value) {
-                setCount(Math.floor(value));
+                if (countRef.current) {
+                    countRef.current.textContent = Math.floor(value);
+                }
             },
         });
 
@@ -77,23 +83,13 @@ export default function Testimonials() {
 
 
 
+
     return (
         <Box px={isMobile ? 4 : isTablet ? 6 : 10}
-            py={isMobile ? 6 : isTablet ? 6 : 10} display={"flex"} flexDirection={"column"} alignItems={"center"} sx={{
-                background: `
-      linear-gradient(
-        90deg,
-        rgba(0, 74, 116, 0.9) 0%,
-        rgba(0, 74, 116, 93) 100%
-      ),
-      url("/BG/bg1.jpg")
-    `,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "left center",
+            py={isMobile ? 6 : isTablet ? 6 : 10} display={"flex"} flexDirection={"column"} alignItems={"center"} className="w-full bg-[#00487b] text-white py-16 px-4">
 
-            }} className="w-full bg-[#003B65] text-white py-16 px-4">
-            <Box className="max-w-6xl mx-auto flex flex-col items-center  gap-6">
+
+            <Box className="max-w-6xl mx-auto flex flex-col items-center  gap-4">
 
                 {/* TOP HEADING */}
                 <GradientUnderlineHeading text="आमचे गुंतवणूकदार काय म्हणतात" size={"24px"} />
@@ -113,15 +109,17 @@ export default function Testimonials() {
                     >
 
                         <Typography
+                            ref={countRef}
                             fontSize={isMobile ? "80px" : isTablet ? "90px" : "132px"}
                             fontWeight={600}
                         >
-                            {count}+
+                            0+
                         </Typography>
 
 
-                        <Typography fontSize={isMobile ? "30px" : isTablet ? "32px" : "52px"}>
-                            ग्राहकांना सेवा दिली
+
+                        <Typography textAlign={"left"} fontSize={isMobile ? "26px" : isTablet ? "32px" : "52px"}>
+                            समाधानी ग्राहकांसोबत कार्यरत
                         </Typography>
                     </div>
 
@@ -139,33 +137,35 @@ export default function Testimonials() {
                         />
 
                         {/* Animated White Box */}
+
                         <Box
                             display="flex"
                             flexDirection="column"
-                            p={8}
+                            p={isMobile ? 6 : 8}
                             gap={4}
                             className="bg-white text-[#003B65] rounded-2xl shadow-lg relative"
                         >
                             <motion.div
                                 key={currentIndex} // 👈 important for animation
-                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
 
                             >
-                                <Box display={"flex"} flexDirection={"column"} gap={4}>
-
-                                    <Typography fontSize="20px" fontWeight={600} textAlign="left" lineHeight={1.8}>
+                                <Box display="flex" flexDirection="column" gap={4}>
+                                    <Typography fontSize={isMobile ? "18px" : "20px"}  fontWeight={600} lineHeight={1.8}>
                                         {testimonials[currentIndex].text}
                                     </Typography>
 
-                                    <Typography fontSize="18px" fontWeight={600} textAlign="right">
+                                    <Typography fontSize={isMobile ? "16px" : "18px"} fontWeight={600} textAlign="right">
                                         {testimonials[currentIndex].author}
                                     </Typography>
                                 </Box>
-
                             </motion.div>
+
                         </Box>
+
+
 
                         {/* BOTTOM QUOTE ICON */}
                         <Image
