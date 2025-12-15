@@ -9,7 +9,7 @@ export default function GradientHeading({ text, className = "" }) {
             <Box>
 
                 {/* Heading text */}
-                <p className="text-[24px] md:text-[20px] lg:text-[24px] font-semibold text-black">
+                <p className="text-[22px] md:text-[20px] lg:text-[24px] font-semibold text-black">
                     {text}
                 </p>
 

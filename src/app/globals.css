@@ -72,7 +72,7 @@ body {
   background-image: url("/BG/RS1.png");
   background-repeat: no-repeat;
   background-position: right 65%;
-  background-size: 18%;
+  background-size: 14%;
   opacity: 0.10;
 }
 
@@ -85,14 +85,23 @@ body {
 
 @media (max-width: 768px) {
   .bg-right-image {
-    display: none;
+    background-position: right 85%;
+    background-size: 28%;
   }
+.bg-left-rs {
+   background-size: 34%;
+}
 }
 
 
 @keyframes floatRight {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(25px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(25px);
+  }
 }
 
 .bg-right-image {

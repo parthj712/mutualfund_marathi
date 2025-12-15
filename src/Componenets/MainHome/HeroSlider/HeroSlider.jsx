@@ -46,7 +46,7 @@ export default function HeroSlider() {
                 autoplay={{ delay: 3000 }}
                 loop={true}
                 pagination={{ clickable: true }}
-                speed={900}               /* Smooth transition */
+                speed={1800}               /* Smooth transition */
                 onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 className="mySwiper"
             >
@@ -86,11 +86,11 @@ export default function HeroSlider() {
                             >
                                 {/* Title Animation */}
                                 <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={
                                         activeIndex === index
                                             ? { opacity: 1, y: 0 }
-                                            : { opacity: 0, y: 60 }
+                                            : { opacity: 0, y: 30 }
                                     }
                                     transition={{ duration: 0.8, ease: "easeOut" }}
                                 >
@@ -115,7 +115,7 @@ export default function HeroSlider() {
                                     animate={
                                         activeIndex === index
                                             ? { opacity: 1, y: 0 }
-                                            : { opacity: 0, y: 40 }
+                                            : { opacity: 0, y: 30 }
                                     }
                                     transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
                                 >
@@ -136,7 +136,7 @@ export default function HeroSlider() {
                                     animate={
                                         activeIndex === index
                                             ? { opacity: 1, y: 0 }
-                                            : { opacity: 0, y: 30 }
+                                            : { opacity: 0, y: 20 }
                                     }
                                     transition={{ duration: 1, ease: "easeOut", delay: 0.25 }}
                                 >
