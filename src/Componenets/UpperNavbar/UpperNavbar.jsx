@@ -94,10 +94,10 @@ export default function UpperNavbar() {
                 {/* LOGO + TEXT */}
 
                 <img
-                    src="/Tlogo.png"
+                    src="/ShriThakur.png"
                     alt="Logo"
                     style={{
-                        height: isMobile ? 40 : 50,
+                        height: isMobile ? 40 : 45,
                         objectFit: "contain",
                         borderRadius: 5,
                         alignItems: "center"

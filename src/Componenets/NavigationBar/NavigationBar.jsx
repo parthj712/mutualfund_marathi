@@ -98,7 +98,7 @@ export default function NavigationBar() {
                     {/* DESKTOP LOGO */}
                     <Box sx={{ display: { xs: "none", lg: "flex" } }}>
                         <Image
-                            src="/Logo.jpeg"
+                            src="/MainLogo.png"
                             alt="Logo"
                             width={120}
                             height={150}

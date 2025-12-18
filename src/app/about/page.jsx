@@ -1,8 +1,11 @@
+import MainAboutUs from '@/Componenets/MainAboutUs/MainAboutUs'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>About</div>
+    <div>
+      <MainAboutUs/>
+    </div>
   )
 }
 
