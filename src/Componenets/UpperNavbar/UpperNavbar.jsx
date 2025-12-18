@@ -4,6 +4,8 @@ import React from "react";
 import { Box, Typography, Container, useTheme, useMediaQuery } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import Image from "next/image";
+
 
 export default function UpperNavbar() {
     const theme = useTheme();
@@ -93,16 +95,26 @@ export default function UpperNavbar() {
 
                 {/* LOGO + TEXT */}
 
-                <img
-                    src="/ShriThakur.png"
-                    alt="Logo"
-                    style={{
-                        height: isMobile ? 40 : 45,
-                        objectFit: "contain",
-                        borderRadius: 5,
-                        alignItems: "center"
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}
-                />
+                >
+                    <Image
+                        src="/ShriThakur.png"
+                        alt="Shri Thakur Logo"
+                        width={isMobile ? 120 : 150}
+                        height={isMobile ? 40 : 45}
+                        style={{
+                            objectFit: "contain",
+                            borderRadius: 5,
+                        }}
+                        priority
+                    />
+                </Box>
+
 
 
 

@@ -1,8 +1,9 @@
 "use client";
 
-import UpperNavbar from "@/Componenets/UpperNavbar/UpperNavbar";
-import NavigationBar from "@/Componenets/NavigationBar/NavigationBar";
+
 import { useTheme, useMediaQuery } from "@mui/material";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import UpperNavbar from "../UpperNavbar/UpperNavbar";
 
 export default function HeaderWrapper() {
     const theme = useTheme();

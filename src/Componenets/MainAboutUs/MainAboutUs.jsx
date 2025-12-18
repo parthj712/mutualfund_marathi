@@ -7,6 +7,7 @@ import OurTeam from './OurTeam/OurTeam';
 import GradientUnderlineHeading from '../Common/GradientUnderlineHeading/GradientUnderlineHeading';
 import OurServices from './OurServices/OurServices';
 import MainOurService from './OurServices/MainOurService';
+import ScrollReveal from '../Common/ScrollReveal/ScrollReveal';
 
 
 const team = [
@@ -41,6 +42,7 @@ const MainAboutUs = () => {
 
         <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={14}>
 
+
           <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
             <GradientHeading text="ठाकूर फायनान्शिअल सर्व्हिसेस" />
 
@@ -53,82 +55,89 @@ const MainAboutUs = () => {
             </Typography>
           </Box>
 
-          <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
-            <GradientHeading text="इतिहास" />
 
-            <Box>
-              <Typography fontSize={isMobile ? "16px" : "20px"}>
-                Thakur Financial Services या नावाने आर्थिक सेवा देणारा व्यवसाय १ जानेवारी २००० रोजी सुरु करण्यात आला.
-              </Typography>
+          <ScrollReveal>
+            <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
+              <GradientHeading text="इतिहास" />
 
-              <List sx={{ pl: 4 }}>
-                <ListItem disableGutters>
-                  <ListItemText
-                    primary="• आमच्याकडे सर्व म्युच्युअल फंड योजना"
-                    primaryTypographyProps={{ fontSize: "20px" }}
-                  />
-                </ListItem>
+              <Box>
+                <Typography fontSize={isMobile ? "16px" : "20px"}>
+                  Thakur Financial Services या नावाने आर्थिक सेवा देणारा व्यवसाय १ जानेवारी २००० रोजी सुरु करण्यात आला.
+                </Typography>
 
-                <ListItem disableGutters>
-                  <ListItemText
-                    primary="• HDFC Life चा जीवन विमा उत्पादने – आम्ही प्रामुख्याने टर्म इन्शुरन्सची शिफारस करतो."
-                    primaryTypographyProps={{ fontSize: "20px" }}
-                  />
-                </ListItem>
+                <List sx={{ pl: 4 }}>
+                  <ListItem disableGutters>
+                    <ListItemText
+                      primary="• आमच्याकडे सर्व म्युच्युअल फंड योजना"
+                      primaryTypographyProps={{ fontSize: "20px" }}
+                    />
+                  </ListItem>
 
-                <ListItem disableGutters>
-                  <ListItemText
-                    primary="• स्टार हेल्थ इन्शुरन्सचा आरोग्य विमा"
-                    primaryTypographyProps={{ fontSize: "20px" }}
-                  />
-                </ListItem>
+                  <ListItem disableGutters>
+                    <ListItemText
+                      primary="• HDFC Life चा जीवन विमा उत्पादने – आम्ही प्रामुख्याने टर्म इन्शुरन्सची शिफारस करतो."
+                      primaryTypographyProps={{ fontSize: "20px" }}
+                    />
+                  </ListItem>
 
-                <ListItem disableGutters>
-                  <ListItemText
-                    primary="• ICICI चा Three in Account – यात मिळते आरडी/एसआयपी, बँकेचे बचत खाते व डीमॅट खाते आणि शेअर खरेदी-विक्रीसाठी ट्रेडिंग खाते."
-                    primaryTypographyProps={{ fontSize: "20px" }}
-                  />
-                </ListItem>
-              </List>
+                  <ListItem disableGutters>
+                    <ListItemText
+                      primary="• स्टार हेल्थ इन्शुरन्सचा आरोग्य विमा"
+                      primaryTypographyProps={{ fontSize: "20px" }}
+                    />
+                  </ListItem>
 
+                  <ListItem disableGutters>
+                    <ListItemText
+                      primary="• ICICI चा Three in Account – यात मिळते आरडी/एसआयपी, बँकेचे बचत खाते व डीमॅट खाते आणि शेअर खरेदी-विक्रीसाठी ट्रेडिंग खाते."
+                      primaryTypographyProps={{ fontSize: "20px" }}
+                    />
+                  </ListItem>
+                </List>
+
+              </Box>
             </Box>
-          </Box>
+          </ScrollReveal>
 
+          <ScrollReveal>
+            <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
+              <GradientHeading text="आमची टीम" />
 
-          <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
-            <GradientHeading text="आमची टीम" />
-
-            <Box display="flex" flexDirection="column" gap={isMobile ? 4 : 6} mt={2}>
-              {team.map((member, index) => (
-                <OurTeam
-                  key={index}
-                  image={member.image}
-                  name={member.name}
-                  desc={member.desc}
-                />
-              ))}
+              <Box display="flex" flexDirection="column" gap={isMobile ? 4 : 6} mt={2}>
+                {team.map((member, index) => (
+                  <OurTeam
+                    key={index}
+                    image={member.image}
+                    name={member.name}
+                    desc={member.desc}
+                  />
+                ))}
+              </Box>
             </Box>
-          </Box>
+          </ScrollReveal>
 
-          <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
-            <GradientHeading text="आमच्या उपलब्ध सेवा" />
 
-            <MainOurService />
-          </Box>
+          <ScrollReveal>
+            <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
+              <GradientHeading text="आमच्या उपलब्ध सेवा" />
+
+              <MainOurService />
+            </Box>
+          </ScrollReveal>
         </Box>
 
+        <ScrollReveal>
+          <Box display={"flex"} flexDirection={"column"} alignItems={"center"} px={10} py={8} gap={6} className="w-full bg-[#00487b] text-white py-16 px-4">
 
-        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} px={10} py={8} gap={6} className="w-full bg-[#00487b] text-white py-16 px-4">
+            <GradientUnderlineHeading text="गुंतवणुकीचे तत्वज्ञान" size={"24px"} />
 
-          <GradientUnderlineHeading text="गुंतवणुकीचे तत्वज्ञान" size={"24px"} />
+            <Typography fontSize={isMobile ? "16px" : "18px"} textAlign={"center"}>
+              प्रामुख्याने आम्ही म्युच्युअल फंडाच्या नियमितपणे उत्तम कामगिरी करणाऱ्या योजनांचे वितरण करतो, जीवन विमा व आरोग्य विम्याच्या माध्यमातून भविष्य सुरक्षित करतो. शेअर बाजारातून पैसे मिळवण्यासाठी तीन गोष्टींची आवश्यकता असते  वेळ, शेअरबाजाराचा अभ्यास आणि आपल्या निर्णयाची खात्री. या तीन गोष्टी ज्याच्याकडे असतात त्याला निश्चितपणे शेअरबाजारातून फायदा मिळतो आणि ज्यांच्याकडे या तीन गोष्टींचा अभाव असतो त्यांना निश्चितपणे नुकसान होते. म्हणूनच शेअरबाजारातून फक्त १०% लोकांना फायदा व बाकीच्यांना नुकसान होत असते. म्हणूनच जर तुमच्याकडे यातील कोणतीही एक गोष्ट नसेल तर तुम्ही म्युच्युअल फंदातच गुंतवणूक करणे तुमच्या फायद्याचे होते. कारण म्युच्युअल फंडाची कोणतीही योजनेच्या गुंतवणुकीचे व्यवस्थापन एक तज्ञ फंड मॅनेजर करत असतो.  तो पूर्ण वेळ हेच काम करत असल्यामुळे त्याच्याकडे पुरेसा वेळ असतो. तो उच्च शिक्षित असतो व त्याने शेअरबाजाराचा पूर्ण अभ्यास केलेला असतो, आणि तो सततच अभ्यास करत असतो म्हणून त्याला या विषयाचे आवश्यक ते ज्ञान असते. आणि तो जे गुंतवणुकीचे निर्णय घेतो त्याबाबत त्याची पूर्णपणे खात्री झालेली असते.  आणि म्हणूनच दीर्घ मुदतीत म्युच्युअल फंडाच्या योजनेतून उत्तम परतावा मिळालेला आहे. बाजाराची जोखीम हि अल्पकालीन असते व फायदा हा दीर्घ काळात होतोच.
+              म्युच्युअल फंडात गुंतवणूक केल्यावर जो व्यक्ती श्री साई बाबांच्या एका वाचनावर विश्वास ठेवेल त्याला निशचितच चांगला फायदा होतो व होईल.  येथे नशीब वगैरे काही लागत नाही. पाहिजे फक्त विश्वास “श्रद्धा और सबुरी” या वाचनावर.
+            </Typography>
 
-          <Typography fontSize={isMobile ? "16px" : "18px"} textAlign={"center"}>
-            प्रामुख्याने आम्ही म्युच्युअल फंडाच्या नियमितपणे उत्तम कामगिरी करणाऱ्या योजनांचे वितरण करतो, जीवन विमा व आरोग्य विम्याच्या माध्यमातून भविष्य सुरक्षित करतो. शेअर बाजारातून पैसे मिळवण्यासाठी तीन गोष्टींची आवश्यकता असते  वेळ, शेअरबाजाराचा अभ्यास आणि आपल्या निर्णयाची खात्री. या तीन गोष्टी ज्याच्याकडे असतात त्याला निश्चितपणे शेअरबाजारातून फायदा मिळतो आणि ज्यांच्याकडे या तीन गोष्टींचा अभाव असतो त्यांना निश्चितपणे नुकसान होते. म्हणूनच शेअरबाजारातून फक्त १०% लोकांना फायदा व बाकीच्यांना नुकसान होत असते. म्हणूनच जर तुमच्याकडे यातील कोणतीही एक गोष्ट नसेल तर तुम्ही म्युच्युअल फंदातच गुंतवणूक करणे तुमच्या फायद्याचे होते. कारण म्युच्युअल फंडाची कोणतीही योजनेच्या गुंतवणुकीचे व्यवस्थापन एक तज्ञ फंड मॅनेजर करत असतो.  तो पूर्ण वेळ हेच काम करत असल्यामुळे त्याच्याकडे पुरेसा वेळ असतो. तो उच्च शिक्षित असतो व त्याने शेअरबाजाराचा पूर्ण अभ्यास केलेला असतो, आणि तो सततच अभ्यास करत असतो म्हणून त्याला या विषयाचे आवश्यक ते ज्ञान असते. आणि तो जे गुंतवणुकीचे निर्णय घेतो त्याबाबत त्याची पूर्णपणे खात्री झालेली असते.  आणि म्हणूनच दीर्घ मुदतीत म्युच्युअल फंडाच्या योजनेतून उत्तम परतावा मिळालेला आहे. बाजाराची जोखीम हि अल्पकालीन असते व फायदा हा दीर्घ काळात होतोच.
-            म्युच्युअल फंडात गुंतवणूक केल्यावर जो व्यक्ती श्री साई बाबांच्या एका वाचनावर विश्वास ठेवेल त्याला निशचितच चांगला फायदा होतो व होईल.  येथे नशीब वगैरे काही लागत नाही. पाहिजे फक्त विश्वास “श्रद्धा और सबुरी” या वाचनावर.
-          </Typography>
-
-        </Box>
-
+          </Box>
+        </ScrollReveal>
       </Box>
     </div>
   )
