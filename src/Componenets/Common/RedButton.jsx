@@ -34,7 +34,7 @@ export default function RedButton({
                 animation: "gradientMove 4s ease infinite",
 
                 borderRadius: "12px",
-                px: 3,
+                px: 2,
                 py: 1.4,
                 fontSize: "18px",
                 fontWeight: 600,

@@ -1,8 +1,7 @@
-import UpperNavbar from "@/Componenets/UpperNavbar/UpperNavbar";
+
 import "./globals.css";
 import ThemeRegistry from "@/theme/ThemeRegistry";
 import { Poppins, Noto_Sans_Devanagari, Mukta } from "next/font/google";
-import NavigationBar from "@/Componenets/NavigationBar/NavigationBar";
 import HeaderWrapper from "@/Componenets/Header/HeaderWrapper";
 import Footer from "@/Componenets/Footer/Footer";
 import CopyrightBar from "@/Componenets/CopyrightBar/CopyrightBar";
