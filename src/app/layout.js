@@ -17,20 +17,17 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
 const notoSans = Noto_Sans_Devanagari({
   weight: ["400", "500", "700"],
   subsets: ["devanagari"],
   variable: "--font-noto",
 });
 
-
 const mukta = Mukta({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["devanagari"],
   variable: "--font-mukta",
 });
-
 
 export const metadata = {
   title: "MutualFundMarathi - ThakurFinserve",
@@ -39,10 +36,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="mr" className={`${poppins.variable} ${notoSans.variable} ${mukta.variable}`}>
+    <html
+      lang="mr"
+      className={`${poppins.variable} ${notoSans.variable} ${mukta.variable}`}
+    >
       <body>
         <div className="global-bg">
-
           {/* LEFT BIG ₹ */}
           <div className="bg-left-rs" />
 
@@ -55,19 +54,14 @@ export default function RootLayout({ children }) {
               <RouteLoader />
               <HeaderWrapper />
 
-              <main className="site-content">
-                {children}
-              </main>
+              <main className="site-content">{children}</main>
 
               <Footer />
               <CopyrightBar />
             </PageTransition>
           </ThemeRegistry>
-
         </div>
       </body>
-
-
     </html>
   );
 }

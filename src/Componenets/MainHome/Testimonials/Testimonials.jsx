@@ -174,7 +174,8 @@ export default function Testimonials() {
                     fontWeight={600}
                     textAlign="right"
                   >
-                    {testimonials[currentIndex]?.fullName || ""}
+                    {testimonials[currentIndex]?.fullName || ""},
+                    {testimonials[currentIndex]?.city || ""}
                   </Typography>
                 </Box>
               </motion.div>
