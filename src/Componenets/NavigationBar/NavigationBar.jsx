@@ -32,6 +32,14 @@ export default function NavigationBar() {
     const [mobileFundOpen, setMobileFundOpen] = useState(false);
 
 
+    const [subMenu, setSubMenu] = useState({
+        anchorEl: null,
+        name: null,
+    });
+
+
+
+
     const navItems = [
         { name: "मुख्यपृष्ठ", path: "/" },
         { name: "आमच्याबद्दल", path: "/about" },
@@ -43,10 +51,32 @@ export default function NavigationBar() {
     ];
 
     const mutualFundItems = [
-        { name: "म्युच्युअल फंड म्हणजे काय?", path: "/funds/what-is-mf" },
-        { name: "SIP गुंतवणूक", path: "/funds/sip" },
-        { name: "फंड प्रकार", path: "/funds/types" },
+        {
+            name: "म्युच्युअल फंड म्हणजे काय?",
+            path: "/funds",
+        },
+        {
+            name: "म्युच्युअल फंडाचे प्रकार",
+            children: [
+                { name: "समभाग आधारित", path: "/funds/fund-types/equity-type" },
+                { name: "कर्ज रोखे", path: "/funds/fund-types/debt_type" },
+                { name: "भांडवली बाजार", path: "/funds/fund-types/capital_markets_type" },
+            ],
+        },
+        {
+            name: "शेअर बाजार",
+            children: [
+                { name: "भांडवली बाजार", path: "/funds/shares/capital_markets" },
+                { name: "फ्युचर्स आणि ऑप्शन्स", path: "/funds/shares/f&o" },
+            ],
+        },
+         {
+            name: "सेवा व सुविधा",
+            path: "/funds/our_funds_services",
+        },
     ];
+
+
 
     const isMenuOpen = Boolean(anchorEl);
 
@@ -137,25 +167,87 @@ export default function NavigationBar() {
                                     <Menu
                                         anchorEl={anchorEl}
                                         open={isMenuOpen}
-                                        onClose={() => setAnchorEl(null)}
+                                        onClose={() => {
+                                            setAnchorEl(null);
+                                            setSubAnchorEl(null);
+                                        }}
                                         MenuListProps={{
-                                            onMouseEnter: () => setAnchorEl(anchorEl),
-                                            onMouseLeave: () => setAnchorEl(null),
+                                            onMouseLeave: () => {
+                                                setAnchorEl(null);
+                                                setSubAnchorEl(null);
+                                            },
                                         }}
                                         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                                         transformOrigin={{ vertical: "top", horizontal: "center" }}
                                     >
-                                        {mutualFundItems.map((sub) => (
-                                            <MenuItem
-                                                key={sub.name}
-                                                component={Link}
-                                                href={sub.path}
-                                                onClick={() => setAnchorEl(null)}
-                                            >
-                                                {sub.name}
-                                            </MenuItem>
-                                        ))}
+                                        {mutualFundItems.map((item) => {
+                                            // ✅ HAS CHILDREN (second-level menu)
+                                            if (item.children) {
+                                                const isThisSubMenuOpen = subMenu.name === item.name;
+
+                                                return (
+                                                    <MenuItem
+                                                        key={item.name}
+                                                        onMouseEnter={(e) =>
+                                                            setSubMenu({
+                                                                anchorEl: e.currentTarget,
+                                                                name: item.name,
+                                                            })
+                                                        }
+                                                        sx={{
+                                                            display: "flex",
+                                                            justifyContent: "space-between",
+                                                            minWidth: 220,
+                                                        }}
+                                                    >
+                                                        {item.name}
+                                                        <ExpandMoreIcon sx={{ transform: "rotate(-90deg)" }} />
+
+                                                        {/* ✅ SECOND LEVEL MENU – opens ONLY for this item */}
+                                                        <Menu
+                                                            anchorEl={subMenu.anchorEl}
+                                                            open={isThisSubMenuOpen}
+                                                            onClose={() => setSubMenu({ anchorEl: null, name: null })}
+                                                            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                                                            transformOrigin={{ vertical: "top", horizontal: "left" }}
+                                                            MenuListProps={{
+                                                                onMouseLeave: () =>
+                                                                    setSubMenu({ anchorEl: null, name: null }),
+                                                            }}
+                                                        >
+                                                            {item.children.map((child) => (
+                                                                <MenuItem
+                                                                    key={child.name}
+                                                                    component={Link}
+                                                                    href={child.path}
+                                                                    onClick={() => {
+                                                                        setAnchorEl(null);
+                                                                        setSubMenu({ anchorEl: null, name: null });
+                                                                    }}
+                                                                >
+                                                                    {child.name}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Menu>
+                                                    </MenuItem>
+                                                );
+                                            }
+
+
+                                            // ✅ NORMAL ITEM
+                                            return (
+                                                <MenuItem
+                                                    key={item.name}
+                                                    component={Link}
+                                                    href={item.path}
+                                                    onClick={() => setAnchorEl(null)}
+                                                >
+                                                    {item.name}
+                                                </MenuItem>
+                                            );
+                                        })}
                                     </Menu>
+
                                 </Box>
                             );
                         }
@@ -267,27 +359,35 @@ export default function NavigationBar() {
                         {/* SUB ITEMS */}
                         <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                {mutualFundItems.map((sub) => (
-                                    <ListItemButton
-                                        key={sub.name}
-                                        component={Link}
-                                        href={sub.path}
-                                        sx={{ pl: 4 }}
-                                        onClick={() => {
-                                            setMobileFundOpen(false);
-                                            setOpen(false);
-                                        }}
-                                    >
-                                        <ListItemText
-                                            primary={sub.name}
-                                            primaryTypographyProps={{
-                                                fontSize: 16,
-                                                fontWeight: 500,
-                                                color: "#1C76A9",
-                                            }}
-                                        />
-                                    </ListItemButton>
-                                ))}
+                                {mutualFundItems.map((item) => {
+                                    // If has children → show parent only (or later add nested collapse)
+                                    if (item.children) {
+                                        return (
+                                            <ListItemButton key={item.name} sx={{ pl: 4 }}>
+                                                <ListItemText
+                                                    primary={item.name}
+                                                    primaryTypographyProps={{ fontSize: 16, fontWeight: 600 }}
+                                                />
+                                            </ListItemButton>
+                                        );
+                                    }
+
+                                    // Normal link
+                                    return (
+                                        <ListItemButton
+                                            key={item.name}
+                                            component={Link}
+                                            href={item.path}
+                                            sx={{ pl: 4 }}
+                                        >
+                                            <ListItemText
+                                                primary={item.name}
+                                                primaryTypographyProps={{ fontSize: 16 }}
+                                            />
+                                        </ListItemButton>
+                                    );
+                                })}
+
                             </List>
                         </Collapse>
                     </List>
@@ -296,7 +396,7 @@ export default function NavigationBar() {
                     <RedButton fullWidth sx={{ mt: 3 }}>
                         साइन इन
                     </RedButton>
-                </Box>
+                          </Box>
             </Drawer>
         </AppBar>
     );
