@@ -64,7 +64,7 @@ export default function HeaderMutualFund({
                     </Typography>
 
                     <Typography
-                        fontSize={isMobile ? "14px" : "20px"}
+                        fontSize={isMobile ? "16px" : "20px"}
                         lineHeight={1.8}
                         color="text.secondary"
                     >

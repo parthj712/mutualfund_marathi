@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function NumberInfoBox({
     number = "1",
@@ -20,6 +20,14 @@ export default function NumberInfoBox({
     borderRadius = "12px",
     sx = {},
 }) {
+
+    const theme = useTheme();
+
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
     return (
         <Box
             sx={{
@@ -45,7 +53,7 @@ export default function NumberInfoBox({
                     alignItems: "center",
                     justifyContent: "center",
                     fontWeight: 700,
-                    fontSize: "18px",
+                    fontSize: isMobile ? "16px" : "18px",
                 }}
             >
                 {number}
@@ -55,8 +63,8 @@ export default function NumberInfoBox({
             <Box display="flex" flexDirection="column" gap={1.5}>
                 {text && (
                     <Typography
-                        fontWeight={700}
-                        fontSize="20px"
+                        fontWeight={600}
+                        fontSize={isMobile ? "18px" : "20px"}
                         sx={{ color: textColor }}
                     >
                         {text}
@@ -65,9 +73,9 @@ export default function NumberInfoBox({
 
                 {subText && (
                     <Typography
-                        fontSize="18px"
+                        fontSize={isMobile ? "16px" : "18px"}
                         lineHeight={1.7}
-                        fontWeight={600}
+                        fontWeight={500}
                         sx={{ color: subTextColor }}
                     >
                         {subText}
