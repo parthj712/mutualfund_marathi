@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function DiffereneceBox({
     title,
@@ -13,7 +13,20 @@ export default function DiffereneceBox({
     items = [], // [{ heading, description }]
 
     sx = {},
+
+
+
+
 }) {
+
+
+    const theme = useTheme();
+
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
     return (
         <Box
             sx={{
@@ -22,7 +35,7 @@ export default function DiffereneceBox({
                 backgroundColor: bgColor,
                 border: borderColor !== "transparent" ? `1px solid ${borderColor}` : "none",
                 ...sx,
-               
+
             }}
         >
             {/* Header */}
@@ -35,8 +48,8 @@ export default function DiffereneceBox({
                     }}
                 >
                     <Typography
-                        fontWeight={700}
-                        fontSize="20px"
+                        fontWeight={isMobile ? 600 : 700}
+                        fontSize={isMobile ? "18px" : "24px"}
                         sx={{ color: titleColor }}
                     >
                         {title}
@@ -48,7 +61,7 @@ export default function DiffereneceBox({
             <Box p={4} display="flex" flexDirection="column" gap={3}>
                 {items.map((item, index) => (
                     <Box key={index}>
-                        <Typography fontWeight={700} fontSize="18px" mb={0.5}>
+                        <Typography fontWeight={isMobile ? 600 : 700} fontSize="18px" mb={0.5}>
                             {item.heading}
                         </Typography>
 

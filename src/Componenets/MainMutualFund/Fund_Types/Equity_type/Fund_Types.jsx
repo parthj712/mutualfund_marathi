@@ -67,8 +67,12 @@ const Fund_Types = () => {
                 <EquityFundStepper />
             </ScrollReveal>
 
-            <ScrollReveal>
+            {/* <ScrollReveal>
                 <RiskNReturn />
+            </ScrollReveal> */}
+
+            <ScrollReveal>
+                <RiskVsReturn />
             </ScrollReveal>
 
 
@@ -82,9 +86,7 @@ const Fund_Types = () => {
 
          <How_to_invest_equity/>
 
-            <ScrollReveal>
-                <RiskVsReturn />
-            </ScrollReveal>
+            
 
         </div>
     )

@@ -45,6 +45,7 @@ export default function NavigationBar() {
         { name: "आमच्याबद्दल", path: "/about" },
         { name: "आमच्या सेवा", path: "/services" },
         { name: "म्युच्युअल फंड", path: "/funds" },
+        { name: "विमा", path: "/insurance" },
         { name: "ब्लॉग्ज", path: "/blogs" },
         { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
