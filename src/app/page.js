@@ -1,10 +1,7 @@
 "use client";
 
 import MainHome from "@/Componenets/MainHome/MainHome";
-import NavigationBar from "@/Componenets/NavigationBar/NavigationBar";
-import UpperNavbar from "@/Componenets/UpperNavbar/UpperNavbar";
 import { useMediaQuery, useTheme } from "@mui/material";
-import Image from "next/image";
 import { useEffect } from "react";
 import API from "@/service/api";
 export default function Home() {
@@ -16,9 +13,21 @@ export default function Home() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
-    API.post("/visitors/visit", {
-      page: window.location.pathname,
-    });
+    const countVisit = async () => {
+      try {
+        const res = await API.post("/visitors/visit", {
+          page: window.location.pathname,
+        });
+        console.log("visit counted", res.data);
+      } catch (error) {
+        console.error(
+          "Visitor API error:",
+          error.response?.data || error.message
+        );
+      }
+    };
+
+    countVisit();
   }, []);
   return (
     <>
