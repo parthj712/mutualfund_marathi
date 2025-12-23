@@ -31,6 +31,9 @@ export default function NavigationBar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileFundOpen, setMobileFundOpen] = useState(false);
 
+    const [mobileSubMenu, setMobileSubMenu] = useState(null);
+
+
 
     const [subMenu, setSubMenu] = useState({
         anchorEl: null,
@@ -45,7 +48,7 @@ export default function NavigationBar() {
         { name: "आमच्याबद्दल", path: "/about" },
         { name: "आमच्या सेवा", path: "/services" },
         { name: "म्युच्युअल फंड", path: "/funds" },
-        // { name: "विमा", path: "/insurance" },
+        // { name: "विमा", path: "/insurance" },g
         { name: "ब्लॉग्ज", path: "/blogs" },
         { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
@@ -71,7 +74,7 @@ export default function NavigationBar() {
                 { name: "फ्युचर्स आणि ऑप्शन्स", path: "/funds/shares/f&o" },
             ],
         },
-         {
+        {
             name: "सेवा व सुविधा",
             path: "/funds/our_funds_services",
         },
@@ -337,49 +340,96 @@ export default function NavigationBar() {
                             ))}
 
                         {/* MUTUAL FUND DROPDOWN */}
+                        {/* MUTUAL FUND DROPDOWN */}
                         <ListItemButton
                             onClick={() => setMobileFundOpen(!mobileFundOpen)}
-                            sx={{
-                                borderRadius: 2,
-                                "&:hover": { backgroundColor: "#E6EAFF" },
-                            }}
+                            sx={{ borderRadius: 2 }}
                         >
                             <ListItemText
                                 primary="म्युच्युअल फंड"
                                 primaryTypographyProps={{ fontSize: 18, fontWeight: 600 }}
                             />
-
                             <ExpandMoreIcon
                                 sx={{
                                     transform: mobileFundOpen ? "rotate(180deg)" : "rotate(0deg)",
-                                    transition: "transform 0.3s ease",
+                                    transition: "0.3s",
                                 }}
                             />
                         </ListItemButton>
 
-                        {/* SUB ITEMS */}
                         <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
+
                                 {mutualFundItems.map((item) => {
-                                    // If has children → show parent only (or later add nested collapse)
+                                    // ✅ HAS CHILDREN → SECOND LEVEL DROPDOWN
                                     if (item.children) {
+                                        const isOpen = mobileSubMenu === item.name;
+
                                         return (
-                                            <ListItemButton key={item.name} sx={{ pl: 4 }}>
-                                                <ListItemText
-                                                    primary={item.name}
-                                                    primaryTypographyProps={{ fontSize: 16, fontWeight: 600 }}
-                                                />
-                                            </ListItemButton>
+                                            <Box key={item.name}>
+                                                <ListItemButton
+                                                    onClick={() =>
+                                                        setMobileSubMenu(isOpen ? null : item.name)
+                                                    }
+                                                    sx={{ pl: 4 }}
+                                                >
+                                                    <ListItemText
+                                                        primary={item.name}
+                                                        primaryTypographyProps={{
+                                                            fontSize: 16,
+                                                            fontWeight: 600,
+                                                        }}
+                                                    />
+                                                    <ExpandMoreIcon
+                                                        sx={{
+                                                            transform: isOpen
+                                                                ? "rotate(180deg)"
+                                                                : "rotate(0deg)",
+                                                            transition: "0.3s",
+                                                        }}
+                                                    />
+                                                </ListItemButton>
+
+                                                {/* CHILD ITEMS */}
+                                                <Collapse in={isOpen} timeout="auto" unmountOnExit>
+                                                    <List component="div" disablePadding>
+                                                        {item.children.map((child) => (
+                                                            <ListItemButton
+                                                                key={child.name}
+                                                                component={Link}
+                                                                href={child.path}
+                                                                sx={{ pl: 6 }}
+                                                                onClick={() => {
+                                                                    setOpen(false);
+                                                                    setMobileFundOpen(false);
+                                                                    setMobileSubMenu(null);
+                                                                }}
+                                                            >
+                                                                <ListItemText
+                                                                    primary={child.name}
+                                                                    primaryTypographyProps={{
+                                                                        fontSize: 15,
+                                                                    }}
+                                                                />
+                                                            </ListItemButton>
+                                                        ))}
+                                                    </List>
+                                                </Collapse>
+                                            </Box>
                                         );
                                     }
 
-                                    // Normal link
+                                    // ✅ NORMAL ITEM
                                     return (
                                         <ListItemButton
                                             key={item.name}
                                             component={Link}
                                             href={item.path}
                                             sx={{ pl: 4 }}
+                                            onClick={() => {
+                                                setOpen(false);
+                                                setMobileFundOpen(false);
+                                            }}
                                         >
                                             <ListItemText
                                                 primary={item.name}
@@ -388,7 +438,20 @@ export default function NavigationBar() {
                                         </ListItemButton>
                                     );
                                 })}
+                            </List>
+                        </Collapse>
 
+
+                        {/* SUB ITEMS */}
+                        <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
+                            <List disablePadding>
+                                {mutualFundItems.map((item) => {
+                                    if (item.children) {
+                                        // nested dropdown (types / share bazar)
+                                    } else {
+                                        // single link (what is MF, services)
+                                    }
+                                })}
                             </List>
                         </Collapse>
                     </List>
@@ -397,7 +460,7 @@ export default function NavigationBar() {
                     <RedButton fullWidth sx={{ mt: 3 }}>
                         साइन इन
                     </RedButton>
-                          </Box>
+                </Box>
             </Drawer>
         </AppBar>
     );
