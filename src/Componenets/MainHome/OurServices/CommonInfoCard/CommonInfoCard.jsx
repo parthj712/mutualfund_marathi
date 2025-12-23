@@ -1,89 +1,77 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import { FiChevronRight } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
 
-
-export default function CommonInfoCard({ icon, title, desc, iconBg }) {
-    const reduceMotion = useReducedMotion();
-
+export default function CommonInfoCard({
+    logo,
+    title,
+    category,          // ← dynamic from dropdown
+    launchDate,
+    aum,
+    fiveYearReturn,
+}) {
     return (
         <Box
-            display="flex"
-            flexDirection="column"
-            gap={3}
-            p={4}
-            alignItems="flex-start"
-            justifyContent="space-between"
-            className="
-                group bg-white rounded-2xl shadow
-                w-full transition-all duration-300 hover:shadow-2xl
-                relative cursor-pointer
-            "
+            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
             sx={{
-                borderBottom: "4px solid #004A74",
-                borderRight: "4px solid #E60000",
+                borderBottom: "7px solid #0A3D62",
+                
+                p: 4,
+                height: "100%",
             }}
         >
-            {/* ICON */}
-            <motion.div
-                className="w-12 h-12 rounded-full flex items-center justify-center"
-                style={{
-                    background: iconBg,
-                    backgroundSize: "300% 300%",
-                }}
-                animate={
-                    reduceMotion
-                        ? {}
-                        : {
-                            backgroundPosition: [
-                                "0% 50%",
-                                "100% 50%",
-                                "0% 50%",
-                            ],
-                        }
-                }
-                transition={{
-                    duration: 10,
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
-                whileHover={{ scale: 1.15 }}
-            >
-                <span className="text-white text-xl">{icon}</span>
-            </motion.div>
-
-
-
-            {/* TITLE + DESCRIPTION */}
-            <Box display="flex" flexDirection="column" gap={1.5}>
-                <Typography fontSize="22px" fontWeight={700}>
-                    {title}
-                </Typography>
-
-                <Typography
-                    fontWeight={500}
-                    fontSize="18px"
-                    sx={{
-                        display: "-webkit-box",
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                    }}
+            {/* LOGO */}
+            <Box mb={3}>
+                <Box
+                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white shadow"
                 >
-                    {desc}
-                </Typography>
+                    <img
+                        src={logo}
+                        alt={title}
+                        className="w-7 h-7 object-contain"
+                    />
+                </Box>
             </Box>
 
-            {/* ARROW */}
-            <div className="flex justify-end w-full">
-                <div className="p-2 rounded-full lg:group-hover:bg-gray-200 ">
-                    <FiChevronRight className="text-[30px]" />
-                </div>
-            </div>
+            {/* TITLE */}
+            <Typography fontSize="20px" fontWeight={700} mb={1.5}>
+                {title}
+            </Typography>
+
+            {/* CATEGORY */}
+            <Box
+                display="flex"
+                alignItems="center"
+                gap={1}
+                className="text-[#5B6BFF] font-medium"
+            >
+                <Typography fontSize="15px">
+                    {category}
+                </Typography>
+                <FiChevronRight />
+            </Box>
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* DETAILS */}
+            <Box display="flex" flexDirection="column" gap={2}>
+                <InfoRow label="Launch Date" value={launchDate} />
+                <InfoRow label="AUM (Crore)" value={aum} />
+                <InfoRow label="5Y (%)" value={fiveYearReturn} />
+            </Box>
         </Box>
     );
 }
 
+/* Small reusable row */
+const InfoRow = ({ label, value }) => (
+    <Box display="flex" justifyContent="space-between">
+        <Typography fontSize="15px" color="text.secondary">
+            {label}
+        </Typography>
+        <Typography fontSize="15px" fontWeight={600}>
+            {value}
+        </Typography>
+    </Box>
+);
