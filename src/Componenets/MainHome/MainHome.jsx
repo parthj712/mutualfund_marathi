@@ -33,9 +33,9 @@ const MainHome = () => {
         {/* 
         <VideoList /> */}
 
-        <ScrollReveal>
+        {/* <ScrollReveal>
           <CardList />
-        </ScrollReveal>
+        </ScrollReveal> */}
 
         <ScrollReveal>
           <FundCategoryList />

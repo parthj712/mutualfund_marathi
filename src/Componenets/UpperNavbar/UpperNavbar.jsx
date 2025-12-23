@@ -105,14 +105,14 @@ export default function UpperNavbar() {
                     <Image
                         src="/ShriThakur.png"
                         alt="Shri Thakur Logo"
-                        width={isMobile ? 120 : 150}
-                        height={isMobile ? 40 : 45}
-                        style={{
-                            objectFit: "contain",
-                            borderRadius: 5,
-                        }}
-                        priority
+                        width={150}
+                        height={45}
+                        loading="lazy"        // 👈 key
+                        fetchPriority="low"   // 👈 key
+                        sizes="(max-width: 600px) 120px, 150px"
+                        style={{ objectFit: "contain" }}
                     />
+
                 </Box>
 
 

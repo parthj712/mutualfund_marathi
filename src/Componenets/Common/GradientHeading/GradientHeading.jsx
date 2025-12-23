@@ -2,25 +2,50 @@
 
 import { Box } from "@mui/material";
 
-export default function GradientHeading({ text, className = "" }) {
+export default function GradientHeading({
+    text,
+    className = "",
+    variant = "default", // default | white | gradient
+}) {
+    const getTextStyle = () => {
+        if (variant === "white") {
+            return { color: "#ffffff" };
+        }
+
+        if (variant === "gradient") {
+            return {
+                background: "linear-gradient(to right, #4DA3FF, #FF5A5A)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+            };
+        }
+
+        // DEFAULT → black
+        return { color: "#000000" };
+    };
+
     return (
-        <div className={`w-full flex flex-col items-start md:items-center lg:items-center gap-1 ${className}`}>
-
-            <Box display={"flex"} flexDirection={"column"} gap={0.5}>
-
+        <div
+            className={`w-full flex flex-col items-start md:items-center lg:items-center gap-1 ${className}`}
+        >
+            <Box display="flex" flexDirection="column" gap={0.5}>
                 {/* Heading text */}
-                <p className="text-[22px] md:text-[20px] lg:text-[24px] font-semibold text-black">
+                <p
+                    className="text-[22px] md:text-[20px] lg:text-[24px] font-semibold"
+                    style={getTextStyle()}
+                >
                     {text}
                 </p>
 
-                {/* BLUE → RED underline aligned RIGHT */}
+                {/* Underline */}
                 <div className="flex justify-start">
                     <div
                         className="h-[4px] w-20 rounded-full"
                         style={{
-                            background: "linear-gradient(to right, #004A74, #E60000)",
+                            background:
+                                "linear-gradient(to right, #004A74, #E60000)",
                         }}
-                    ></div>
+                    />
                 </div>
             </Box>
         </div>
