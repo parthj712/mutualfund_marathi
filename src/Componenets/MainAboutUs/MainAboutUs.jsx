@@ -8,6 +8,11 @@ import GradientUnderlineHeading from '../Common/GradientUnderlineHeading/Gradien
 import OurServices from './OurServices/OurServices';
 import MainOurService from './OurServices/MainOurService';
 import ScrollReveal from '../Common/ScrollReveal/ScrollReveal';
+import History from './History/History';
+import DisclaimerBox from '../Common/DisclaimerBox/DisclaimerBox';
+import VisionSection from './VisionSection/VisionSection';
+import NumberInfoBox from '../Common/NumberInfoBox/NumberInfoBox';
+import Vision_N_Mission from './Vision_N_Mission/Vision_N_Mission';
 
 
 const team = [
@@ -15,16 +20,46 @@ const team = [
     name: "सदानंद ठाकूर",
     desc: `सदानंद ठाकूर हे १९७८ बॅचचे कॉमर्स पदवीधर असून जानेवारी २००० मध्ये  ठाकूर फायनान्शिअल सर्व्हिसेस या नावाने विविध प्रकारच्या आर्थिक सेवा देणारा व्यवसाय सुरु केला. त्यापूर्वी ते सेल्स टॅक्सची प्रॅक्टिस करत होते. श्री सदानंद ठाकूर यांनी “म्युच्युअल फंड - संपत्ती निर्माण करण्याचा राजमार्ग” हे म्युच्युअल फंडाची माहिती देणारे पुस्तक स्वप्रकाशित केलेले असून त्याचा फायदा अनेक व्यक्तींना झालेला आहे. सदानंद ठाकूर याना शेअर बाजाराचा २० वर्षांपेक्षा जास्त काळाचा अनुभव आहे.`,
     image: "/MainLogo.png",
+    bgColor: "#F7E2FF",
+    numberBgColor: "#8C3AAA",
+    textColor: "#8C3AAA",
+    subTextColor: "#000000",
   },
   {
     name: "सुजय ठाकूर",
     desc: `एमकॉम. आणि एमबीए (फायनान्स) यांनी १० वर्षे ऍक्सिस बँक व कोटक बँकेत व्यवस्थापकीय पदावर काम केल्यानंतर ३ ऑक्टोबर २०१८ रोजी  ठाकूर फायनान्शिअल सर्व्हिसेस मध्ये सामील झालेले आहेत.`,
     image: "/MainLogo.png",
+    bgColor: "#E9F7FF",
+    numberBgColor: "#008BDA",
+    textColor: "#8C3AAA",
+    subTextColor: "#000000",
   },
   {
-    name: "सौ. शिवानी सुजय ठाकूर",
-    desc: `बी.कॉम., एसीएस (कंपनी सेक्रेटरी) हे शिक्षण पूर्ण केल्यानंतर जानेवारी २०१८ पासून ठाकूर फायनान्शिअल सर्व्हिसेस मध्ये सामील झाल्या असून त्या व्यवसायाचे आर्थिक बाबी पाहतात.`,
+    name: "प्रथमेश उदय शेंडे",
+    desc: `बँकिंग आणि म्युच्युअल फंड क्षेत्रात १० वर्षांहून अधिक अनुभव असलेले संचालक. ते पुणे विद्यापीठातून वाणिज्य पदवीधर आहेत आणि त्यांनी जोखीम व्यवस्थापन (म्युच्युअल फंड आणि विमा) मध्ये IPGDM चा अभ्यास केला आहे.`,
     image: "/MainLogo.png",
+    bgColor: "#FFF3E6",
+    numberBgColor: "#FA8F21",
+    textColor: "#FA8F21",
+    subTextColor: "#000000",
+  },
+  {
+    name: "श्रीमती. शिवानी सुजय ठाकूर",
+    desc: `संचालक आणि कंपनी सचिव.`,
+    image: "/MainLogo.png",
+    bgColor: "#FFEBF5",
+    numberBgColor: "#D82D7E",
+    textColor: "#D82D7E",
+    subTextColor: "#000000",
+  },
+  {
+    name: "श्रीमती माधुरी सदानंद ठाकूर",
+    desc: `संचालक.`,
+    image: "/MainLogo.png",
+    bgColor: "#FEFCE8",
+    numberBgColor: "#CA8A04",
+    textColor: "#CA8A04",
+    subTextColor: "#000000",
   },
 ];
 
@@ -57,46 +92,7 @@ const MainAboutUs = () => {
 
 
           <ScrollReveal>
-            <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
-              <GradientHeading text="इतिहास" />
-
-              <Box>
-                <Typography fontSize={isMobile ? "16px" : "20px"}>
-                  Thakur Financial Services या नावाने आर्थिक सेवा देणारा व्यवसाय १ जानेवारी २००० रोजी सुरु करण्यात आला.
-                </Typography>
-
-                <List sx={{ pl: 4 }}>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary="• आमच्याकडे सर्व म्युच्युअल फंड योजना"
-                      primaryTypographyProps={{ fontSize: "20px" }}
-                    />
-                  </ListItem>
-
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary="• HDFC Life चा जीवन विमा उत्पादने – आम्ही प्रामुख्याने टर्म इन्शुरन्सची शिफारस करतो."
-                      primaryTypographyProps={{ fontSize: "20px" }}
-                    />
-                  </ListItem>
-
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary="• स्टार हेल्थ इन्शुरन्सचा आरोग्य विमा"
-                      primaryTypographyProps={{ fontSize: "20px" }}
-                    />
-                  </ListItem>
-
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary="• ICICI चा Three in Account – यात मिळते आरडी/एसआयपी, बँकेचे बचत खाते व डीमॅट खाते आणि शेअर खरेदी-विक्रीसाठी ट्रेडिंग खाते."
-                      primaryTypographyProps={{ fontSize: "20px" }}
-                    />
-                  </ListItem>
-                </List>
-
-              </Box>
-            </Box>
+            <History />
           </ScrollReveal>
 
           <ScrollReveal>
@@ -105,18 +101,32 @@ const MainAboutUs = () => {
 
               <Box display="flex" flexDirection="column" gap={isMobile ? 4 : 6} mt={2}>
                 {team.map((member, index) => (
-                  <OurTeam
-                    key={index}
-                    image={member.image}
-                    name={member.name}
-                    desc={member.desc}
+                  <NumberInfoBox
+                    key={member.name}
+                    number={index + 1}
+                    text={member.name}
+                    subText={member.desc}
+                    bgColor={member.bgColor}
+                    borderColor={member.borderColor}
+                    numberBgColor={member.numberBgColor}
+                    textColor={member.textColor}
+                    subTextColor={member.subTextColor}
                   />
                 ))}
               </Box>
             </Box>
           </ScrollReveal>
 
+          <ScrollReveal>
+            <VisionSection />
+          </ScrollReveal>
+        </Box>
 
+        <ScrollReveal>
+          <Vision_N_Mission />
+        </ScrollReveal>
+
+        <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={14}>
           <ScrollReveal>
             <Box display={"flex"} flexDirection={"column"} gap={isMobile ? 4 : 6}>
               <GradientHeading text="आमच्या उपलब्ध सेवा" />
@@ -127,15 +137,26 @@ const MainAboutUs = () => {
         </Box>
 
         <ScrollReveal>
-          <Box display={"flex"} flexDirection={"column"} alignItems={"center"} px={10} py={8} gap={6} className="w-full bg-[#00487b] text-white py-16 px-4">
-
-            <GradientUnderlineHeading text="गुंतवणुकीचे तत्वज्ञान" size={"24px"} />
-
-            <Typography fontSize={isMobile ? "16px" : "18px"} textAlign={"center"}>
-              प्रामुख्याने आम्ही म्युच्युअल फंडाच्या नियमितपणे उत्तम कामगिरी करणाऱ्या योजनांचे वितरण करतो, जीवन विमा व आरोग्य विम्याच्या माध्यमातून भविष्य सुरक्षित करतो. शेअर बाजारातून पैसे मिळवण्यासाठी तीन गोष्टींची आवश्यकता असते  वेळ, शेअरबाजाराचा अभ्यास आणि आपल्या निर्णयाची खात्री. या तीन गोष्टी ज्याच्याकडे असतात त्याला निश्चितपणे शेअरबाजारातून फायदा मिळतो आणि ज्यांच्याकडे या तीन गोष्टींचा अभाव असतो त्यांना निश्चितपणे नुकसान होते. म्हणूनच शेअरबाजारातून फक्त १०% लोकांना फायदा व बाकीच्यांना नुकसान होत असते. म्हणूनच जर तुमच्याकडे यातील कोणतीही एक गोष्ट नसेल तर तुम्ही म्युच्युअल फंदातच गुंतवणूक करणे तुमच्या फायद्याचे होते. कारण म्युच्युअल फंडाची कोणतीही योजनेच्या गुंतवणुकीचे व्यवस्थापन एक तज्ञ फंड मॅनेजर करत असतो.  तो पूर्ण वेळ हेच काम करत असल्यामुळे त्याच्याकडे पुरेसा वेळ असतो. तो उच्च शिक्षित असतो व त्याने शेअरबाजाराचा पूर्ण अभ्यास केलेला असतो, आणि तो सततच अभ्यास करत असतो म्हणून त्याला या विषयाचे आवश्यक ते ज्ञान असते. आणि तो जे गुंतवणुकीचे निर्णय घेतो त्याबाबत त्याची पूर्णपणे खात्री झालेली असते.  आणि म्हणूनच दीर्घ मुदतीत म्युच्युअल फंडाच्या योजनेतून उत्तम परतावा मिळालेला आहे. बाजाराची जोखीम हि अल्पकालीन असते व फायदा हा दीर्घ काळात होतोच.
-              म्युच्युअल फंडात गुंतवणूक केल्यावर जो व्यक्ती श्री साई बाबांच्या एका वाचनावर विश्वास ठेवेल त्याला निशचितच चांगला फायदा होतो व होईल.  येथे नशीब वगैरे काही लागत नाही. पाहिजे फक्त विश्वास “श्रद्धा और सबुरी” या वाचनावर.
-            </Typography>
-
+          <Box
+            p={isMobile ? 3 : 6}
+            display="flex"
+            flexDirection="column"
+            gap={6}
+            mx={isMobile ? 4 : 8}
+            my={8}
+            className="
+                bg-white 
+                shadow-md 
+                rounded-2xl 
+                border-t-4 border-gray-200
+                max-w-8xl
+              "
+          >
+            <DisclaimerBox
+              title="गुंतवणुकीचे तत्वज्ञान"
+              description={` प्रामुख्याने आम्ही म्युच्युअल फंडाच्या नियमितपणे उत्तम कामगिरी करणाऱ्या योजनांचे वितरण करतो, जीवन विमा व आरोग्य विम्याच्या माध्यमातून भविष्य सुरक्षित करतो. शेअर बाजारातून पैसे मिळवण्यासाठी तीन गोष्टींची आवश्यकता असते  वेळ, शेअरबाजाराचा अभ्यास आणि आपल्या निर्णयाची खात्री. या तीन गोष्टी ज्याच्याकडे असतात त्याला निश्चितपणे शेअरबाजारातून फायदा मिळतो आणि ज्यांच्याकडे या तीन गोष्टींचा अभाव असतो त्यांना निश्चितपणे नुकसान होते. म्हणूनच शेअरबाजारातून फक्त १०% लोकांना फायदा व बाकीच्यांना नुकसान होत असते. म्हणूनच जर तुमच्याकडे यातील कोणतीही एक गोष्ट नसेल तर तुम्ही म्युच्युअल फंदातच गुंतवणूक करणे तुमच्या फायद्याचे होते. कारण म्युच्युअल फंडाची कोणतीही योजनेच्या गुंतवणुकीचे व्यवस्थापन एक तज्ञ फंड मॅनेजर करत असतो.  तो पूर्ण वेळ हेच काम करत असल्यामुळे त्याच्याकडे पुरेसा वेळ असतो. तो उच्च शिक्षित असतो व त्याने शेअरबाजाराचा पूर्ण अभ्यास केलेला असतो, आणि तो सततच अभ्यास करत असतो म्हणून त्याला या विषयाचे आवश्यक ते ज्ञान असते. आणि तो जे गुंतवणुकीचे निर्णय घेतो त्याबाबत त्याची पूर्णपणे खात्री झालेली असते.  आणि म्हणूनच दीर्घ मुदतीत म्युच्युअल फंडाच्या योजनेतून उत्तम परतावा मिळालेला आहे. बाजाराची जोखीम हि अल्पकालीन असते व फायदा हा दीर्घ काळात होतोच.
+              म्युच्युअल फंडात गुंतवणूक केल्यावर जो व्यक्ती श्री साई बाबांच्या एका वाचनावर विश्वास ठेवेल त्याला निशचितच चांगला फायदा होतो व होईल.  येथे नशीब वगैरे काही लागत नाही. पाहिजे फक्त विश्वास “श्रद्धा और सबुरी” या वाचनावर.`}
+            />
           </Box>
         </ScrollReveal>
       </Box>

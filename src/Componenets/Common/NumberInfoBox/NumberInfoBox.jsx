@@ -3,7 +3,7 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function NumberInfoBox({
-    number = "1",
+    number = null, // ← important
 
     text,
     subText,
@@ -20,19 +20,16 @@ export default function NumberInfoBox({
     borderRadius = "12px",
     sx = {},
 }) {
-
     const theme = useTheme();
-
-    // BREAKPOINTS
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+    const showNumber = number !== null && number !== "";
 
     return (
         <Box
             sx={{
                 display: "flex",
-                gap: 2,
+                gap: showNumber ? 2 : 0, // ← no empty space
                 alignItems: "flex-start",
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
@@ -41,23 +38,26 @@ export default function NumberInfoBox({
                 ...sx,
             }}
         >
-            {/* Number Circle */}
-            <Box
-                sx={{
-                    minWidth: 42,
-                    height: 42,
-                    borderRadius: "8px",
-                    backgroundColor: numberBgColor,
-                    color: numberColor,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: 700,
-                    fontSize: isMobile ? "16px" : "18px",
-                }}
-            >
-                {number}
-            </Box>
+            {/* Number Circle (ONLY if number exists) */}
+            {showNumber && (
+                <Box
+                    sx={{
+                        minWidth: 42,
+                        height: 42,
+                        borderRadius: "8px",
+                        backgroundColor: numberBgColor,
+                        color: numberColor,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontWeight: 700,
+                        fontSize: isMobile ? "16px" : "18px",
+                        flexShrink: 0,
+                    }}
+                >
+                    {number}
+                </Box>
+            )}
 
             {/* Text Content */}
             <Box display="flex" flexDirection="column" gap={1.5}>

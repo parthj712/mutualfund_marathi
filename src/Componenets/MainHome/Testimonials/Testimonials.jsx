@@ -75,7 +75,7 @@ export default function Testimonials() {
   useEffect(() => {
     if (!isInView) return;
 
-    const controls = animate(0, 250, {
+    const controls = animate(0, 3500, {
       duration: 1.8,
       ease: "easeOut",
       onUpdate(value) {

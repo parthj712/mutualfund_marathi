@@ -21,10 +21,6 @@ const services = [
         title: "इक्विटी ट्रेडिंग",
         image: "/Services/trade.png",
     },
-    {
-        title: "विमा",
-        image: "/Services/insurance.png",
-    },
 ];
 
 

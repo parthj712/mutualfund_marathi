@@ -19,9 +19,9 @@ export default function CardList() {
 
     /* ---------------- FILTER STATE ---------------- */
     const categories = [
-        "Banking and PSU",
-        "Debt – Banking and PSU",
-        "Debt – Corporate Bond",
+        "Childrens Fund",
+        "Debt: Banking and PSU",
+        "Debt: Corporate Bond",
     ];
 
 
@@ -29,91 +29,124 @@ export default function CardList() {
 
     /* ---------------- SAMPLE FUND DATA ---------------- */
     const funds = [
-        /* ---------------- Banking and PSU ---------------- */
+        /* ---------------- Childrens Fund ---------------- */
         {
             id: 1,
             logo: "/funds/icici.png",
-            title: "ICICI Prudential Banking & PSU Debt Fund",
-            category: "Banking and PSU",
-            launchDate: "05-01-2014",
-            aum: "8,112.19",
-            fiveYearReturn: "7.02",
+            title: "ICICI Pru Childrens Fund Reg Plan",
+            category: "Childrens Fund",
+            launchDate: "20-08-2001",
+            aum: "1424.12",
+            fiveYearReturn: "16.59",
         },
         {
             id: 2,
             logo: "/funds/uti.png",
-            title: "UTI Banking & PSU Fund Regular Plan",
-            category: "Banking and PSU",
-            launchDate: "03-09-2013",
-            aum: "6,542.87",
-            fiveYearReturn: "6.91",
+            title: "ABSL Bal Bhavishya Yojna Reg Gr",
+            category: "Childrens Fund",
+            launchDate: "05-02-2019",
+            aum: "1202.81",
+            fiveYearReturn: "12.01",
         },
         {
             id: 3,
             logo: "/funds/sbi.png",
-            title: "SBI Banking & PSU Debt Fund",
-            category: "Banking and PSU",
-            launchDate: "15-02-2015",
-            aum: "4,210.34",
-            fiveYearReturn: "6.85",
+            title: "Union Childrens Fund Reg Gr",
+            category: "Childrens Fund",
+            launchDate: "19-12-2023",
+            aum: "80.84",
+            fiveYearReturn: "0",
         },
 
-        /* ---------------- Debt – Banking and PSU ---------------- */
+
+        /* ---------------- Debt: Banking and PSU ---------------- */
         {
             id: 4,
             logo: "/funds/franklin.png",
-            title: "Franklin India Banking & PSU Debt Fund",
-            category: "Debt – Banking and PSU",
-            launchDate: "05-04-2014",
-            aum: "5,485.44",
-            fiveYearReturn: "5.83",
+            title: "UTI Banking & PSU Fund Reg Gr",
+            category: "Debt: Banking and PSU",
+            launchDate: "05-01-2014",
+            aum: "811.19",
+            fiveYearReturn: "7",
         },
         {
             id: 5,
             logo: "/funds/hdfc.png",
-            title: "HDFC Banking & PSU Debt Fund",
-            category: "Debt – Banking and PSU",
-            launchDate: "12-08-2014",
-            aum: "7,920.11",
-            fiveYearReturn: "5.96",
+            title: "Franklin India Banking & PSU Debt Gr",
+            category: "Debt: Banking and PSU",
+            launchDate: "05-04-2014",
+            aum: "485.44",
+            fiveYearReturn: "5.83",
         },
         {
             id: 6,
             logo: "/funds/axis.png",
-            title: "Axis Banking & PSU Debt Fund",
-            category: "Debt – Banking and PSU",
-            launchDate: "21-06-2016",
-            aum: "3,675.29",
-            fiveYearReturn: "5.74",
+            title: "Kotak Banking and PSU Debt Gr",
+            category: "Debt: Banking and PSU",
+            launchDate: "29-12-1998",
+            aum: "5699.11",
+            fiveYearReturn: "5.98",
         },
 
-        /* ---------------- Debt – Corporate Bond ---------------- */
+        /* ---------------- Debt: Corporate Bond ---------------- */
         {
             id: 7,
             logo: "/funds/kotak.png",
-            title: "Kotak Corporate Bond Fund",
-            category: "Debt – Corporate Bond",
-            launchDate: "29-12-1998",
-            aum: "31,699.11",
-            fiveYearReturn: "6.12",
+            title: "Franklin India Corp Debt Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "23-06-1997",
+            aum: "1309.34",
+            fiveYearReturn: "5.98",
         },
         {
             id: 8,
             logo: "/funds/icici.png",
-            title: "ICICI Prudential Corporate Bond Fund",
-            category: "Debt – Corporate Bond",
-            launchDate: "12-03-2009",
-            aum: "28,455.78",
-            fiveYearReturn: "6.08",
+            title: "BARODA BNP PARIBAS Corporate Bond Fund Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "08-11-2008",
+            aum: "490.14",
+            fiveYearReturn: "5.42",
         },
         {
             id: 9,
             logo: "/funds/hdfc.png",
-            title: "HDFC Corporate Bond Fund",
-            category: "Debt – Corporate Bond",
-            launchDate: "18-11-2015",
-            aum: "22,310.66",
-            fiveYearReturn: "5.97",
+            title: "HSBC Corporate Bond Fund Reg Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "01-01-2013",
+            aum: "6257.69",
+            fiveYearReturn: "5.71",
+        },
+
+
+        /* ---------------- Debt: Credit Risk ---------------- */
+
+
+        {
+            id: 10,
+            logo: "/funds/kotak.png",
+            title: "DSP Credit Risk Reg Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "23-06-1997",
+            aum: "1309.34",
+            fiveYearReturn: "5.98",
+        },
+        {
+            id: 11,
+            logo: "/funds/icici.png",
+            title: "HSBC Credit Risk Fund Reg Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "08-11-2008",
+            aum: "490.14",
+            fiveYearReturn: "5.42",
+        },
+        {
+            id: 12,
+            logo: "/funds/hdfc.png",
+            title: "ABSL Credit Risk Reg Gr",
+            category: "Debt: Corporate Bond",
+            launchDate: "01-01-2013",
+            aum: "6257.69",
+            fiveYearReturn: "5.71",
         },
     ];
 
@@ -144,7 +177,7 @@ export default function CardList() {
                 <GradientHeading text="Top Performing Funds" />
             </Box>
 
-            <Box display={"flex"} flexDirection={"column"}  gap={6}>
+            <Box display={"flex"} flexDirection={"column"} gap={6}>
                 <Select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
