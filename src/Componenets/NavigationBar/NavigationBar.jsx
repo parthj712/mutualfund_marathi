@@ -46,7 +46,7 @@ export default function NavigationBar() {
     const navItems = [
         { name: "मुख्यपृष्ठ", path: "/" },
         { name: "आमच्याबद्दल", path: "/about" },
-        { name: "आमच्या सेवा", path: "/services" },
+        { name: "आर्थिक नियोजन", path: "/financial-planning" },
         { name: "म्युच्युअल फंड", path: "/funds" },
         // { name: "विमा", path: "/insurance" },g
         { name: "ब्लॉग्ज", path: "/blogs" },
