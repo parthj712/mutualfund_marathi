@@ -10,6 +10,7 @@ import Testimonials from "./Testimonials/Testimonials";
 import ScrollReveal from "../Common/ScrollReveal/ScrollReveal";
 import DisclaimerBox from "../Common/DisclaimerBox/DisclaimerBox";
 import { HiInformationCircle } from "react-icons/hi";
+import MobileAppSection from "./MobileAppSection/MobileAppSection";
 
 const MainHome = () => {
 
@@ -43,6 +44,11 @@ const MainHome = () => {
 
         <ScrollReveal>
           <Testimonials />
+        </ScrollReveal>
+
+
+        <ScrollReveal>
+          <MobileAppSection />
         </ScrollReveal>
 
         <ScrollReveal>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ScrollReveal({
   children,
-  y = 40,
+  y = 60,
   duration = 0.6,
 }) {
   return (
