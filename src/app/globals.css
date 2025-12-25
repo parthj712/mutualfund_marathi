@@ -107,3 +107,15 @@ body {
 .bg-right-image {
   animation: floatRight 16s ease-in-out infinite alternate;
 }
+
+
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

@@ -1,10 +1,10 @@
-import MainDownloads from '@/Componenets/MainDownloads/MainDownloads'
+import MainShares from '@/Componenets/MainMutualFund/Shares/MainShares'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <MainDownloads/>
+        <MainShares/>
     </div>
   )
 }
