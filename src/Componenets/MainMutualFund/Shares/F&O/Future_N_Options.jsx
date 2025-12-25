@@ -17,13 +17,13 @@ const Future_N_Options = () => {
 
     return (
         <div>
-            <HeaderMutualFund
+            {/* <HeaderMutualFund
                 image="/services/mutual-fund.png"
                 heading="म्युच्युअल फंडाचे प्रकार"
                 description="फ्युचर्स & ऑप्शन"
                 imagePosition="left"
                 radius={100}
-            />
+            /> */}
 
 
             <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={6}>

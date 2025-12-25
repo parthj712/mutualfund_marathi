@@ -42,6 +42,7 @@ export default function HeaderMutualFund({
                             !isImageLeft && !isMobile ? radius : 0,
                         overflow: "hidden",
                         flexShrink: 0,
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                     }}
                 >
                     <Image

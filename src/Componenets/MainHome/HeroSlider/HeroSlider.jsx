@@ -6,11 +6,15 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import RedButton from "@/Componenets/Common/RedButton";
+import { useRouter } from "next/navigation";
+
 
 export default function HeroSlider() {
 
+    const router = useRouter();
 
-     const theme = useTheme();
+
+    const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
     const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -23,19 +27,22 @@ export default function HeroSlider() {
             image: "Home/H1.avif",
             title: "आर्थिक प्रगतीसाठी तुमचा \nविश्वासू भागीदार",
             subtitle: "आमच्या तज्ज्ञ मार्गदर्शनासह घ्या योग्य आर्थिक निर्णय.",
-            button: "म्युच्युअल फंड माहिती"
+            button: "म्युच्युअल फंड माहिती",
+            path: "/funds", // ✅ route
         },
         {
             image: "Home/H2.avif",
             title: "तुमच्या गुंतवणुकीसाठी सुरक्षित पर्याय",
             subtitle: "तुमच्या भविष्यासाठी उत्तम आर्थिक नियोजन.",
-            button: "अधिक जाणून घ्या"
+            button: "अधिक जाणून घ्या",
+            path: "/financial-planning", // ✅ route
         },
         {
             image: "Home/H3.avif",
             title: "विश्वासाने आणि समजून गुंतवणूक करा",
             subtitle: "आमचे मार्गदर्शक आणि तज्ज्ञ सल्ला तुमच्यासोबत.",
-            button: "सेवा पहा"
+            button: "सेवा पहा",
+            path: "/about", // ✅ route
         }
     ];
 
@@ -81,7 +88,7 @@ export default function HeroSlider() {
                                     zIndex: 10,
                                     maxWidth: "700px",
                                     ml: { xs: 4, sm: 6, md: 10 },
-                                    mb : isTablet ? 8 : 6
+                                    mb: isTablet ? 8 : 6
                                 }}
                             >
                                 {/* Title Animation */}
@@ -95,14 +102,14 @@ export default function HeroSlider() {
                                     transition={{ duration: 0.8, ease: "easeOut" }}
                                 >
                                     <Typography
-                                       
+
                                         sx={{
-                                            fontSize : isMobile ? "22px": isTablet ? "40px" : "60px",
+                                            fontSize: isMobile ? "22px" : isTablet ? "40px" : "60px",
                                             fontWeight: 700,
                                             color: "white",
                                             whiteSpace: "pre-line",
                                             mb: 1,
-                                            boxShadow : "1px solid black"
+                                            boxShadow: "1px solid black"
                                         }}
                                     >
                                         {slide.title}
@@ -140,9 +147,17 @@ export default function HeroSlider() {
                                     }
                                     transition={{ duration: 1, ease: "easeOut", delay: 0.25 }}
                                 >
-                                    <RedButton sx={{ px: 3, py: 1.2 , fontSize : isMobile ? "16px" : isTablet ? "18px" : "20px"}}>
+                                    <RedButton
+                                        onClick={() => router.push(slide.path)}
+                                        sx={{
+                                            px: 3,
+                                            py: 1.2,
+                                            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+                                        }}
+                                    >
                                         {slide.button}
                                     </RedButton>
+
                                 </motion.div>
                             </Box>
                         </Box>

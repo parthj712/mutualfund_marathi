@@ -3,15 +3,15 @@
 
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react'
-import HeaderMutualFund from '../MainMutualFund/HeaderMutualFund.jsx/HeaderMutualFund';
-import GradientHeading from '../Common/GradientHeading/GradientHeading';
+import HeaderMutualFund from '../../MainMutualFund/HeaderMutualFund.jsx/HeaderMutualFund';
+import GradientHeading from '../../Common/GradientHeading/GradientHeading';
 import { FaRupeeSign } from "react-icons/fa";
 import { TbMoneybag } from "react-icons/tb";
 import { AiFillHome } from "react-icons/ai";
 import { GiWhiteBook } from "react-icons/gi";
 import { GiLoveLetter } from "react-icons/gi";
 import { GrEmergency } from "react-icons/gr";
-import GoalOptionCard from '../Common/GoalOptionCard/GoalOptionCard';
+import GoalOptionCard from '../../Common/GoalOptionCard/GoalOptionCard';
 
 const FinancePlan = () => {
 
@@ -26,7 +26,7 @@ const FinancePlan = () => {
   return (
     <div>
       <HeaderMutualFund
-        image="/services/mutual-fund.png"
+        image="/Header/FinancialPlanning.png"
         heading="आर्थिक नियोजन"
         description="या विभागातील उदिष्ठांचा वापर तुमच्या गरजेनुसार म्युच्युअल फंड योजनेत गुंतवणूक कण्यासाठी करा"
         imagePosition="left"

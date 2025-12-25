@@ -14,24 +14,30 @@ import {
     Typography,
     Menu,
     MenuItem,
+    Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import RedButton from "../Common/RedButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
+import { useRouter } from "next/navigation";
+
 
 
 export default function NavigationBar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [fundMenuOpen, setFundMenuOpen] = useState(false);
+
     const [mobileFundOpen, setMobileFundOpen] = useState(false);
 
     const [mobileSubMenu, setMobileSubMenu] = useState(null);
+    const router = useRouter();
+
 
 
 
@@ -64,15 +70,11 @@ export default function NavigationBar() {
             children: [
                 { name: "समभाग आधारित", path: "/funds/fund-types/equity-type" },
                 { name: "कर्ज रोखे", path: "/funds/fund-types/debt_type" },
-                { name: "भांडवली बाजार", path: "/funds/fund-types/capital_markets_type" },
             ],
         },
         {
             name: "शेअर बाजार",
-            children: [
-                { name: "भांडवली बाजार", path: "/funds/shares/capital_markets" },
-                { name: "फ्युचर्स आणि ऑप्शन्स", path: "/funds/shares/f&o" },
-            ],
+            path: "/funds/shares",
         },
         {
             name: "सेवा व सुविधा",
@@ -82,7 +84,30 @@ export default function NavigationBar() {
 
 
 
-    const isMenuOpen = Boolean(anchorEl);
+    // const isMenuOpen = Boolean(anchorEl);
+    const fundRef = React.useRef(null);
+
+    let closeTimeout;
+
+    const handleSubMenuEnter = (itemName, anchor) => {
+        setSubMenu({
+            name: itemName,
+            anchorEl: anchor,
+        });
+    };
+
+
+    const handleSubMenuLeave = () => {
+        closeTimeout = setTimeout(() => {
+            setSubMenu({ name: null, anchorEl: null });
+        }, 150);
+    };
+
+
+    const handleSubMenuClose = () => {
+        setSubMenu({ name: null, anchorEl: null });
+    };
+
 
     return (
         <AppBar position="sticky" elevation={1} sx={{ backgroundColor: "white", color: "black", py: 1 }}>
@@ -91,20 +116,27 @@ export default function NavigationBar() {
                     maxWidth: "1400px",
                     width: "100%",
                     mx: "auto",
+                    minHeight: 72,              // 🔥 taller navbar
+                    px: { xs: 2, md: 4 },       // 🔥 breathing space
                     display: "flex",
                     alignItems: "center",
                     justifyContent: { xs: "space-between", lg: "flex-start" },
                 }}
             >
+
                 {/* LEFT — Mobile Menu / Desktop Logo */}
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                     <IconButton sx={{ display: { xs: "flex", lg: "none" } }} onClick={() => setOpen(true)}>
                         <MenuIcon fontSize="large" />
                     </IconButton>
 
-                    <Box sx={{ display: { xs: "none", lg: "flex" } }}>
+                    <Box
+                        sx={{ display: { xs: "none", lg: "flex", cursor: "pointer" } }}
+                        onClick={() => router.push("/")}
+                    >
                         <Image src="/MainLogo.png" alt="Logo" width={120} height={60} />
                     </Box>
+
                 </Box>
 
                 {/* CENTER — Desktop Navigation */}
@@ -124,12 +156,13 @@ export default function NavigationBar() {
                             return (
                                 <Box
                                     key={item.name}
-                                    onMouseEnter={(e) => setAnchorEl(e.currentTarget)}
-                                    onMouseLeave={() => setAnchorEl(null)}
+                                    onMouseEnter={() => setFundMenuOpen(true)}
+                                    onMouseLeave={() => setFundMenuOpen(false)}
                                     sx={{ position: "relative" }}
                                 >
                                     {/* TEXT + UNDERLINE */}
                                     <Box
+                                        ref={fundRef}
                                         component={motion.div}
                                         initial="rest"
                                         animate={isActive ? "active" : "rest"}
@@ -140,14 +173,35 @@ export default function NavigationBar() {
                                             fontSize={18}
                                             fontWeight={600}
                                             sx={{
-                                                color: isActive ? "#4f46e5" : "#333",
-                                                transition: "color 0.3s ease",
+                                                color: isActive ? "#2563eb" : "#111827",
+                                                position: "relative",
+                                                cursor: "pointer",
+
+                                                "&::after": {
+                                                    content: '""',
+                                                    position: "absolute",
+                                                    left: 0,
+                                                    bottom: -8,
+                                                    width: "100%",
+                                                    height: 3,
+                                                    borderRadius: 2,
+                                                    background: "linear-gradient(90deg,#2563eb,#22c55e)",
+                                                    transform: isActive ? "scaleX(1)" : "scaleX(0)",
+                                                    transformOrigin: "left",
+                                                    transition: "transform 0.35s ease",
+                                                },
+
+                                                "&:hover::after": {
+                                                    transform: "scaleX(1)", // 🔥 LEFT → RIGHT
+                                                },
                                             }}
                                         >
                                             {item.name}
                                         </Typography>
 
-                                        <motion.span
+
+
+                                        {/* <motion.span
                                             variants={{
                                                 rest: { scaleX: 0 },
                                                 hover: { scaleX: 1 },
@@ -164,26 +218,29 @@ export default function NavigationBar() {
                                                 borderRadius: "4px",
                                                 transformOrigin: "left",
                                             }}
-                                        />
+                                        /> */}
                                     </Box>
 
                                     {/* DROPDOWN */}
                                     <Menu
-                                        anchorEl={anchorEl}
-                                        open={isMenuOpen}
-                                        onClose={() => {
-                                            setAnchorEl(null);
-                                            setSubAnchorEl(null);
-                                        }}
-                                        MenuListProps={{
-                                            onMouseLeave: () => {
-                                                setAnchorEl(null);
-                                                setSubAnchorEl(null);
+                                        anchorEl={fundRef.current}
+                                        open={fundMenuOpen}
+                                        keepMounted
+                                        PaperProps={{
+                                            sx: {
+                                                mt: 1,
+                                                borderRadius: 2,
+                                                boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+                                                minWidth: 240,
                                             },
                                         }}
-                                        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                                        transformOrigin={{ vertical: "top", horizontal: "center" }}
+                                        MenuListProps={{
+                                            onMouseLeave: handleSubMenuClose,
+                                        }}
                                     >
+
+
+
                                         {mutualFundItems.map((item) => {
                                             // ✅ HAS CHILDREN (second-level menu)
                                             if (item.children) {
@@ -193,10 +250,7 @@ export default function NavigationBar() {
                                                     <MenuItem
                                                         key={item.name}
                                                         onMouseEnter={(e) =>
-                                                            setSubMenu({
-                                                                anchorEl: e.currentTarget,
-                                                                name: item.name,
-                                                            })
+                                                            handleSubMenuEnter(item.name, e.currentTarget)
                                                         }
                                                         sx={{
                                                             display: "flex",
@@ -207,16 +261,13 @@ export default function NavigationBar() {
                                                         {item.name}
                                                         <ExpandMoreIcon sx={{ transform: "rotate(-90deg)" }} />
 
-                                                        {/* ✅ SECOND LEVEL MENU – opens ONLY for this item */}
                                                         <Menu
                                                             anchorEl={subMenu.anchorEl}
-                                                            open={isThisSubMenuOpen}
-                                                            onClose={() => setSubMenu({ anchorEl: null, name: null })}
+                                                            open={subMenu.name === item.name}
                                                             anchorOrigin={{ vertical: "top", horizontal: "right" }}
                                                             transformOrigin={{ vertical: "top", horizontal: "left" }}
                                                             MenuListProps={{
-                                                                onMouseLeave: () =>
-                                                                    setSubMenu({ anchorEl: null, name: null }),
+                                                                onMouseLeave: handleSubMenuClose,
                                                             }}
                                                         >
                                                             {item.children.map((child) => (
@@ -224,16 +275,14 @@ export default function NavigationBar() {
                                                                     key={child.name}
                                                                     component={Link}
                                                                     href={child.path}
-                                                                    onClick={() => {
-                                                                        setAnchorEl(null);
-                                                                        setSubMenu({ anchorEl: null, name: null });
-                                                                    }}
+                                                                    onClick={() => handleSubMenuClose()}
                                                                 >
                                                                     {child.name}
                                                                 </MenuItem>
                                                             ))}
                                                         </Menu>
                                                     </MenuItem>
+
                                                 );
                                             }
 
@@ -272,13 +321,35 @@ export default function NavigationBar() {
                                         fontSize={18}
                                         fontWeight={600}
                                         sx={{
-                                            color: isActive ? "#4f46e5" : "#333",
+                                            color: isActive ? "#2563eb" : "#111827",
+                                            position: "relative",
+                                            cursor: "pointer",
+
+                                            "&::after": {
+                                                content: '""',
+                                                position: "absolute",
+                                                left: 0,
+                                                bottom: -8,
+                                                width: "100%",
+                                                height: 3,
+                                                borderRadius: 2,
+                                                background: "linear-gradient(90deg,#2563eb,#22c55e)",
+                                                transform: isActive ? "scaleX(1)" : "scaleX(0)",
+                                                transformOrigin: "left",
+                                                transition: "transform 0.35s ease",
+                                            },
+
+                                            "&:hover::after": {
+                                                transform: "scaleX(1)", // 🔥 LEFT → RIGHT
+                                            },
                                         }}
                                     >
                                         {item.name}
                                     </Typography>
 
-                                    <motion.span
+
+
+                                    {/* <motion.span
                                         variants={{
                                             rest: { scaleX: 0 },
                                             hover: { scaleX: 1 },
@@ -295,7 +366,7 @@ export default function NavigationBar() {
                                             borderRadius: "4px",
                                             transformOrigin: "left",
                                         }}
-                                    />
+                                    /> */}
                                 </Box>
                             </Link>
                         );
@@ -304,50 +375,93 @@ export default function NavigationBar() {
 
                 {/* RIGHT — Mobile Logo / Desktop Button */}
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <Box sx={{ display: { xs: "flex", lg: "none" } }}>
+                    <Box sx={{ display: { xs: "flex", lg: "none" } }} onClick={() => {
+                        router.push("/");
+                        setOpen(false); // close drawer
+                    }}>
                         <Image src="/Tlogo.png" alt="Logo" width={40} height={40} />
                     </Box>
 
                     <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                        <RedButton>साइन इन</RedButton>
+                        <RedButton sx={{ px: 4 }}>साइन इन</RedButton>
                     </Box>
                 </Box>
             </Toolbar>
 
             {/* MOBILE DRAWER */}
-            <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-                <Box sx={{ width: 280, p: 3 }}>
-                    <IconButton sx={{ float: "right" }} onClick={() => setOpen(false)}>
-                        <CloseIcon />
-                    </IconButton>
+            <Drawer
+                anchor="right"
+                open={open}
+                onClose={() => setOpen(false)}
+                PaperProps={{
+                    sx: {
+                        animation: "slideIn 0.35s ease-out",
+                    },
+                }}
+            >
 
-                    <List sx={{ mt: 6 }}>
+                <Box sx={{ width: 280, p: 3 }}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            mb: 1.5,
+                        }}
+                    >
+                        <Image src="/ShriThakur.png" alt="Logo" width={100} height={40} />
+
+                        <IconButton onClick={() => setOpen(false)}>
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+
+                    {/* <Divider sx={{ mb: 2 }} /> */}
+
+
+                    <List >
                         {/* NORMAL ITEMS BEFORE MUTUAL FUND */}
                         {navItems
                             .filter((item) => item.name !== "म्युच्युअल फंड")
                             .map((item) => (
                                 <ListItemButton
-                                    key={item.name}
                                     component={Link}
                                     href={item.path}
                                     onClick={() => setOpen(false)}
+                                    sx={{
+                                        borderRadius: 2,
+                                        mb: 0.5,
+                                        backgroundColor: pathname === item.path ? "#eff6ff" : "transparent",
+                                    }}
                                 >
                                     <ListItemText
                                         primary={item.name}
-                                        primaryTypographyProps={{ fontSize: 18, fontWeight: 600 }}
+                                        primaryTypographyProps={{
+                                            fontSize: 18,
+                                            fontWeight: pathname === item.path ? 600 : 600,
+                                            color: pathname === item.path ? "#2563eb" : "#111827",
+                                        }}
                                     />
                                 </ListItemButton>
+
                             ))}
 
                         {/* MUTUAL FUND DROPDOWN */}
                         {/* MUTUAL FUND DROPDOWN */}
                         <ListItemButton
                             onClick={() => setMobileFundOpen(!mobileFundOpen)}
-                            sx={{ borderRadius: 2 }}
+                            sx={{
+                                borderRadius: 2,
+                                mb: 0.5,
+                                backgroundColor: mobileFundOpen ? "#f8fafc" : "transparent",
+                            }}
                         >
                             <ListItemText
                                 primary="म्युच्युअल फंड"
-                                primaryTypographyProps={{ fontSize: 18, fontWeight: 600 }}
+                                primaryTypographyProps={{
+                                    fontSize: 18,
+                                    fontWeight: 600,
+                                }}
                             />
                             <ExpandMoreIcon
                                 sx={{
@@ -357,21 +471,27 @@ export default function NavigationBar() {
                             />
                         </ListItemButton>
 
+
                         <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
 
                                 {mutualFundItems.map((item) => {
-                                    // ✅ HAS CHILDREN → SECOND LEVEL DROPDOWN
+                                    // 🔹 ITEM WITH CHILDREN
                                     if (item.children) {
                                         const isOpen = mobileSubMenu === item.name;
 
                                         return (
                                             <Box key={item.name}>
+                                                {/* PARENT */}
                                                 <ListItemButton
                                                     onClick={() =>
                                                         setMobileSubMenu(isOpen ? null : item.name)
                                                     }
-                                                    sx={{ pl: 4 }}
+                                                    sx={{
+                                                        pl: 4,
+                                                        borderRadius: 2,
+                                                        backgroundColor: isOpen ? "#f8fafc" : "transparent",
+                                                    }}
                                                 >
                                                     <ListItemText
                                                         primary={item.name}
@@ -382,9 +502,7 @@ export default function NavigationBar() {
                                                     />
                                                     <ExpandMoreIcon
                                                         sx={{
-                                                            transform: isOpen
-                                                                ? "rotate(180deg)"
-                                                                : "rotate(0deg)",
+                                                            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                                                             transition: "0.3s",
                                                         }}
                                                     />
@@ -398,7 +516,18 @@ export default function NavigationBar() {
                                                                 key={child.name}
                                                                 component={Link}
                                                                 href={child.path}
-                                                                sx={{ pl: 6 }}
+                                                                sx={{
+                                                                    pl: 6,
+                                                                    borderLeft: "3px solid",
+                                                                    borderColor:
+                                                                        pathname === child.path
+                                                                            ? "#2563eb"
+                                                                            : "transparent",
+                                                                    backgroundColor:
+                                                                        pathname === child.path
+                                                                            ? "#eff6ff"
+                                                                            : "transparent",
+                                                                }}
                                                                 onClick={() => {
                                                                     setOpen(false);
                                                                     setMobileFundOpen(false);
@@ -409,6 +538,12 @@ export default function NavigationBar() {
                                                                     primary={child.name}
                                                                     primaryTypographyProps={{
                                                                         fontSize: 15,
+                                                                        fontWeight:
+                                                                            pathname === child.path ? 600 : 500,
+                                                                        color:
+                                                                            pathname === child.path
+                                                                                ? "#2563eb"
+                                                                                : "#374151",
                                                                     }}
                                                                 />
                                                             </ListItemButton>
@@ -419,7 +554,7 @@ export default function NavigationBar() {
                                         );
                                     }
 
-                                    // ✅ NORMAL ITEM
+                                    // 🔹 NORMAL ITEM (NO CHILDREN)
                                     return (
                                         <ListItemButton
                                             key={item.name}
@@ -442,6 +577,7 @@ export default function NavigationBar() {
                         </Collapse>
 
 
+
                         {/* SUB ITEMS */}
                         <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
                             <List disablePadding>
@@ -457,9 +593,12 @@ export default function NavigationBar() {
                     </List>
 
 
-                    <RedButton fullWidth sx={{ mt: 3 }}>
-                        साइन इन
-                    </RedButton>
+                    <Box sx={{ display: { xs: "none", lg: "block" }, ml: 4 }}>
+                        <RedButton fullWidth sx={{ mt: 3, py: 1.2 }}>
+                            साइन इन
+                        </RedButton>
+                    </Box>
+
                 </Box>
             </Drawer>
         </AppBar>

@@ -31,6 +31,9 @@ const mukta = Mukta({
 export const metadata = {
   title: "MutualFundMarathi - ThakurFinserve",
   description: "MutualFundMarathi - ThakurFinserve",
+   icons: {
+    icon: "/Tlogo.ico",   // 👈 change here
+  },
 };
 
 export default function RootLayout({ children }) {

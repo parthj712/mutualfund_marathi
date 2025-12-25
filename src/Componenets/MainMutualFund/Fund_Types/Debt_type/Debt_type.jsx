@@ -23,7 +23,7 @@ const Debt_type = () => {
     return (
         <div>
             <HeaderMutualFund
-                image="/services/mutual-fund.png"
+               image="/Header/Debt.png"
                 heading="म्युच्युअल फंडाचे प्रकार"
                 description="प्रकार II - कर्ज रोखे आधारित योजना"
                 imagePosition="left"

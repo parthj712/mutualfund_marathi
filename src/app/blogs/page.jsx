@@ -1,8 +1,11 @@
+import MainBlogs from '@/Componenets/MainBlogs/MainBlogs'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>blogs</div>
+    <div>
+      <MainBlogs/>
+    </div>
   )
 }
 
