@@ -1,8 +1,11 @@
+import FinancePlan from '@/Componenets/FinancePlan/FinancePlan'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <FinancePlan/>
+    </div>
   )
 }
 
