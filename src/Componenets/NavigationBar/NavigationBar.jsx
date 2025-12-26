@@ -401,28 +401,10 @@ export default function NavigationBar() {
 
 
                 <Box sx={{ width: 280, p: 3 }}>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            mb: 1.5,
-                        }}
-                    >
-                        <Image
-                            src="/ShriThakur.png"
-                            alt="Logo"
-                            width={100}
-                            height={40}
-                            priority   // 🔥 ADD THIS
-                            loading="eager"
-                        />
+                    <IconButton onClick={() => setOpen(false)}>
+                        <CloseIcon />
+                    </IconButton>
 
-
-                        <IconButton onClick={() => setOpen(false)}>
-                            <CloseIcon />
-                        </IconButton>
-                    </Box>
 
                     {/* <Divider sx={{ mb: 2 }} /> */}
 
