@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import {
     AppBar,
@@ -60,7 +60,7 @@ export default function NavigationBar() {
         { name: "संपर्क साधा", path: "/contact" },
     ];
 
-    const mutualFundItems = [
+    const mutualFundItems = useMemo(() => [
         {
             name: "म्युच्युअल फंड म्हणजे काय?",
             path: "/funds",
@@ -80,7 +80,7 @@ export default function NavigationBar() {
             name: "सेवा व सुविधा",
             path: "/funds/our_funds_services",
         },
-    ];
+    ], []); // 👈 empty dependency = build once
 
 
 
@@ -107,6 +107,7 @@ export default function NavigationBar() {
     const handleSubMenuClose = () => {
         setSubMenu({ name: null, anchorEl: null });
     };
+
 
 
     return (
@@ -393,12 +394,11 @@ export default function NavigationBar() {
                 anchor="right"
                 open={open}
                 onClose={() => setOpen(false)}
-                PaperProps={{
-                    sx: {
-                        animation: "slideIn 0.35s ease-out",
-                    },
+                ModalProps={{
+                    keepMounted: true, // 🔥 HUGE improvement
                 }}
             >
+
 
                 <Box sx={{ width: 280, p: 3 }}>
                     <Box
@@ -409,7 +409,15 @@ export default function NavigationBar() {
                             mb: 1.5,
                         }}
                     >
-                        <Image src="/ShriThakur.png" alt="Logo" width={100} height={40} />
+                        <Image
+                            src="/ShriThakur.png"
+                            alt="Logo"
+                            width={100}
+                            height={40}
+                            priority   // 🔥 ADD THIS
+                            loading="eager"
+                        />
+
 
                         <IconButton onClick={() => setOpen(false)}>
                             <CloseIcon />
