@@ -12,6 +12,8 @@ import { GiWhiteBook } from "react-icons/gi";
 import { GiLoveLetter } from "react-icons/gi";
 import { GrEmergency } from "react-icons/gr";
 import GoalOptionCard from '../../Common/GoalOptionCard/GoalOptionCard';
+import { useRouter } from "next/navigation";
+
 
 const FinancePlan = () => {
 
@@ -21,6 +23,7 @@ const FinancePlan = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter();
 
 
   return (
@@ -55,6 +58,7 @@ const FinancePlan = () => {
             iconSize={isMobile ? 100 : 120}
             backgroundGradient="linear-gradient(135deg, #0F3443, #34E89E)"
             iconGradient="linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))"
+            onClick={() => router.push("/financial-planning/dream-home")}
           />
           <GoalOptionCard
             title="संपत्ती निर्मिती"
@@ -62,6 +66,7 @@ const FinancePlan = () => {
             iconSize={isMobile ? 100 : 120}
             backgroundGradient="linear-gradient(135deg, #EAAFC8, #654EA3)"
             iconGradient="linear-gradient(135deg, rgba(101,78,163,100), rgba(234,175,200,100))"
+            onClick={() => router.push("/financial-planning/wealth-creation")}
           />
           <GoalOptionCard
             title="निवृत्ती"

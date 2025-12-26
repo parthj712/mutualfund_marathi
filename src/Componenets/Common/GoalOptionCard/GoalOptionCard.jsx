@@ -18,12 +18,20 @@ export default function GoalOptionCard({
     /* STYLING */
     borderRadius = 5,
     border = "none",
+
+    /* ACTION */
+    onClick,
 }) {
-
-
-    
     return (
         <Box
+            role="button"
+            tabIndex={0}
+            onClick={onClick}
+            onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    onClick?.();
+                }
+            }}
             sx={{
                 pt: 3,
                 pb: 2,
@@ -32,12 +40,15 @@ export default function GoalOptionCard({
                 borderRadius,
                 background: backgroundGradient,
                 border,
-                cursor: "pointer",
+                cursor: onClick ? "pointer" : "default",
                 transition: "all 0.3s ease",
-                "&:hover": {
-                    transform: "translateY(-3px)",
-                    boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
-                },
+
+                "&:hover": onClick
+                    ? {
+                        transform: "translateY(-3px)",
+                        boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+                    }
+                    : {},
 
                 /* 🔥 HOVER TARGETS */
                 "&:hover .goal-title": {
