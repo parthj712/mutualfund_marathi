@@ -2,7 +2,7 @@
 
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
-export default function DreamHomePlanResult({
+export default function WealthCreationPlanResult({
     targetedAmount = 0,
     futureValue = 0,
     monthlySip = 0,
@@ -99,9 +99,9 @@ export default function DreamHomePlanResult({
                             {/* CENTER HIGHLIGHT CARD */}
                             <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} p={2.5} gap={1}
                                 border={1}
-                                borderColor={"#34E89E"}
+                                borderColor={"#654EA3"}
                                 className="
-                            bg-[#e6fff6]
+                            bg-[#E2D8FF]
                             rounded-2xl
                             p-6
                             text-center
@@ -110,7 +110,7 @@ export default function DreamHomePlanResult({
                             
                         "
                             >
-                                <Typography fontSize={20} fontWeight={600} className="text-[#34E89E]">
+                                <Typography fontSize={20} fontWeight={600} className="text-[#654EA3]">
                                     Monthly SIP required
                                 </Typography>
                                 <Typography fontSize={26} fontWeight={700}>
