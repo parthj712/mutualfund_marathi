@@ -12,12 +12,12 @@ import { GiLoveLetter } from "react-icons/gi";
 import { GrEmergency } from "react-icons/gr";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import GoalOptionCard from "@/Componenets/Common/GoalOptionCard/GoalOptionCard";
 import GradientHeading from "@/Componenets/Common/GradientHeading/GradientHeading";
 import RedButton from "@/Componenets/Common/RedButton";
-import ChildEducationPlanResult from "./ChildEducationPlanResult";
+import ChildMarrigePlanResult from "./ChildMarrigePlanResult";
+import GoalOptionCard from "@/Componenets/Common/GoalOptionCard/GoalOptionCard";
 
-export default function ChildEducation() {
+export default function ChildMarrige() {
 
     const RISK_RETURN_MAP = {
         "Conservative": 0.07,               // 7%
@@ -52,47 +52,53 @@ export default function ChildEducation() {
 
 
     // CALCULATION FUNCTION
-    const calculateChildEducationGoal = () => {
-        if (!years || !amount || !inflation || !risk) {
-            alert("कृपया सर्व माहिती भरा");
-            return;
-        }
+    function calculateChildMarriageGoal() {
+        const yrs = Number(years);
+        const amt = Number(amount);
+        const infl = Number(inflation);
+        const riskProfile = risk;
 
-        const yearsNum = Number(years);
-        const amountNum = Number(amount);
-        const inflationNum = Number(inflation);
+        if (!yrs || !amt || !infl || !riskProfile) return;
 
-        const annualReturn = RISK_RETURN_MAP[risk] || 0.08;
+        const inflationRate = infl / 100;
+        const expectedReturn = RISK_RETURN_MAP[riskProfile] || 0.07;
 
         // Inflation adjusted future value
         const futureValue =
-            amountNum * Math.pow(1 + inflationNum / 100, yearsNum);
+            amt * Math.pow(1 + inflationRate, yrs);
 
-        // SIP calculation
-        const monthlyReturn = annualReturn / 12;
-        const totalMonths = yearsNum * 12;
+        // ✅ Correct SIP logic (industry standard)
+        const r = expectedReturn;
+        const n = yrs;
 
-        const monthlySIP =
-            (futureValue * monthlyReturn) /
-            (Math.pow(1 + monthlyReturn, totalMonths) - 1);
+        const sipAnnual =
+            futureValue /
+            (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
 
-        const finalResult = {
+        const monthlySip = sipAnnual / 12;
+
+        const roundedFutureValue = Math.round(futureValue / 1000) * 1000;
+
+        setResult({
             goalName,
-            targetedAmount: Math.round(amountNum),
-            futureValue: Math.round(futureValue),
-            years: yearsNum,
-            monthlySip: Math.round(monthlySIP),
-            assumedReturn: annualReturn * 100, // %
-            riskProfile: risk,
-        };
+            years: yrs,
+            riskProfile,
+            inflationRate: infl,
 
-        setResult(finalResult);
+            // ✅ THIS IS THE KEY FIX
+            futureValue: roundedFutureValue,
 
-        // smooth scroll
-        setTimeout(() => {
-            resultRef.current?.scrollIntoView({ behavior: "smooth" });
-        }, 300);
-    };
+            // today’s value (original amount)
+            targetedAmount: amt,
+
+            monthlySip: Math.round(monthlySip / 1000) * 1000,
+            assumedReturn: r * 100,
+        });
+
+    }
+
+
+
 
 
 
@@ -134,8 +140,8 @@ export default function ChildEducation() {
             key: "marriage",
             title: "मुलाचे लग्न",
             Icon: GiLoveLetter,
-            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
             path: "/financial-planning/child-marriage",
+            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
             iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
         },
         {
@@ -194,7 +200,7 @@ export default function ChildEducation() {
                                     gap: 2,
                                 }}
                             >
-                                <GradientHeading text="मुलांचे शिक्षण" sx={{ alignItems: "flex-start", }} />
+                                <GradientHeading text="मुलाचे लग्न" sx={{ alignItems: "flex-start", }} />
 
                                 <Typography
                                     fontSize={16}
@@ -221,20 +227,23 @@ export default function ChildEducation() {
                             >
                                 <TextField
                                     fullWidth
-                                    label="Saving Periods in Years"
+                                    type="number"
+                                    label="Saving period for your child's marriage (Years)"
                                     value={years}
                                     onChange={(e) => setYears(e.target.value)}
                                 />
 
                                 <TextField
                                     fullWidth
-                                    label="Amount need to save for home (₹)"
+                                    type="number"
+                                    label="Amount need to save (₹)"
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                 />
 
                                 <TextField
                                     fullWidth
+                                    type="number"
                                     label="Inflation Rate (%)"
                                     value={inflation}
                                     onChange={(e) => setInflation(e.target.value)}
@@ -262,10 +271,11 @@ export default function ChildEducation() {
                                     </Select>
                                 </FormControl>
 
+
                                 <RedButton
                                     fullWidth
                                     sx={{ mt: 3, py: 1.2 }}
-                                    onClick={calculateChildEducationGoal}
+                                    onClick={calculateChildMarriageGoal}
                                 >
                                     शिक्षण नियोजन काढा
                                 </RedButton>
@@ -294,7 +304,7 @@ export default function ChildEducation() {
             {/* PLAN RESULT SECTION */}
             {result && (
                 <Box ref={resultRef} mt={10}>
-                    <ChildEducationPlanResult
+                    <ChildMarrigePlanResult
                         targetedAmount={result.targetedAmount}
                         futureValue={result.futureValue}
                         monthlySip={result.monthlySip}
