@@ -4,8 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { Box, Typography, TextField, Button, useTheme, useMediaQuery } from "@mui/material";
 import GradientHeading from "@/Componenets/Common/GradientHeading/GradientHeading";
-import RedButton from "@/Componenets/Common/RedButton";
-import DreamHomePlanResult from "./DreamHomePlanResult";
+
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { FaRupeeSign } from "react-icons/fa";
 import { TbMoneybag } from "react-icons/tb";
@@ -17,10 +16,14 @@ import { GrEmergency } from "react-icons/gr";
 
 
 import { useState } from "react";
-import GoalOptionCard from "@/Componenets/Common/GoalOptionCard/GoalOptionCard";
-import { useRouter } from "next/navigation";
 
-export default function DreamHome() {
+import { useRouter } from "next/navigation";
+import GoalOptionCard from "@/Componenets/Common/GoalOptionCard/GoalOptionCard";
+import DreamHomePlanResult from "../DreamHome/DreamHomePlanResult";
+import RedButton from "@/Componenets/Common/RedButton";
+import WealthCreationPlanResult from "./WealthCreationPlanResult";
+
+export default function WealthCreation() {
 
     const RISK_RETURN_MAP = {
         "Conservative": 0.07,               // 7%
@@ -36,7 +39,7 @@ export default function DreamHome() {
 
     const theme = useTheme();
 
-      const router = useRouter();
+    const router = useRouter();
 
     // BREAKPOINTS
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -45,27 +48,31 @@ export default function DreamHome() {
 
 
     // FORM STATES
+    const [age, setAge] = useState("");
     const [years, setYears] = useState("");
     const [amount, setAmount] = useState("");
     const [inflation, setInflation] = useState("");
-    const [goalName, setGoalName] = useState("");
+    const [rateOfReturn, setRateOfReturn] = useState("");
+    const [goalName, setGoalName] = useState("Wealth Creation");
     const [risk, setRisk] = useState("");
+
 
     const [result, setResult] = useState(null);
 
 
     // CALCULATION FUNCTION
-    const calculateDreamHome = () => {
+    // WEALTH CREATION CALCULATION FUNCTION
+    const calculateWealthCreation = () => {
         const Y = Number(years);
         const A = Number(amount);
         const I = Number(inflation) / 100;
+        const R = Number(rateOfReturn) / 100;
 
-        if (!Y || !A || !I || !risk) return;
+        if (!Y || !A || !I || !R || !risk) return;
 
         const futureValue = A * Math.pow(1 + I, Y);
 
-        const annualReturn = RISK_RETURN_MAP[risk];
-        const monthlyRate = annualReturn / 12;
+        const monthlyRate = R / 12;
         const months = Y * 12;
 
         const sip =
@@ -73,22 +80,22 @@ export default function DreamHome() {
             (Math.pow(1 + monthlyRate, months) - 1);
 
         setResult({
-            targetedAmount: A,
+            targetedAmount: Math.round(A),
             futureValue: Math.round(futureValue),
             monthlySip: Math.round(sip),
             years: Y,
-            assumedReturn: annualReturn * 100,
+            assumedReturn: Math.round(R * 100),
             riskProfile: risk,
+            goalName,
+            currentAge: age,
         });
 
-        // ⬇️ AUTO SCROLL
         setTimeout(() => {
-            resultRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
+            resultRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 200);
     };
+
+
 
     const CALCULATORS = [
         {
@@ -160,7 +167,7 @@ export default function DreamHome() {
                     {isDesktop && (
                         <Box pt={12} className="flex justify-center items-start">
                             <Image
-                                src="/Calculators/DreamHome.jpg"
+                                src="/Calculators/WealthCreation.jpg"
                                 alt="Goal Calculator"
                                 width={530}
                                 height={620}
@@ -183,7 +190,7 @@ export default function DreamHome() {
                                 gap: 2,
                             }}
                         >
-                            <GradientHeading text="स्वप्नातील घर" sx={{ alignItems: "flex-start", }} />
+                            <GradientHeading text="संपत्ती निर्मिती" sx={{ alignItems: "flex-start", }} />
 
                             <Typography
                                 fontSize={16}
@@ -210,16 +217,23 @@ export default function DreamHome() {
                         >
                             <TextField
                                 fullWidth
-                                label="Saving Periods in Years"
-                                value={years}
-                                onChange={(e) => setYears(e.target.value)}
+                                label="You are current age"
+                                value={age}
+                                onChange={(e) => setAge(e.target.value)}
                             />
 
                             <TextField
                                 fullWidth
-                                label="Amount need to save for home (₹)"
+                                label="Amount need to save (₹)"
                                 value={amount}
                                 onChange={(e) => setAmount(e.target.value)}
+                            />
+
+                            <TextField
+                                fullWidth
+                                label="Saving Period in Years"
+                                value={years}
+                                onChange={(e) => setYears(e.target.value)}
                             />
 
                             <TextField
@@ -227,6 +241,13 @@ export default function DreamHome() {
                                 label="Inflation Rate (%)"
                                 value={inflation}
                                 onChange={(e) => setInflation(e.target.value)}
+                            />
+
+                            <TextField
+                                fullWidth
+                                label="Rate of Return (%)"
+                                value={rateOfReturn}
+                                onChange={(e) => setRateOfReturn(e.target.value)}
                             />
 
                             <TextField
@@ -241,7 +262,11 @@ export default function DreamHome() {
                                 <Select
                                     value={risk}
                                     label="Select Risk Profile"
-                                    onChange={(e) => setRisk(e.target.value)}
+                                    onChange={(e) => {
+                                        const selectedRisk = e.target.value;
+                                        setRisk(selectedRisk);
+                                        setRateOfReturn(RISK_RETURN_MAP[selectedRisk] * 100);
+                                    }}
                                 >
                                     {Object.keys(RISK_RETURN_MAP).map((item) => (
                                         <MenuItem key={item} value={item}>
@@ -255,12 +280,15 @@ export default function DreamHome() {
 
 
 
+
                             <RedButton
                                 fullWidth
                                 sx={{ mt: 3, py: 1.2 }}
-                                onClick={calculateDreamHome}
+                                onClick={calculateWealthCreation}
+
                             >
-                                स्वप्नातील घराचे प्लॅन काढा
+                                माझा Wealth Plan काढा
+
                             </RedButton>
 
                         </Box>
@@ -273,11 +301,11 @@ export default function DreamHome() {
             {/* GREEN GRADIENT BACKGROUND */}
             <Box
                 className="
-                    absolute bottom-0 left-0 
-                    w-full h-[480px]
+                    absolute bottom-15 left-0 
+                    w-full h-[600px]
                     bg-gradient-to-r 
-                    from-[#0F3443] 
-                    to-[#34E89E]
+                    from-[#EAAFC8] 
+                    to-[#654EA3]
                 "
             />
 
@@ -286,7 +314,7 @@ export default function DreamHome() {
             {/* PLAN RESULT SECTION */}
             {result && (
                 <Box ref={resultRef} mt={10}>
-                    <DreamHomePlanResult
+                    <WealthCreationPlanResult
                         targetedAmount={result.targetedAmount}
                         futureValue={result.futureValue}
                         monthlySip={result.monthlySip}
@@ -317,7 +345,7 @@ export default function DreamHome() {
         "
                 >
                     {CALCULATORS
-                        .filter(item => item.key !== "dream-home")   // ⭐ THIS IS THE CONDITION
+                        .filter(item => item.key !== "wealth")   // ⭐ THIS IS THE CONDITION
                         .map(item => (
                             <GoalOptionCard
                                 key={item.key}
