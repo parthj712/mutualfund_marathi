@@ -213,6 +213,7 @@ export default function Retirement() {
             key: "education",
             title: "मुलांचे शिक्षण",
             Icon: GiWhiteBook,
+            path: "/financial-planning/child-education",
             backgroundGradient: "linear-gradient(135deg, #373B44, #4286F4)",
             iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
         },
