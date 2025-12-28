@@ -221,6 +221,7 @@ export default function Retirement() {
             key: "marriage",
             title: "मुलाचे लग्न",
             Icon: GiLoveLetter,
+            path: "/financial-planning/child-marriage",
             backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
             iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
         },
@@ -228,6 +229,7 @@ export default function Retirement() {
             key: "emergency",
             title: "आणीबाणी",
             Icon: GrEmergency,
+            path: "/financial-planning/emergency",
             backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
             iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
         },
@@ -256,7 +258,7 @@ export default function Retirement() {
                     {isDesktop && (
                         <Box pt={12} className="flex justify-center items-start">
                             <Image
-                                src="/Calculators/DreamHome.jpg"
+                                src="/Calculators/RetirementPlan.jpg"
                                 alt="Goal Calculator"
                                 width={530}
                                 height={620}
@@ -287,8 +289,7 @@ export default function Retirement() {
                                 className="text-gray-600 mt-2"
                                 sx={{ maxWidth: 520 }}   // optional: keeps line-length neat
                             >
-                                स्वप्नातील घरासाठी आवश्यक खर्च, बचत आणि गुंतवणूक
-                                समजून घेऊन आपला आर्थिक नियोजन सुरू करा
+                                आयुष्यभराच्या मेहनतीनंतर निश्चिंत श्वास घ्यायचा असेल, तर निवृत्तीचे आर्थिक स्वप्न आजच सुरक्षित करा.
                             </Typography>
                         </Box>
 
@@ -306,27 +307,42 @@ export default function Retirement() {
                         >
                             <Box
                                 display="flex"
-                                gap={2}
-                                mb={2}
-                                width="100%"
-                                justifyContent="center"
+                                border="1px solid #e5e7eb"
+                                borderRadius="12px"
+                                overflow="hidden"
+                                width="fit-content"
+                                mx="auto"
                             >
-                                <Button
-                                    variant={calculationMode === "simple" ? "contained" : "outlined"}
-                                    color="success"
-                                    onClick={() => setCalculationMode("simple")}
-                                >
-                                    Simple Estimate
-                                </Button>
+                                {["simple", "detailed"].map((mode) => (
+                                    <Box
+                                        key={mode}
+                                        onClick={() => setCalculationMode(mode)}
+                                        sx={{
+                                            px: 4,
+                                            py: 1.5,
+                                            cursor: "pointer",
+                                            fontWeight: 600,
+                                            fontSize: 14,
+                                            backgroundColor:
+                                                calculationMode === mode ? "#16a34a" : "transparent",
+                                            color:
+                                                calculationMode === mode ? "#fff" : "#374151",
+                                            transition: "all 0.3s ease",
+                                            "&:hover": {
+                                                backgroundColor:
+                                                    calculationMode === mode ? "#15803d" : "#f9fafb",
+                                            },
+                                        }}
+                                    >
+                                        {mode === "simple"
+                                            ? "मूलभूत अंदाज"
+                                            : "संपूर्ण निवृत्ती नियोजन ⭐"}
 
-                                <Button
-                                    variant={calculationMode === "detailed" ? "contained" : "outlined"}
-                                    color="success"
-                                    onClick={() => setCalculationMode("detailed")}
-                                >
-                                    Detailed Retirement Planning (Recommended)
-                                </Button>
+
+                                    </Box>
+                                ))}
                             </Box>
+
 
                             <TextField
                                 fullWidth
@@ -432,8 +448,8 @@ export default function Retirement() {
                     absolute bottom-40 left-0 
                     w-full h-[680px]
                     bg-gradient-to-r 
-                    from-[#0F3443] 
-                    to-[#34E89E]
+                    from-[#373B44] 
+                    to-[#4286F4]
                 "
             />
 

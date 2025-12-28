@@ -106,7 +106,7 @@ export default function RetirementPlanResult({
                                 <Typography fontSize={20} className="text-gray-600">
                                     Value of Your Existing Savings at Retirement
                                 </Typography>
-                                <Typography fontSize={24} fontWeight={700}>
+                                <Typography fontSize={24} fontWeight={700}> 
                                     ₹{futureSavings.toLocaleString("en-IN")}
                                 </Typography>
                                 <Typography fontSize={18} className="text-gray-500">
@@ -117,9 +117,9 @@ export default function RetirementPlanResult({
                             {/* CENTER HIGHLIGHT CARD */}
                             <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} p={2.5} gap={1}
                                 border={1}
-                                borderColor={"#34E89E"}
+                                borderColor={"#4286F4"}
                                 className="
-                            bg-[#e6fff6]
+                            bg-[#D8E7FF]
                             rounded-2xl
                             p-6
                             text-center
@@ -128,7 +128,7 @@ export default function RetirementPlanResult({
                             
                         "
                             >
-                                <Typography fontSize={20} fontWeight={600} className="text-[#34E89E]">
+                                <Typography fontSize={20} fontWeight={600} className="text-[#4286F4]">
                                     Monthly SIP required
                                 </Typography>
                                 <Typography fontSize={26} fontWeight={700}>
@@ -172,74 +172,7 @@ export default function RetirementPlanResult({
             </Box>
 
 
-            {/* RISK METER */}
-            <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"   // ⭐ IMPORTANT
-                mt={6}
-                textAlign="center"
-            >
-                <Typography fontSize={26} fontWeight={600} mb={1}>
-                    Risk Profile
-                </Typography>
-
-                <Typography fontSize={22} className="text-gray-500 mb-4">
-                    {riskProfile} ({assumedReturn}% expected return)
-                </Typography>
-
-                {/* METER WRAPPER */}
-                <Box
-                    py={4}
-                    sx={{
-                        width: "100%",
-                        maxWidth: 520,        // ⭐ controls centering
-                        mx: "auto",
-                    }}
-                >
-                    {/* BAR */}
-                    <Box
-                        sx={{
-                            position: "relative",
-                            height: 8,
-                            borderRadius: 999,
-                            background:
-                                "linear-gradient(to right, #22c55e, #facc15, #ef4444)",
-                        }}
-                    >
-                        {/* INDICATOR DOT */}
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                top: "50%",
-                                left: `${(RISK_INDEX_MAP[riskProfile] / 4) * 100}%`,
-                                transform: "translate(-50%, -50%)", // ⭐ PERFECT CENTERING
-                                width: 20,
-                                height: 20,
-                                borderRadius: "50%",
-                                backgroundColor: "#000",
-                                border: "3px solid white",
-                                boxShadow: 2,
-                            }}
-                        />
-                    </Box>
-
-                    {/* LABELS */}
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            mt: 1.5,
-                            fontSize: 12,
-                            color: "#6b7280",
-                        }}
-                    >
-                        <span>Low</span>
-                        <span>Medium</span>
-                        <span>High</span>
-                    </Box>
-                </Box>
-            </Box>
+            
 
         </>
     );

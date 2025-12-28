@@ -14,10 +14,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import GradientHeading from "@/Componenets/Common/GradientHeading/GradientHeading";
 import RedButton from "@/Componenets/Common/RedButton";
-import ChildMarrigePlanResult from "./ChildMarrigePlanResult";
+import EmergencyPlanResult from "./EmergencyPlanResult";
 import GoalOptionCard from "@/Componenets/Common/GoalOptionCard/GoalOptionCard";
 
-export default function ChildMarrige() {
+export default function Emergency() {
 
     const RISK_RETURN_MAP = {
         "Conservative": 0.07,               // 7%
@@ -42,64 +42,52 @@ export default function ChildMarrige() {
 
 
     // FORM STATES
-    const [years, setYears] = useState("");
-    const [amount, setAmount] = useState("");
+    // FORM STATES (REPLACE)
+    const [age, setAge] = useState("");
+    const [monthlyExpense, setMonthlyExpense] = useState("");
     const [inflation, setInflation] = useState("");
-    const [goalName, setGoalName] = useState("");
-    const [risk, setRisk] = useState("");
+    const [goalName, setGoalName] = useState("Emergency Fund");
 
     const [result, setResult] = useState(null);
 
 
+
     // CALCULATION FUNCTION
-    function calculateChildMarriageGoal() {
-        const yrs = Number(years);
-        const amt = Number(amount);
+    function calculateEmergencyFund() {
+        const expense = Number(monthlyExpense);
         const infl = Number(inflation);
-        const riskProfile = risk;
 
-        if (!yrs || !amt || !infl || !riskProfile) return;
+        if (!expense || !infl) return;
 
+        const months = 6;
+        const years = 1;
+
+        // 1️⃣ Targeted Amount (today)
+        const targetedAmount = expense * months;
+
+        // 2️⃣ Inflation adjusted future value
         const inflationRate = infl / 100;
-        const expectedReturn = RISK_RETURN_MAP[riskProfile] || 0.07;
-
-        // Inflation adjusted future value
         const futureValue =
-            amt * Math.pow(1 + inflationRate, yrs);
+            targetedAmount * Math.pow(1 + inflationRate, years);
 
-        // ✅ Correct SIP logic (industry standard)
-        const r = expectedReturn;
-        const n = yrs;
+        // 3️⃣ SIP calculation (low-risk return: 6%)
+        const annualReturn = 0.06;
+        const r = annualReturn / 12;
+        const n = years * 12;
 
-        const sipAnnual =
+        const monthlySip =
             futureValue /
             (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
 
-        const monthlySip = sipAnnual / 12;
-
-        const roundedFutureValue = Math.round(futureValue / 1000) * 1000;
-
         setResult({
-            goalName,
-            years: yrs,
-            riskProfile,
-            inflationRate: infl,
-
-            // ✅ THIS IS THE KEY FIX
-            futureValue: roundedFutureValue,
-
-            // today’s value (original amount)
-            targetedAmount: amt,
-
+            targetedAmount: Math.round(targetedAmount),
+            futureValue: Math.round(futureValue),
+            years,
             monthlySip: Math.round(monthlySip / 1000) * 1000,
-            assumedReturn: r * 100,
+            assumedReturn: annualReturn * 100,
+            inflationRate: infl,
         });
-
     }
-
-
-
-
 
 
 
@@ -178,7 +166,7 @@ export default function ChildMarrige() {
                         {isDesktop && (
                             <Box pt={12} className="flex justify-center items-start">
                                 <Image
-                                    src="/Calculators/ChildMarrige.jpg"
+                                    src="/Calculators/Emergency.jpg"
                                     alt="Goal Calculator"
                                     width={530}
                                     height={620}
@@ -201,7 +189,7 @@ export default function ChildMarrige() {
                                     gap: 2,
                                 }}
                             >
-                                <GradientHeading text="मुलाचे लग्न" sx={{ alignItems: "flex-start", }} />
+                                <GradientHeading text="आणीबाणी" sx={{ alignItems: "flex-start", }} />
 
                                 <Typography
                                     fontSize={16}
@@ -229,17 +217,17 @@ export default function ChildMarrige() {
                                 <TextField
                                     fullWidth
                                     type="number"
-                                    label="Saving period for your child's marriage (Years)"
-                                    value={years}
-                                    onChange={(e) => setYears(e.target.value)}
+                                    label="Your Current Age"
+                                    value={age}
+                                    onChange={(e) => setAge(e.target.value)}
                                 />
 
                                 <TextField
                                     fullWidth
                                     type="number"
-                                    label="Amount need to save (₹)"
-                                    value={amount}
-                                    onChange={(e) => setAmount(e.target.value)}
+                                    label="Your Average Monthly Expense (₹)"
+                                    value={monthlyExpense}
+                                    onChange={(e) => setMonthlyExpense(e.target.value)}
                                 />
 
                                 <TextField
@@ -252,34 +240,19 @@ export default function ChildMarrige() {
 
                                 <TextField
                                     fullWidth
-                                    label="Name of the goal"
+                                    label="Name of the Goal"
                                     value={goalName}
                                     onChange={(e) => setGoalName(e.target.value)}
                                 />
 
-                                <FormControl fullWidth>
-                                    <InputLabel>Select Risk Profile</InputLabel>
-                                    <Select
-                                        value={risk}
-                                        label="Select Risk Profile"
-                                        onChange={(e) => setRisk(e.target.value)}
-                                    >
-                                        {Object.keys(RISK_RETURN_MAP).map((item) => (
-                                            <MenuItem key={item} value={item}>
-                                                {item}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
-
-
                                 <RedButton
                                     fullWidth
                                     sx={{ mt: 3, py: 1.2 }}
-                                    onClick={calculateChildMarriageGoal}
+                                    onClick={calculateEmergencyFund}   // ✅ NEW
                                 >
-                                    शिक्षण नियोजन काढा
+                                    Emergency Fund Calculate
                                 </RedButton>
+
 
 
                             </Box>
@@ -305,16 +278,18 @@ export default function ChildMarrige() {
             {/* PLAN RESULT SECTION */}
             {result && (
                 <Box ref={resultRef} mt={10}>
-                    <ChildMarrigePlanResult
+                    <EmergencyPlanResult
                         targetedAmount={result.targetedAmount}
                         futureValue={result.futureValue}
-                        monthlySip={result.monthlySip}
                         years={result.years}
+                        monthlySip={result.monthlySip}
                         assumedReturn={result.assumedReturn}
-                        riskProfile={result.riskProfile}
+                        inflationRate={result.inflationRate}
                     />
+
                 </Box>
             )}
+
 
 
 
@@ -336,7 +311,7 @@ export default function ChildMarrige() {
             "
                 >
                     {CALCULATORS
-                        .filter(item => item.key !== "education")   // ⭐ THIS IS THE CONDITION
+                        .filter(item => item.key !== "emergency")   // ⭐ THIS IS THE CONDITION
                         .map(item => (
                             <GoalOptionCard
                                 key={item.key}

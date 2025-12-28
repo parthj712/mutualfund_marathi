@@ -91,51 +91,55 @@ export default function DreamHome() {
     };
 
     const CALCULATORS = [
-        {
-            key: "dream-home",
-            title: "स्वप्नातील घर",
-            Icon: AiFillHome,
-            path: "/financial-planning/dream-home",
-            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
-            iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
-        },
-        {
-            key: "wealth",
-            title: "संपत्ती निर्मिती",
-            Icon: FaRupeeSign,
-            path: "/financial-planning/wealth-creation",
-            backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
-            iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
-        },
-        {
-            key: "retirement",
-            title: "निवृत्ती",
-            Icon: TbMoneybag,
-            backgroundGradient: "linear-gradient(135deg, #373B44, #4286F4)",
-            iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
-        },
-        {
-            key: "education",
-            title: "मुलांचे शिक्षण",
-            Icon: GiWhiteBook,
-            backgroundGradient: "linear-gradient(135deg, #373B44, #4286F4)",
-            iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
-        },
-        {
-            key: "marriage",
-            title: "मुलाचे लग्न",
-            Icon: GiLoveLetter,
-            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
-            iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
-        },
-        {
-            key: "emergency",
-            title: "आणीबाणी",
-            Icon: GrEmergency,
-            backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
-            iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
-        },
-    ];
+            {
+                key: "dream-home",
+                title: "स्वप्नातील घर",
+                Icon: AiFillHome,
+                path: "/financial-planning/dream-home",
+                backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
+                iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
+            },
+            {
+                key: "wealth",
+                title: "संपत्ती निर्मिती",
+                Icon: FaRupeeSign,
+                path: "/financial-planning/wealth-creation",
+                backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
+                iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
+            },
+            {
+                key: "retirement",
+                title: "निवृत्ती",
+                Icon: TbMoneybag,
+                path: "/financial-planning/retirement",
+                backgroundGradient: "linear-gradient(135deg, #373B44, #4286F4)",
+                iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
+            },
+            {
+                key: "education",
+                title: "मुलांचे शिक्षण",
+                Icon: GiWhiteBook,
+                path: "/financial-planning/child-education",
+                backgroundGradient: "linear-gradient(135deg, #373B44, #4286F4)",
+                iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
+            },
+            {
+                key: "marriage",
+                title: "मुलाचे लग्न",
+                Icon: GiLoveLetter,
+                path: "/financial-planning/child-marriage",
+                backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
+                iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
+            },
+            {
+                key: "emergency",
+                title: "आणीबाणी",
+                Icon: GrEmergency,
+                path: "/financial-planning/emergency",
+                backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
+                iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
+            },
+        ];
 
 
 

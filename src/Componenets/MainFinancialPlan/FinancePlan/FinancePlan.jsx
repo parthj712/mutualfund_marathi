@@ -101,6 +101,7 @@ const FinancePlan = () => {
             iconSize={isMobile ? 100 : 120}
             backgroundGradient="linear-gradient(135deg, #EAAFC8, #654EA3)"
             iconGradient="linear-gradient(135deg, rgba(101,78,163,100), rgba(234,175,200,100))"
+            onClick={() => router.push("/financial-planning/emergency")}
           />
 
 
