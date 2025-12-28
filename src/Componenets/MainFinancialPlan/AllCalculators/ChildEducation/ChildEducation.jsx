@@ -97,7 +97,7 @@ export default function ChildEducation() {
 
 
 
-    const CALCULATORS = [
+     const CALCULATORS = [
         {
             key: "dream-home",
             title: "स्वप्नातील घर",
@@ -134,14 +134,15 @@ export default function ChildEducation() {
             key: "marriage",
             title: "मुलाचे लग्न",
             Icon: GiLoveLetter,
-            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
             path: "/financial-planning/child-marriage",
+            backgroundGradient: "linear-gradient(135deg, #0F3443, #34E89E)",
             iconGradient: "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05))",
         },
         {
             key: "emergency",
             title: "आणीबाणी",
             Icon: GrEmergency,
+            path: "/financial-planning/emergency",
             backgroundGradient: "linear-gradient(135deg, #EAAFC8, #654EA3)",
             iconGradient: "linear-gradient(135deg, rgba(101,78,163,1), rgba(234,175,200,1))",
         },
@@ -171,7 +172,7 @@ export default function ChildEducation() {
                         {isDesktop && (
                             <Box pt={12} className="flex justify-center items-start">
                                 <Image
-                                    src="/Calculators/DreamHome.jpg"
+                                    src="/Calculators/ChildEducation.jpg"
                                     alt="Goal Calculator"
                                     width={530}
                                     height={620}
@@ -202,8 +203,7 @@ export default function ChildEducation() {
                                     className="text-gray-600 mt-2"
                                     sx={{ maxWidth: 520 }}   // optional: keeps line-length neat
                                 >
-                                    स्वप्नातील घरासाठी आवश्यक खर्च, बचत आणि गुंतवणूक
-                                    समजून घेऊन आपला आर्थिक नियोजन सुरू करा
+                                   मुलांच्या शिक्षणासाठी आजची योग्य गुंतवणूक, उद्याच्या यशाची भक्कम पायाभरणी ठरते.
                                 </Typography>
                             </Box>
 
@@ -284,8 +284,8 @@ export default function ChildEducation() {
                         absolute bottom-0 left-0 
                         w-full h-[480px]
                         bg-gradient-to-r 
-                        from-[#0F3443] 
-                        to-[#34E89E]
+                        from-[#373B44] 
+                        to-[#4286F4]
                     "
                 />
 
