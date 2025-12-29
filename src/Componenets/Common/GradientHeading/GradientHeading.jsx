@@ -6,6 +6,7 @@ export default function GradientHeading({
     text,
     className = "",
     variant = "default", // default | white | gradient
+    align = "center",    // left | center | right
 }) {
     const getTextStyle = () => {
         if (variant === "white") {
@@ -24,21 +25,58 @@ export default function GradientHeading({
         return { color: "#000000" };
     };
 
+    const getAlignmentStyles = () => {
+        switch (align) {
+            case "left":
+                return {
+                    alignItems: "flex-start",
+                    textAlign: "left",
+                    underlineAlign: "flex-start",
+                };
+            case "right":
+                return {
+                    alignItems: "flex-end",
+                    textAlign: "right",
+                    underlineAlign: "flex-end",
+                };
+            default:
+                return {
+                    alignItems: "center",
+                    textAlign: "center",
+                    underlineAlign: "flex-start",
+                };
+        }
+    };
+
+    const alignment = getAlignmentStyles();
+
     return (
         <div
-            className={`w-full flex flex-col items-start md:items-center lg:items-center gap-1 ${className}`}
+            className={`w-full flex ${className}`}
+            style={{ justifyContent: alignment.alignItems }}
         >
-            <Box display="flex" flexDirection="column" gap={0.5}>
+            <Box
+                display="flex"
+                flexDirection="column"
+                gap={0.5}
+                alignItems={alignment.alignItems}
+            >
                 {/* Heading text */}
                 <p
                     className="text-[22px] md:text-[20px] lg:text-[24px] font-semibold"
-                    style={getTextStyle()}
+                    style={{
+                        ...getTextStyle(),
+                        textAlign: alignment.textAlign,
+                    }}
                 >
                     {text}
                 </p>
 
                 {/* Underline */}
-                <div className="flex justify-start">
+                <div
+                    className="flex w-full"
+                    style={{ justifyContent: alignment.underlineAlign }}
+                >
                     <div
                         className="h-[4px] w-20 rounded-full"
                         style={{
