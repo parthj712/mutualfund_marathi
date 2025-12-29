@@ -1,4 +1,3 @@
-
 import "./globals.css";
 import ThemeRegistry from "@/theme/ThemeRegistry";
 import { Poppins, Noto_Sans_Devanagari, Mukta } from "next/font/google";
@@ -9,6 +8,7 @@ import RouteLoader from "@/Componenets/Loader/RouteLoader";
 import TopProgressBar from "@/Componenets/Loader/TopProgressBar";
 import "../styles/nprogress-custom.css";
 import PageTransition from "@/Componenets/Common/ScrollReveal/PageTransition";
+import FinanceChatBot from "@/Componenets/FloatingChatAIBot/FinanceChatBot";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -31,8 +31,8 @@ const mukta = Mukta({
 export const metadata = {
   title: "MutualFundMarathi - ThakurFinserve",
   description: "MutualFundMarathi - ThakurFinserve",
-   icons: {
-    icon: "/Tlogo.ico",   // 👈 change here
+  icons: {
+    icon: "/Tlogo.ico", // 👈 change here
   },
 };
 
@@ -56,7 +56,10 @@ export default function RootLayout({ children }) {
               <RouteLoader />
               <HeaderWrapper />
 
-              <main className="site-content">{children}</main>
+              <main className="site-content">
+                {children}
+                <FinanceChatBot />
+              </main>
 
               <Footer />
               <CopyrightBar />

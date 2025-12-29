@@ -1,20 +1,24 @@
 import { notFound } from "next/navigation";
 import BlogDetailClient from "@/Componenets/MainBlogs/BlogDetailClient/BlogDetailClient";
-import { blogs } from "@/Componenets/MainBlogs/blog";
 
 export default async function BlogPage({ params }) {
-    // ✅ UNWRAP params (THIS IS THE FIX)
-    const { slug } = await params;
+  const { slug } = await params;
 
-    console.log("Blog Slug:", slug);
+  let blog;
 
-    const blog = blogs.find((item) => item.slug === slug);
+  try {
+    const res = await fetch(`http://localhost:5000/api/blogs/${slug}`, {
+      cache: "no-store",
+    });
 
-    console.log("Found Blog:", blog);
+    if (!res.ok) notFound();
 
-    if (!blog) {
-        notFound();
-    }
+    const data = await res.json();
 
-    return <BlogDetailClient blog={blog} />;
+    blog = data.blog;
+  } catch (error) {
+    notFound();
+  }
+
+  return <BlogDetailClient blog={blog} />;
 }
