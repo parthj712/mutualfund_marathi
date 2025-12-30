@@ -55,7 +55,9 @@ export default function FinanceChatBot() {
       { role: "bot", text: q.answer },
     ]);
 
-    if (q.topic) {
+    setRelatedQuestions((prev) => prev.filter((item) => item._id !== q._id));
+
+    if (q.topic && questions.length > 0) {
       fetchRelatedQuestions(q.topic, q._id);
       setQuestions([]);
     }
