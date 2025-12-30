@@ -384,7 +384,7 @@ export default function NavigationBar() {
                     </Box>
 
                     <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                        <RedButton sx={{ px: 4 }}>साइन इन</RedButton>
+                        <RedButton sx={{ px: 3 , fontSize : "16px"}}>साइन इन</RedButton>
                     </Box>
                 </Box>
             </Toolbar>
