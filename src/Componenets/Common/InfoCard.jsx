@@ -1,74 +1,93 @@
 "use client";
 
-import { Card, CardContent, Typography, CardMedia, Box, useTheme, useMediaQuery } from "@mui/material";
+import {
+    Card,
+    Typography,
+    CardMedia,
+    Box,
+    useTheme,
+    useMediaQuery,
+} from "@mui/material";
+import { useRouter } from "next/navigation";
+import RedButton from "./RedButton";
 
-export default function InfoCard({ image, title, desc }) {
-
+export default function InfoCard({ image, title, desc, slug }) {
     const theme = useTheme();
+    const router = useRouter();
 
-    // BREAKPOINTS
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+    const handleNavigation = () => {
+        router.push(`/homecards/${slug}`);
+    };
 
     return (
         <Card
+            onClick={handleNavigation}
             sx={{
-                // width : isMobile ? "80%" : "100%",
-                mr: isMobile ? 3 : isTablet ? 0 :  0,
+                position: "relative",
+                overflow: "hidden",
                 borderRadius: "12px",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                "&:hover": {
-                    transform: "translateY(-4px)",
-                    boxShadow: "0 6px 25px rgba(0,0,0,0.12)"
-                }
+                cursor: "pointer",
+
+                mr: isMobile ? 3.5 : 0,
+                
+                "&:hover .overlay": {
+                    opacity: 1,
+                    transform: "translateY(0)",
+                },
             }}
-            className="bg-white"
         >
+            {/* IMAGE */}
             <CardMedia
                 component="img"
                 image={image}
                 alt={title}
                 sx={{
-                    width:  "100%",          // full width of the card
-                    height: isMobile ? "140px" : "160px",        // fixed height (change as you need)
+                    width: "100%",          // full width of the card
+                    height: isMobile ? "450px" : "400px", // 👈 increase here
                     objectFit: "cover",     // keeps image clean
                     borderTopLeftRadius: "12px",
                     borderTopRightRadius: "12px",
                 }}
             />
 
+            {/* OVERLAY */} 
+            <Box
+                className="overlay"
+                sx={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                        "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    p: 2,
 
-            <CardContent>
+                    // 🔑 visibility logic
+                    opacity: isMobile ? 1 : 0,
+                    transform: isMobile ? "none" : "translateY(20px)",
+                    transition: "all 0.3s ease",
+                }}
+            >
                 <Typography
-                    sx={{ fontWeight: 700, fontSize: "16px", mb: 1 }}
+                    sx={{
+                        color: "#fff",
+                        fontWeight: 600,
+                        fontSize: isMobile ? 16 : 18,
+                        mb: 1,
+                    }}
                     className="line-clamp-2"
                 >
                     {title}
                 </Typography>
 
-                <Typography
-                    sx={{ fontWeight: 400, fontSize: "14px", color: "#444" }}
-                    className="line-clamp-3"
-                >
-                    {desc}
-                </Typography>
-
-                <Box className="mt-4 flex justify-end">
-                    <Typography
-                        sx={{
-                            fontWeight: 600,
-                            fontSize: "15px",
-                            display: "flex",
-                            alignItems: "center",
-                            cursor: "pointer",
-                        }}
-                    >
-                        अधिक वाचा →
-                    </Typography>
-                </Box>
-            </CardContent>
+                <RedButton sx={{ width: "100%" , fontSize : isMobile ? "17px" : "14px"}}>
+                    अधिक वाचा →
+                </RedButton>
+            </Box>
         </Card>
     );
 }

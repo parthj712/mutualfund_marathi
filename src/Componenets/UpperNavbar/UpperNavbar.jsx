@@ -93,9 +93,9 @@ export default function UpperNavbar() {
                 {/* LOGO */}
                 <Box display="flex" justifyContent="center">
                     <Image
-                        src="/ShriThakur.png"
+                        src="/ShriThaku.jpeg"
                         alt="Shri Thakur Logo"
-                        width={110}
+                        width={130}
                         height={45}
                         loading="lazy"
                         sizes="(max-width: 600px) 120px, 150px"

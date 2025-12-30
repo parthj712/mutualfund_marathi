@@ -58,9 +58,9 @@ body {
 
   background-image: url("/BG/RS.png");
   background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 24%;
-  opacity: 0.12;
+  background-position: -10% 110%;
+  background-size: 22%;
+  opacity: 0.19;
 }
 
 
