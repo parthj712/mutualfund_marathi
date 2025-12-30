@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Paper, IconButton, Avatar, Box, Button } from "@mui/material";
+import { Paper, IconButton, Avatar, Box, Button, useTheme, useMediaQuery } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import API from "@/service/api";
@@ -11,6 +11,13 @@ import { IoSend } from "react-icons/io5";
 import { motion } from "framer-motion";
 
 export default function FinanceChatBot() {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
   const [open, setOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -98,7 +105,7 @@ export default function FinanceChatBot() {
         <Paper
           elevation={10}
           sx={{ borderRadius: 7, my: 2 }}
-          className="fixed bottom-24 p-3  right-6 w-95 h-[400px] rounded-2xl z-50 flex flex-col overflow-hidden"
+          className="fixed bottom-22 p-3  right-6 lg:w-95 w-80 h-[400px] rounded-2xl z-50 flex flex-col overflow-hidden"
         >
           {/* HEADER */}
           <motion.div
@@ -122,7 +129,7 @@ export default function FinanceChatBot() {
               justifyContent="space-between"
               color="white"
             >
-              <TbMessageChatbot size={28} />
+              <TbMessageChatbot size={isMobile ? 24 : 28} />
 
               <div className="flex-1">
                 <p className="text-sm font-semibold">Ask Your Queries</p>
@@ -139,19 +146,17 @@ export default function FinanceChatBot() {
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`flex ${
-                  msg.role === "user" ? "justify-end" : "justify-start"
-                }`}
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
+                  }`}
               >
                 <Box
                   p={1.5}
                   m={1.5}
                   fontWeight={600}
-                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${
-                    msg.role === "user"
+                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${msg.role === "user"
                       ? "bg-green-500 text-white rounded-br-none"
                       : "bg-white text-gray-800 rounded-bl-none"
-                  }`}
+                    }`}
                 >
                   <p>{msg.text}</p>
 

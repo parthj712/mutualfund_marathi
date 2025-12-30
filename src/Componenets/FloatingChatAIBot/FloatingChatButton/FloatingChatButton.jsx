@@ -1,10 +1,18 @@
 "use client";
 
+import { useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { TbMessageChatbotFilled } from "react-icons/tb";
 
 export default function FloatingChatButton({ setOpen }) {
+
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
     const [showButton, setShowButton] = useState(true);
     const scrollTimeout = useRef(null);
 
@@ -30,7 +38,7 @@ export default function FloatingChatButton({ setOpen }) {
             onClick={() => setOpen(true)}
             className="
         fixed bottom-6 right-6 z-50
-        w-16 h-16
+        lg:w-16  lg:h-16 w-15 h-15
         rounded-full
         cursor-pointer
         flex items-center justify-center
@@ -69,7 +77,7 @@ export default function FloatingChatButton({ setOpen }) {
             whileTap={{ scale: 0.95 }}
         >
             {/* Icon */}
-            <span className="text-3xl text-white drop-shadow-md"> <TbMessageChatbotFilled /></span>
+            <span className=" lg:text-3xl text-2xl text-white drop-shadow-md"> <TbMessageChatbotFilled /></span>
         </motion.div>
     );
 }

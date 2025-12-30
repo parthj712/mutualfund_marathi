@@ -11,8 +11,9 @@ export default function Footer() {
 
 
     const navItems = [
-        { name: "संपर्क साधा", path: "/contact" },
+        // { name: "संपर्क साधा", path: "/contact" },
         { name: "सामान्य प्रश्न", path: "/contact" },
+        { name: "ब्लॉग्ज", path: "/blogs" },
     ];
 
 
