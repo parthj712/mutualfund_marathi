@@ -26,7 +26,6 @@ export default function BlogDetailClient({ blog }) {
 
   return (
     <>
-      hii
       <Box display="flex" flexDirection="column" p={isMobile ? 4 : 10} gap={4}>
         {/* Heading */}
         <GradientHeading text={blog.title} align="left" />

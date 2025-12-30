@@ -10,48 +10,56 @@ import { TbMessageChatbot } from "react-icons/tb";
 import { IoSend } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-
 export default function FinanceChatBot() {
   const [open, setOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [relatedQuestions, setRelatedQuestions] = useState([]);
+  const [activeTopic, setActiveTopic] = useState(null);
   const messagesEndRef = useRef(null);
   const router = useRouter();
-
+  const greetingMessage = {
+    role: "bot",
+    text: "👋 नमस्कार! मी तुमची मदत करण्यासाठी इथे आहे. खालील विषयांपैकी एखादा निवडा 🙂",
+  };
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, questions]);
 
   const fetchQuestions = async () => {
-    const res = await API.get("/chatbot/questions?lang=mr");
+    const res = await API.get("/chatbot/questions?lang=mr&firstOnly=true");
     setQuestions(res.data.data);
+  };
+  const fetchRelatedQuestions = async (topic, excludeId) => {
+    const res = await API.get(
+      `/chatbot/questions?lang=mr&topic=${topic}&exclude=${excludeId}`
+    );
+    setRelatedQuestions(res.data.data);
   };
 
   useEffect(() => {
-    if (open) fetchQuestions();
+    if (open) {
+      setMessages([
+        greetingMessage, // 👋 greeting first
+      ]);
+
+      fetchQuestions();
+    }
   }, [open]);
 
+  const handleQuestionClick = async (q) => {
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", text: q.questions },
+      { role: "bot", text: q.answer },
+    ]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Hide text immediately on scroll
-      setShowText(false);
-
-      // Clear previous timeout
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-
-      // Show text after scroll stops
-      scrollTimeout.current = setTimeout(() => {
-        setShowText(true);
-      }, 250); // adjust for sensitivity
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (q.topic) {
+      fetchRelatedQuestions(q.topic, q._id);
+      setQuestions([]);
+    }
+  };
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -61,28 +69,30 @@ export default function FinanceChatBot() {
       { role: "user", text: input },
       {
         role: "bot",
-        text: "📞 आमच्याशी संपर्क साधा. अधिक माहितीसाठी Contact Us पेजला भेट द्या.",
+        text: "📞 आमच्याशी थेट संपर्क साधा:",
+        phone: "+919876543210",
+        email: "support@yourcompany.com",
         link: "/contact",
       },
     ]);
-    setOpen(false);
-    setMessages([]);
+
     setInput("");
+    setQuestions([]);
   };
 
   const handleClose = () => {
     setOpen(false);
     setMessages([]);
+    setQuestions([]);
+    setRelatedQuestions([]);
+    setActiveTopic(null);
     setInput("");
   };
   return (
     <>
       {/* Floating Button */}
 
-
       <FloatingChatButton setOpen={setOpen} />
-
-
 
       {open && (
         <Paper
@@ -90,7 +100,6 @@ export default function FinanceChatBot() {
           sx={{ borderRadius: 7, my: 2 }}
           className="fixed bottom-24 p-3  right-6 w-95 h-[400px] rounded-2xl z-50 flex flex-col overflow-hidden"
         >
-
           {/* HEADER */}
           <motion.div
             initial={{ backgroundPosition: "0% 50%" }}
@@ -101,8 +110,7 @@ export default function FinanceChatBot() {
               repeat: Infinity,
             }}
             style={{
-              background:
-                "linear-gradient(90deg, #1C76A9, #004A74, #008BDA)",
+              background: "linear-gradient(90deg, #1C76A9, #004A74, #008BDA)",
               backgroundSize: "300% 300%",
             }}
           >
@@ -126,30 +134,49 @@ export default function FinanceChatBot() {
             </Box>
           </motion.div>
 
-
           {/* CHAT BODY */}
           <div className="flex-1 overflow-y-auto px-4 py-3 bg-[#ECE5DD] space-y-3">
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
                 <Box
                   p={1.5}
                   m={1.5}
                   fontWeight={600}
-                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${msg.role === "user"
-                    ? "bg-green-500 text-white rounded-br-none"
-                    : "bg-white text-gray-800 rounded-bl-none"
-                    }`}
+                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${
+                    msg.role === "user"
+                      ? "bg-green-500 text-white rounded-br-none"
+                      : "bg-white text-gray-800 rounded-bl-none"
+                  }`}
                 >
-                  {msg.text}  awda
+                  <p>{msg.text}</p>
+
+                  {msg.phone && (
+                    <a
+                      href={`tel:${msg.phone}`}
+                      className="block mt-1 text-[11px] text-green-600 underline"
+                    >
+                      📞 {msg.phone}
+                    </a>
+                  )}
+
+                  {msg.email && (
+                    <a
+                      href={`mailto:${msg.email}`}
+                      className="block mt-1 text-[11px] text-blue-600 underline"
+                    >
+                      📧 {msg.email}
+                    </a>
+                  )}
 
                   {msg.link && (
                     <button
                       onClick={() => router.push(msg.link)}
-                      className="block mt-2 text-[11px] text-blue-600 underline"
+                      className="block mt-2 text-[11px] text-purple-600 underline"
                     >
                       Contact Us →
                     </button>
@@ -157,6 +184,21 @@ export default function FinanceChatBot() {
                 </Box>
               </div>
             ))}
+
+            {relatedQuestions.length > 0 && (
+              <Box className="mt-3 space-y-2">
+                {relatedQuestions.map((rq) => (
+                  <Button
+                    key={rq._id}
+                    variant="text"
+                    className="w-full bg-white text-xs text-left px-3 py-2 rounded-lg border shadow-sm hover:bg-gray-50"
+                    onClick={() => handleQuestionClick(rq)}
+                  >
+                    👉 {rq.questions}
+                  </Button>
+                ))}
+              </Box>
+            )}
 
             {/* QUESTIONS */}
             {questions.length > 0 && (
@@ -168,13 +210,7 @@ export default function FinanceChatBot() {
                     sx={{ textAlign: "left", alignItems: "flex-start" }}
                     key={q._id}
                     className="w-full bg-white text-xs text-left px-3 py-2.5 rounded-lg border shadow-sm hover:bg-gray-50"
-                    onClick={() =>
-                      setMessages((prev) => [
-                        ...prev,
-                        { role: "user", text: q.questions },
-                        { role: "bot", text: q.answer },
-                      ])
-                    }
+                    onClick={() => handleQuestionClick(q)}
                   >
                     👉 {q.questions}
                   </Button>
@@ -186,7 +222,14 @@ export default function FinanceChatBot() {
           </div>
 
           {/* INPUT BAR */}
-          <Box display={"flex"} flexDirection={"row"} alignItems={"center"} px={2.5} pt={1.5} pb={2}>
+          <Box
+            display={"flex"}
+            flexDirection={"row"}
+            alignItems={"center"}
+            px={2.5}
+            pt={1.5}
+            pb={2}
+          >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
