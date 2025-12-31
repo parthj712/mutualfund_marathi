@@ -1,11 +1,15 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function GoalOptionCard({
+
+
     /* TEXT */
     title,
     titleColor = "white",
+    description,                  // 🔥 NEW
+    descriptionColor = "white",    // 🔥 NEW
 
     /* ICON */
     Icon,
@@ -22,6 +26,15 @@ export default function GoalOptionCard({
     /* ACTION */
     onClick,
 }) {
+
+    const theme = useTheme();
+
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
     return (
         <Box
             role="button"
@@ -36,7 +49,7 @@ export default function GoalOptionCard({
                 pt: 3,
                 pb: 2,
                 pl: 5,
-                pr: 2,
+                pr: isMobile ? 3 : 2,
                 borderRadius,
                 background: backgroundGradient,
                 border,
@@ -66,21 +79,42 @@ export default function GoalOptionCard({
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
+                    height: "100%",
                 }}
             >
-                {/* TITLE */}
-                <Typography
-                    className="goal-title"
-                    sx={{
-                        fontSize: { xs: 22, sm: 24 },
-                        fontWeight: 700,
-                        color: titleColor,
-                        transition: "transform 0.3s ease",
-                        transformOrigin: "left top",
-                    }}
-                >
-                    {title}
-                </Typography>
+                {/* TEXT SECTION */}
+                <Box>
+                    {/* TITLE */}
+                    <Typography
+                        className="goal-title"
+                        sx={{
+                            fontSize: { xs: 22, sm: 24 },
+                            fontWeight: 700,
+                            color: titleColor,
+                            transition: "transform 0.3s ease",
+                            transformOrigin: "left top",
+                        }}
+                    >
+                        {title}
+                    </Typography>
+
+                    {/* 🔥 DESCRIPTION (conditional render) */}
+                    {description && (
+                        <Typography
+                            sx={{
+                                mt: isMobile ? 1 : 3,
+                                pr: 5,
+                                fontSize: { xs: 16, sm: 20 },
+                                fontWeight: 500,
+                                lineHeight: 1.5,
+                                color: descriptionColor,
+                                opacity: 0.9,
+                            }}
+                        >
+                            {description}
+                        </Typography>
+                    )}
+                </Box>
 
                 {/* ICON */}
                 {Icon && (
@@ -104,3 +138,48 @@ export default function GoalOptionCard({
         </Box>
     );
 }
+
+
+
+
+
+
+
+
+// import { AiFillHome } from "react-icons/ai";
+// import { useRouter } from "next/navigation";
+
+// const router = useRouter();
+
+// <GoalOptionCard
+//     /* ================= TEXT ================= */
+//     title="स्वप्नातील घर"                      // Main title text
+//     titleColor="#ffffff"                      // Title text color (default: white)
+
+//     description="आपल्या स्वतःच्या घरासाठी योग्य नियोजन आणि गुंतवणूक"
+//     descriptionColor="#ffffff"                // Description text color (default: white)
+
+//     /* ================= ICON ================= */
+//     Icon={AiFillHome}                         // React icon component
+//     iconSize={120}                            // Icon size (default: 120)
+
+//     iconGradient="linear-gradient(
+//         135deg,
+//         rgba(255,255,255,0.4),
+//         rgba(255,255,255,0.05)
+//     )"                                        // Gradient applied to icon
+
+//     /* ================= BACKGROUND ================= */
+//     backgroundGradient="linear-gradient(
+//         135deg,
+//         #0B3C49,
+//         #2FE88F
+//     )"                                        // Card background gradient
+
+//     /* ================= STYLING ================= */
+//     borderRadius={5}                          // Border radius (default: 5)
+//     border="1px solid rgba(255,255,255,0.15)" // Optional border
+
+//     /* ================= ACTION ================= */
+//     onClick={() => router.push("/dream-home")} // Click handler
+// />
