@@ -12,73 +12,59 @@ import {
 
 export default function SliderInputRange({
     label,
-    value,          // [min, max]
+    value,          // number (MAX value)
     min = 0,
     max = 100,
     step = 1,
     unit = "",
     onChange,
 }) {
-
-
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
-    const handleMinChange = (e) => {
-        let newMin = Number(e.target.value);
-        if (newMin <= value[1] && newMin >= min) {
-            onChange([newMin, value[1]]);
-        }
-    };
 
     const handleMaxChange = (e) => {
-        let newMax = Number(e.target.value);
-        if (newMax >= value[0] && newMax <= max) {
-            onChange([value[0], newMax]);
+        let newValue = Number(e.target.value);
+        if (newValue >= min && newValue <= max) {
+            onChange(newValue);
         }
     };
 
     return (
-        <Box sx={{ width: "100%" }} px={isMobile ? 4 : 2} display={"flex"} flexDirection={"column"} alignItems={"flex-start"}>
-            {/* LABEL + INPUTS */}
+        <Box
+            sx={{ width: "100%" }}
+            px={isMobile ? 4 : 2}
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+        >
+            {/* LABEL + MAX INPUT */}
             <Box
                 display="flex"
                 flexDirection={isMobile ? "column" : "row"}
                 justifyContent={isMobile ? "flex-start" : "space-between"}
-                alignItems={isMobile ? "flex-start" :  "center"}
+                alignItems={isMobile ? "flex-start" : "center"}
                 mb={1}
                 gap={2}
+                width="100%"
             >
-                <Typography textAlign={"left"} fontWeight={500} fontSize={isMobile ? 16 : 18}>
+                <Typography
+                    fontWeight={500}
+                    fontSize={isMobile ? 16 : 18}
+                >
                     {label}
                 </Typography>
 
-                <Box display="flex" gap={1}>
-                    <TextField
-                        size="small"
-                        type="number"
-                        value={value[0]}
-                        onChange={handleMinChange}
-                        inputProps={{ min, max, step }}
-                        sx={{ width: isMobile ? 130 : 100 }}
-                    />
-
-                    <Typography alignSelf="center">–</Typography>
-
-                    <TextField
-                        size="small"
-                        type="number"
-                        value={value[1]}
-                        onChange={handleMaxChange}
-                        inputProps={{ min, max, step }}
-                        ssx={{ width: isMobile ? 130 : 100 }}
-                    />
-                </Box>
+                <TextField
+                    size="small"
+                    type="number"
+                    value={value}
+                    onChange={handleMaxChange}
+                    inputProps={{ min, max, step }}
+                    sx={{ width: isMobile ? 130 : 120 }}
+                />
             </Box>
 
-            {/* RANGE SLIDER */}
+            {/* SLIDER */}
             <Slider
                 value={value}
                 min={min}
@@ -99,7 +85,7 @@ export default function SliderInputRange({
 
                     "& .MuiSlider-track": {
                         backgroundColor: "#008BDA",
-                        height: 8,
+                        height: isMobile ? 6 : 8,
                         borderRadius: 10,
                         border: "none",
                     },
@@ -108,7 +94,6 @@ export default function SliderInputRange({
                         width: isMobile ? 18 : 20,
                         height: isMobile ? 18 : 20,
                         backgroundColor: "#303F5E",
-                        // boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
                     },
                 }}
             />

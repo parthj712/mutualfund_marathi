@@ -1,8 +1,11 @@
+import LessSpendingCalculator from '@/Componenets/MainCalculator/AllCalculators/LessSpendingCalculator/LessSpendingCalculator'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>low-expense-calculator</div>
+    <div>
+      <LessSpendingCalculator/>
+    </div>
   )
 }
 

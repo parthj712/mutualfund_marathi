@@ -1,8 +1,11 @@
+import CrorepatiCalculator from '@/Componenets/MainCalculator/AllCalculators/CorepatiCalculator/CorepatiCalculator'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>become-crorepati</div>
+    <div>
+        <CrorepatiCalculator/>
+    </div>
   )
 }
 
