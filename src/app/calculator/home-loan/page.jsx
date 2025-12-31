@@ -1,8 +1,11 @@
+import HomeLoanCalculator from '@/Componenets/MainCalculator/AllCalculators/Home-Loan/HomeLoanCalculator'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>home-loan</div>
+    <div>
+      <HomeLoanCalculator/>
+    </div>
   )
 }
 

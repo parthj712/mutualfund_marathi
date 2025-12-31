@@ -16,6 +16,8 @@ import { useRouter } from "next/navigation";
 import GoalOptionCard from '../Common/GoalOptionCard/GoalOptionCard';
 import GradientHeading from '../Common/GradientHeading/GradientHeading';
 import HeaderMutualFund from '../MainMutualFund/HeaderMutualFund.jsx/HeaderMutualFund';
+import SIP_Calculator from './AllCalculators/SIP_Calculator/SIP_Calculator';
+import SliderInputRange from '../Common/SliderInputRange/SliderInputRange';
 
 
 const MainCalculator = () => {
@@ -64,13 +66,13 @@ const MainCalculator = () => {
                         onClick={() => router.push("/calculator/become-crorepati")}
                     />
                     <GoalOptionCard
-                        title="SWP"
-                        description="सिस्टीमॅटिक विथड्रॉवल प्लॅन्स (SWP) वापरून तुमची अंतिम रक्कम मोजा."
+                        title="SIP"
+                        description="तुमच्या SIP द्वारे तुम्हाला किती बचत करायची आहे किंवा किती जमा होईल याची गणना करा."
                         Icon={FaPiggyBank}
                         iconSize={isMobile ? 100 : 120}
                         backgroundGradient="linear-gradient(135deg, #EAAFC8, #654EA3)"
                         iconGradient="linear-gradient(135deg, rgba(101,78,163,100), rgba(234,175,200,100))"
-                        onClick={() => router.push("/calculator/swp")}
+                        onClick={() => router.push("/calculator/sip")}
                     />
                     <GoalOptionCard
                         title="EPF"
@@ -128,6 +130,7 @@ const MainCalculator = () => {
                         onClick={() => router.push("/calculator/low-expense-calculator")}
                     />
                 </div>
+
             </Box>
         </div>
     )
