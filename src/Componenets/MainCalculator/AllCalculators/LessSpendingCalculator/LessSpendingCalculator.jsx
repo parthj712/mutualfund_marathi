@@ -80,7 +80,7 @@ const LessSpendingCalculator = () => {
 
     return (
         <Box p={isMobile ? 4 : 10}>
-            <GradientHeading text="Less Spending, More Savings Calculator" />
+            <GradientHeading text=" अधिक बचत कॅल्क्युलेटर" />
 
             <Box
                 sx={{
@@ -93,51 +93,51 @@ const LessSpendingCalculator = () => {
                 {/* ================= LEFT FORM ================= */}
                 <Box flex={1}>
                     {/* PERSONAL DETAILS */}
-                    <Section title="Personal Details">
+                    <Section title="वैयक्तिक माहिती">
                         <Input
-                            label="Your Current age (in years)"
+                            label="तुमचे सध्याचे वय (वर्षांमध्ये)"
                             value={currentAge}
                             setValue={setCurrentAge}
                         />
                         <Input
-                            label="Age at which you want to retire (in years)"
+                            label="तुम्हाला निवृत्ती घ्यायची आहे ते वय (वर्षांमध्ये)"
                             value={retirementAge}
                             setValue={setRetirementAge}
                         />
                         <Input
-                            label="Savings or interest rate of your current investments (% per annum)"
+                            label="तुमच्या सध्याच्या गुंतवणुकीची बचत किंवा व्याजदर (वार्षिक%)"
                             value={returnRate}
                             setValue={setReturnRate}
                         />
                         <Input
-                            label="Income Tax rate (% per annum)"
+                            label="आयकर दर (% प्रतिवर्ष)"
                             value={taxRate}
                             setValue={setTaxRate}
                         />
                         <Input
-                            label="Current inflation rate (% per annum)"
+                            label="सध्याचा महागाई दर (% प्रतिवर्ष)"
                             value={inflationRate}
                             setValue={setInflationRate}
                         />
                     </Section>
 
                     {/* SPENDING DETAILS */}
-                    <Section title="Spending Details">
-                        <Input label="Deferring purchase of a house / flat (Rs.)" value={houseDeferral} setValue={setHouseDeferral} />
-                        <Input label="Reducing the Home Loan EMI (Rs.)" value={homeLoanEMI} setValue={setHomeLoanEMI} />
-                        <Input label="Waiting to buy a new car (Rs.)" value={newCarDelay} setValue={setNewCarDelay} />
-                        <Input label="Eating out less with family (Rs.)" value={eatOutLess} setValue={setEatOutLess} />
-                        <Input label="Reduce lifestyle spending (Rs.)" value={lifestyleCut} setValue={setLifestyleCut} />
-                        <Input label="Taking fewer holidays (Rs.)" value={lessHolidays} setValue={setLessHolidays} />
-                        <Input label="Taking public transport (Rs.)" value={publicTransport} setValue={setPublicTransport} />
-                        <Input label="Reducing the credit card interest (Rs.)" value={creditCardInterest} setValue={setCreditCardInterest} />
-                        <Input label="Closing the personal loan (Rs.)" value={personalLoanClose} setValue={setPersonalLoanClose} />
-                        <Input label="Doing less shopping (Rs.)" value={lessShopping} setValue={setLessShopping} />
+                    <Section title="खर्चाचे तपशील">
+                        <Input label="घर / फ्लॅट खरेदी पुढे ढकलणे (रु.)" value={houseDeferral} setValue={setHouseDeferral} />
+                        <Input label="गृहकर्जाचा ईएमआय (रु.) कमी करणे" value={homeLoanEMI} setValue={setHomeLoanEMI} />
+                        <Input label="नवीन गाडी खरेदी करण्याची वाट पाहत आहे (रु.)" value={newCarDelay} setValue={setNewCarDelay} />
+                        <Input label="कुटुंबासह बाहेर कमी जेवणे (रु.)" value={eatOutLess} setValue={setEatOutLess} />
+                        <Input label="जीवनशैली खर्च कमी करा (रु.)" value={lifestyleCut} setValue={setLifestyleCut} />
+                        <Input label="कमी सुट्ट्या घेणे (रु.)" value={lessHolidays} setValue={setLessHolidays} />
+                        <Input label="सार्वजनिक वाहतुकीने प्रवास (रु.)" value={publicTransport} setValue={setPublicTransport} />
+                        <Input label="क्रेडिट कार्डवरील व्याजदर कमी करणे (रु.)" value={creditCardInterest} setValue={setCreditCardInterest} />
+                        <Input label="वैयक्तिक कर्ज बंद करणे (रु.)" value={personalLoanClose} setValue={setPersonalLoanClose} />
+                        <Input label="कमी खरेदी करणे (रु.)" value={lessShopping} setValue={setLessShopping} />
                     </Section>
 
                     <Box mt={3}>
                         <RedButton onClick={() => setSubmitted(true)}>
-                            Submit
+                           सबमिट करा
                         </RedButton>
                     </Box>
                 </Box>
@@ -166,17 +166,17 @@ const LessSpendingCalculator = () => {
                         />
 
                         <ResultCard
-                            label="By reducing your spending you will save this amount each year"
+                            label="तुमचा खर्च कमी करून तुम्ही दरवर्षी ही रक्कम वाचवू शकाल."
                             value={format(calculation.yearlySaving)}
                         />
 
                         <ResultCard
-                            label="Number of Years"
-                            value={`${calculation.years} Years`}
+                            label="वर्षांची संख्या"
+                            value={`${calculation.years} वर्षे`}
                         />
 
                         <ResultCard
-                            label="If you invest this amount, you will accumulate this amount by the time you retire"
+                            label="जर तुम्ही ही रक्कम गुंतवली तर तुम्ही निवृत्त होईपर्यंत ही रक्कम एवढी होईल"
                             value={format(calculation.futureValue)}
                         />
                     </Box>

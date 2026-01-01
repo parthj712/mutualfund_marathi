@@ -41,7 +41,7 @@ const SIP_Calculator = () => {
 
     return (
         <Box p={isMobile ? 4 : 10}>
-            <GradientHeading text="SIP Calculator" />
+            <GradientHeading text="एसआयपी(SIP) कॅल्क्युलेटर" />
 
             <Box
                 boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
@@ -51,9 +51,9 @@ const SIP_Calculator = () => {
                     flexDirection: isMobile ? "column" : "row",
                     gap: 10,
                     alignItems: "stretch",
-                    backgroundColor : "#FFFFFF",
-                    borderRadius : 5,
-                    p : 5
+                    backgroundColor: "#FFFFFF",
+                    borderRadius: 5,
+                    p: 5
                 }}
             >
                 {/* ================= LEFT SIDE (SLIDERS) ================= */}
@@ -66,7 +66,7 @@ const SIP_Calculator = () => {
                     }}
                 >
                     <SliderInputRange
-                        label="Monthly investment? (₹)"
+                        label="मासिक गुंतवणूक? (₹)"
                         value={monthlySip}
                         min={0}
                         max={100000}
@@ -76,7 +76,7 @@ const SIP_Calculator = () => {
                     />
 
                     <SliderInputRange
-                        label="Time period? (Months)"
+                        label="कालावधी? (महिने)"
                         value={months}
                         min={12}
                         max={450}
@@ -86,7 +86,7 @@ const SIP_Calculator = () => {
                     />
 
                     <SliderInputRange
-                        label="Expected return rate (% p.a)"
+                        label="अपेक्षित परतावा दर (% प्रति वर्ष)"
                         value={returnRate}
                         min={1}
                         max={20}
@@ -100,7 +100,7 @@ const SIP_Calculator = () => {
                 <Box
                     sx={{
                         flex: 1,
-                        border : "5px solid #F8FBFF",
+                        border: "5px solid #F8FBFF",
                         background: "#EAF0FF",
                         borderRadius: 4,
                         p: isMobile ? 3 : 5,
@@ -136,7 +136,7 @@ const SIP_Calculator = () => {
                             }}
                         >
                             <Box fontSize={18} color="text.secondary">
-                                SIP Invested Amount
+                                एसआयपीमध्ये गुंतवलेली रक्कम
                             </Box>
                             <Box fontSize={20} fontWeight={600} mt={1}>
                                 {formatCurrency(calculation.investedAmount)}
@@ -153,7 +153,7 @@ const SIP_Calculator = () => {
                             }}
                         >
                             <Box fontSize={18} color="text.secondary">
-                                Growth Amount
+                                वाढीची रक्कम
                             </Box>
                             <Box fontSize={20} fontWeight={600} mt={1}>
                                 {formatCurrency(calculation.growthAmount)}
@@ -171,7 +171,7 @@ const SIP_Calculator = () => {
                             }}
                         >
                             <Box fontSize={18} color="text.secondary">
-                                Future Value
+                                भविष्यातील मूल्य
                             </Box>
                             <Box fontSize={22} fontWeight={700} mt={1}>
                                 {formatCurrency(calculation.futureValue)}

@@ -40,7 +40,7 @@ const steps = [
 
 export default function EquityFundStepper() {
 
-      const theme = useTheme();
+    const theme = useTheme();
 
     // BREAKPOINTS
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -49,49 +49,51 @@ export default function EquityFundStepper() {
 
 
     return (
-        <Box maxWidth={600} mx="auto">
-            {/* Heading */}
-            
+        <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10}>
+            <Box >
+                {/* Heading */}
 
-            <Stepper
-                orientation="vertical"
-                connector={<VerticalConnector />}
-            >
-                {steps.map((label, index) => (
-                    <Step key={index} active>
-                         <motion.div
-                            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: index * 0.15 }}
 
-                        >
-                        <StepLabel
-                            StepIconComponent={() => <StepDot />}
-                        >
-                            {/* Card */}
-                            <Box
-                                sx={{
-                                    backgroundColor: "#E2E8F0",
-                                    borderRadius: "10px",
-                                    px: 3,
-                                    py: 2,
-                                    ml: 1,
-                                    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-                                }}
+                <Stepper
+                    orientation="vertical"
+                    connector={<VerticalConnector />}
+                >
+                    {steps.map((label, index) => (
+                        <Step key={index} active>
+                            <motion.div
+                                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.6, delay: index * 0.15 }}
+
                             >
-                                <Typography fontSize={"18px"} fontWeight={700} mb={0.5}>
-                                    पायरी : {index + 1}
-                                </Typography>
-                                <Typography fontSize="18px">
-                                    {label}
-                                </Typography>
-                            </Box>
-                        </StepLabel>
-                        </motion.div>
-                    </Step>
-                ))}
-            </Stepper>
+                                <StepLabel
+                                    StepIconComponent={() => <StepDot />}
+                                >
+                                    {/* Card */}
+                                    <Box
+                                        sx={{
+                                            backgroundColor: "#E2E8F0",
+                                            borderRadius: "10px",
+                                            px: 3,
+                                            py: 2,
+                                            ml: 1,
+                                            boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+                                        }}
+                                    >
+                                        <Typography fontSize={"18px"} fontWeight={700} mb={0.5}>
+                                            पायरी : {index + 1}
+                                        </Typography>
+                                        <Typography fontSize="18px">
+                                            {label}
+                                        </Typography>
+                                    </Box>
+                                </StepLabel>
+                            </motion.div>
+                        </Step>
+                    ))}
+                </Stepper>
+            </Box>
         </Box>
     );
 }

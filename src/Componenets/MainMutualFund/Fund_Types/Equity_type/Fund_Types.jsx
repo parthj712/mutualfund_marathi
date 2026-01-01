@@ -32,7 +32,7 @@ const Fund_Types = () => {
     return (
         <div>
             <HeaderMutualFund
-                image="/Header/EquityTrade.png"
+                image="/Header/EquityTrade.jpg"
                 heading="म्युच्युअल फंडाचे प्रकार"
                 description="प्रकार I - समभाग आधारित"
                 imagePosition="left"
@@ -84,9 +84,9 @@ const Fund_Types = () => {
                 <Equity_Types />
             </ScrollReveal>
 
-         <How_to_invest_equity/>
+            <How_to_invest_equity />
 
-            
+
 
         </div>
     )

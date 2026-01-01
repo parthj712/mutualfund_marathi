@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import GradientHeading from "../GradientHeading/GradientHeading";
 
 export default function DisclaimerBox({
     icon: Icon,
@@ -25,15 +26,18 @@ export default function DisclaimerBox({
                     <Icon className={`${iconColor} text-3xl`} />
                 )}
 
-                <Typography fontWeight={700} fontSize="20px" textAlign={align}>
+                {/* <Typography fontWeight={700} fontSize="20px" textAlign={align}>
                     {title}
-                </Typography>
+                </Typography> */}
+
+                <GradientHeading text={title} align="left"/>
             </Box>
 
             {/* Description */}
             <Typography
-                fontSize="18px"
+                fontSize="16px"
                 textAlign={align}
+                lineHeight={1.8}
                 className="leading-relaxed"
             >
                 {description}

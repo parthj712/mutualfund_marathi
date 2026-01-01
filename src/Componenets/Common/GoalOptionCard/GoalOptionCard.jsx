@@ -48,7 +48,7 @@ export default function GoalOptionCard({
             sx={{
                 pt: 3,
                 pb: 2,
-                pl: 5,
+                pl: isMobile ? 3 : 5,
                 pr: isMobile ? 3 : 2,
                 borderRadius,
                 background: backgroundGradient,

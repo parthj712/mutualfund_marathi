@@ -29,7 +29,7 @@ const MainShares = () => {
     return (
         <Box>
             <HeaderSelectionDropdown
-                image="/Header/ShareBazar.png"
+                image="/Header/ShareBazar.jpg"
                 heading="शेअर बाजार"
                 description={
                     type === "fno"

@@ -10,6 +10,7 @@ import Debt_Fund_Type from './Debt_Fund_Type/Debt_Fund_Type';
 import InvestmentSummaryCard from './InvestmentSummaryCard/InvestmentSummaryCard';
 import Debt_Type_Advantages from './Debt_Type_Advantages/Debt_Type_Advantages';
 import What_to_check_in_debt from './What_to_check_in_debt/what_to_check_in_debt';
+import ScrollReveal from '@/Componenets/Common/ScrollReveal/ScrollReveal';
 
 
 const Debt_type = () => {
@@ -23,7 +24,7 @@ const Debt_type = () => {
     return (
         <div>
             <HeaderMutualFund
-               image="/Header/Debt.png"
+                image="/Header/Debt.jpg"
                 heading="म्युच्युअल फंडाचे प्रकार"
                 description="प्रकार II - कर्ज रोखे आधारित योजना"
                 imagePosition="left"
@@ -31,39 +32,48 @@ const Debt_type = () => {
             />
 
 
-            <Box
-                p={isMobile ? 3 : 6}
-                display="flex"
-                flexDirection="column"
-                gap={6}
-                mx={isMobile ? 4 : 8}
-                my={8}
-                className="
+            <ScrollReveal>
+                <Box
+                    p={isMobile ? 3 : 6}
+                    display="flex"
+                    flexDirection="column"
+                    gap={6}
+                    mx={isMobile ? 4 : 8}
+                    my={8}
+                    className="
                 bg-white 
                 shadow-md 
                 rounded-2xl 
                 border-t-4 border-gray-200
                 max-w-8xl
               "
-            >
-                <DisclaimerBox
-                    icon={CandlestickChartIcon}
-                    title="कर्ज रोखे म्हणजे काय? (Debt Fund)"
-                    description={`कर्ज रोखे आधारित योजनांमध्ये पैसे निश्चित उत्पन्न देणाऱ्या साधनांमध्ये गुंतवले जातात. यामध्ये शेअर बाजाराची जोखीम नसते, त्यामुळे जोखीम तुलनेने कमी असते.`}
-                />
-            </Box>
+                >
+                    <DisclaimerBox
+                        icon={CandlestickChartIcon}
+                        title="कर्ज रोखे म्हणजे काय?"
+                        description={`कर्ज रोखे आधारित योजनांमध्ये पैसे निश्चित उत्पन्न देणाऱ्या साधनांमध्ये गुंतवले जातात. यामध्ये शेअर बाजाराची जोखीम नसते, त्यामुळे जोखीम तुलनेने कमी असते.`}
+                    />
+                </Box>
+            </ScrollReveal>
+
+            <Suitable_whom />
+
+            <ScrollReveal>
+                <InvestmentSummaryCard />
+            </ScrollReveal>
+
+            <ScrollReveal>
+                <Debt_Type_Advantages />
+            </ScrollReveal>
 
 
-            <Suitable_whom/>
+            <ScrollReveal>
+                <Debt_Fund_Type />
+            </ScrollReveal>
 
-
-            <InvestmentSummaryCard/>
-
-            <Debt_Type_Advantages/>
-
-            <Debt_Fund_Type/>
-
-            <What_to_check_in_debt/>
+            <ScrollReveal>
+                <What_to_check_in_debt />
+            </ScrollReveal>
         </div>
     )
 }

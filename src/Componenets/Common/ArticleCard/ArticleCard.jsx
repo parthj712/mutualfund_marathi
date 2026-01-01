@@ -1,29 +1,50 @@
 "use client";
 
-import { Button, Card, CardContent, Typography, Box, useTheme, useMediaQuery } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    Typography,
+    Box,
+    useTheme,
+    useMediaQuery,
+} from "@mui/material";
 import RedButton from "../RedButton";
 
 export default function ArticleCard({ date, title, cta }) {
-
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
     return (
-        <div className="relative">
+        <Box position="relative">
             <Card
                 elevation={3}
-                className="rounded-xl pl-6"
                 sx={{
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRadius: 3,
+                    
+
+                    /* 🔵 Blue corner shading */
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        top: "-40%",
+                        right: "-30%",
+                        width: "460px",
+                        height: "260px",
+                        background:
+                            "radial-gradient(circle at top right, rgba(22,131,240,30%), transparent 80%)",
+                        zIndex: 0,
+                    },
+
                     transition: "all 0.3s ease",
-                    borderRadius: 2,
                     "&:hover": {
                         boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+                        transform: "translateY(-2px)",
                     },
                 }}
             >
-                <CardContent>
+                <CardContent sx={{ px: 3, py : 3, zIndex: 1 }}>
                     <Typography
                         fontSize={isMobile ? "14px" : "16px"}
                         fontWeight={600}
@@ -41,12 +62,14 @@ export default function ArticleCard({ date, title, cta }) {
                         {title}
                     </Typography>
 
-                    {/* BUTTON RIGHT ALIGN */}
+                    {/* CTA */}
                     <Box display="flex" justifyContent="flex-end">
-                        <RedButton sx={{ fontSize: isMobile ? "13px" :"15px" }}>{cta}</RedButton>
+                        <RedButton sx={{ fontSize: isMobile ? "13px" : "15px" }}>
+                            {cta}
+                        </RedButton>
                     </Box>
                 </CardContent>
             </Card>
-        </div>
+        </Box>
     );
 }

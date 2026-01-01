@@ -100,7 +100,7 @@ const EPF_Calculator = () => {
     return (
         <>
             <Box p={isMobile ? 4 : 10}>
-                <GradientHeading text="EPF Calculator" />
+                <GradientHeading text="ईपीएफ(EPF) कॅल्क्युलेटर" />
 
                 <Box
                     boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
@@ -117,56 +117,56 @@ const EPF_Calculator = () => {
                     }}
                 >
                     <TextField
-                        label="Your Current Age (in years)"
+                        label="तुमचे सध्याचे वय (वर्षांमध्ये)"
                         value={currentAge}
                         onChange={(e) => setCurrentAge(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Retirement Age (in years)"
+                        label="तुमचे निवृत्तीचे वय (वर्षांमध्ये)"
                         value={retirementAge}
                         onChange={(e) => setRetirementAge(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Current EPF Balance (Rs.)"
+                        label="तुमचा सध्याचा ईपीएफ शिल्लक (रु.)"
                         value={currentEPFBalance}
                         onChange={(e) => setCurrentEPFBalance(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Employee Contribution per month (Rs.)"
+                        label="तुमचे कर्मचारी योगदान दरमहा (रु.)"
                         value={employeeContribution}
                         onChange={(e) => setEmployeeContribution(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Employer Contribution per month (Rs.)"
+                        label="तुमच्या नियोक्त्याचे दरमहा योगदान (रु.)"
                         value={employerContribution}
                         onChange={(e) => setEmployerContribution(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Growth Rate in EPF Contribution (% per annum)"
+                        label="तुमचा ईपीएफ योगदानातील वाढीचा दर (प्रतिवर्ष%)"
                         value={contributionGrowthRate}
                         onChange={(e) => setContributionGrowthRate(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Rate of Interest (% per annum)"
+                        label="तुमचा व्याजदर (% प्रतिवर्ष)"
                         value={interestRate}
                         onChange={(e) => setInterestRate(Number(e.target.value))}
                         fullWidth
                     />
 
                     <TextField
-                        label="Your Current Pension Fund Balance (Rs.)"
+                        label="तुमचा सध्याचा पेन्शन फंड शिल्लक (रु.)"
                         value={currentPensionBalance}
                         onChange={(e) =>
                             setCurrentPensionBalance(Number(e.target.value))
@@ -177,7 +177,7 @@ const EPF_Calculator = () => {
                     {/* SUBMIT BUTTON */}
                     <Box mt={3} display="flex" justifyContent="flex-end">
                         <RedButton onClick={handleSubmit} sx={{ px: 4 }}>
-                            Submit
+                            सबमिट करा
                         </RedButton>
                     </Box>
                 </Box>

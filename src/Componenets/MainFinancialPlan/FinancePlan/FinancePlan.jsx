@@ -29,14 +29,14 @@ const FinancePlan = () => {
   return (
     <div>
       <HeaderMutualFund
-        image="/Header/FinancialPlanning.png"
+        image="/Header/FinancialPlanning.jpg"
         heading="आर्थिक नियोजन"
         description="या विभागातील उदिष्ठांचा वापर तुमच्या गरजेनुसार म्युच्युअल फंड योजनेत गुंतवणूक कण्यासाठी करा"
         imagePosition="left"
         radius={100}
       />
 
-      <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={6}>
+      <Box display={"flex"} flexDirection={"column"} px={isMobile ? 4 : 10} py={isMobile ? 6 : 10} gap={6}>
         <GradientHeading text="तुमच्या ध्येयाची गती तपासा" />
 
         <div

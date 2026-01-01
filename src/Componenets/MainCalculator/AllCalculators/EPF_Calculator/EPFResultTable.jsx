@@ -26,19 +26,19 @@ const EPFResultTable = ({ data }) => {
                     color: "#fff",
                 }}
             >
-                Result
+                निकाल
             </Typography>
 
             <Table>
                 <TableHead sx={{ background: "#111827" }}>
                     <TableRow>
                         {[
-                            "Age",
-                            "Opening EPF Balance",
-                            "Employee Contribution (p.m.)",
-                            "Employer Contribution (p.m.)",
-                            "Closing EPF Balance",
-                            "Diverted to Pension Fund (Rs. 541 p.m.)",
+                            "वय",
+                            "ओपनिंग EPF बॅलेन्स ",
+                            "कर्मचाऱ्यांचे योगदान (p.m.)",
+                            "नियोक्ता योगदान (p.m.)",
+                            "क्लोझिंग EPF बॅलेन्स ",
+                            "पेन्शन फंडात वळवले (रु. ५४१ दुपारी)",
                         ].map((h) => (
                             <TableCell
                                 key={h}

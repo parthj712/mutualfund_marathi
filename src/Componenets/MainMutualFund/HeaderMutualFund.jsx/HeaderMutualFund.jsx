@@ -37,7 +37,7 @@ export default function HeaderMutualFund({
                         width: isMobile ? "100%" : "60%",
                         height: isMobile ? imageHeight.mobile : imageHeight.desktop,
                         borderBottomRightRadius:
-                            isImageLeft && !isMobile ? radius : 0,
+                            isImageLeft && !isMobile ? radius : 80,
                         borderBottomLeftRadius:
                             !isImageLeft && !isMobile ? radius : 0,
                         overflow: "hidden",
@@ -55,7 +55,7 @@ export default function HeaderMutualFund({
                 </Box>
 
                 {/* CONTENT */}
-                <Box sx={{ width: isMobile ? "100%" : "50%" , px : isMobile ? 4 : 0}}>
+                <Box sx={{ width: isMobile ? "100%" : "50%" , px : isMobile ? 4 : 0}} py={isMobile ? 4 :0 }>
                     <Typography
                         fontSize={isMobile ? "18px" : "24px"}
                         fontWeight={700}
