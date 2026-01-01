@@ -42,7 +42,7 @@ export default function HeaderSelectionDropdown({
                         width: isMobile ? "100%" : "60%",
                         height: isMobile ? imageHeight.mobile : imageHeight.desktop,
                         borderBottomRightRadius:
-                            isImageLeft && !isMobile ? radius : 0,
+                            isImageLeft && !isMobile ? radius : 80,
                         borderBottomLeftRadius:
                             !isImageLeft && !isMobile ? radius : 0,
                         overflow: "hidden",
@@ -92,6 +92,7 @@ export default function HeaderSelectionDropdown({
                         )}
 
                         <Select
+                            fullWidth
                             value={value}
                             onChange={(e) => onChange(e.target.value)}
                             size="small"

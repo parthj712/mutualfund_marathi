@@ -84,7 +84,7 @@ const PPF_Calculator = () => {
 
     return (
         <Box p={isMobile ? 4 : 10}>
-            <GradientHeading text="PPF Calculator" />
+            <GradientHeading text="पीपीएफ(PPF) कॅल्क्युलेटर" />
 
             {/* ================= FORM ================= */}
             <Box
@@ -103,7 +103,7 @@ const PPF_Calculator = () => {
             >
                 <TextField
                     select
-                    label="Choose an option for PPF Investments"
+                    label="पीपीएफ गुंतवणुकीसाठी पर्याय निवडा"
                     value={investmentType}
                     onChange={(e) => setInvestmentType(e.target.value)}
                     fullWidth
@@ -114,14 +114,14 @@ const PPF_Calculator = () => {
                 </TextField>
 
                 <TextField
-                    label="In which year did you open your PPF account?"
+                    label="तुम्ही तुमचे पीपीएफ खाते कोणत्या वर्षी उघडले?"
                     value={startYear}
                     onChange={(e) => setStartYear(Number(e.target.value))}
                     fullWidth
                 />
 
                 <TextField
-                    label="Enter Annual investment amount (Rs)"
+                    label="वार्षिक गुंतवणूक रक्कम (रु.) प्रविष्ट करा."
                     value={annualInvestment}
                     onChange={(e) =>
                         setAnnualInvestment(Number(e.target.value))
@@ -131,7 +131,7 @@ const PPF_Calculator = () => {
 
                 <Box mt={3} display="flex" justifyContent="flex-end">
                     <RedButton onClick={calculatePPF} sx={{ px: 4 }}>
-                        Submit
+                        सबमिट करा
                     </RedButton>
                 </Box>
             </Box>

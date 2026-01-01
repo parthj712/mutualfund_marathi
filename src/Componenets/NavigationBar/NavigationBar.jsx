@@ -381,7 +381,7 @@ export default function NavigationBar() {
                         router.push("/");
                         setOpen(false); // close drawer
                     }}>
-                        <Image src="/Tlogo.png" alt="Logo" width={40} height={40} />
+                        <Image src="/ShriThaku.jpeg" alt="Logo" width={100} height={60} />
                     </Box>
 
                     <Box sx={{ display: { xs: "none", lg: "block" } }}>

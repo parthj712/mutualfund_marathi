@@ -8,10 +8,12 @@ const services = [
     {
         title: "आर्थिक नियोजन",
         image: "/Services/finance.png",
+        path: "/financial-planning"
     },
     {
         title: "म्युच्युअल फंड",
         image: "/Services/mutual-fund.png",
+        path: "/funds"
     },
     {
         title: "फिक्स्ड डिपॉझिट",
@@ -20,11 +22,6 @@ const services = [
     {
         title: "इक्विटी ट्रेडिंग",
         image: "/Services/trade.png",
-    },
-    {
-        title: "विमा",
-        image: "/Services/insurance.png",
-        full: true, // last card full width
     },
 ];
 

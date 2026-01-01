@@ -24,28 +24,28 @@ const History = () => {
                         <ListItem disableGutters>
                             <ListItemText
                                 primary="• आमच्याकडे सर्व म्युच्युअल फंड योजना"
-                                primaryTypographyProps={{ fontSize: "20px" }}
+                                primaryTypographyProps={{ fontSize: "16px" }}
                             />
                         </ListItem>
 
                         <ListItem disableGutters>
                             <ListItemText
                                 primary="• HDFC Life चा जीवन विमा उत्पादने – आम्ही प्रामुख्याने टर्म इन्शुरन्सची शिफारस करतो."
-                                primaryTypographyProps={{ fontSize: "20px" }}
+                                primaryTypographyProps={{ fontSize: "16px" }}
                             />
                         </ListItem>
 
                         <ListItem disableGutters>
                             <ListItemText
                                 primary="• स्टार हेल्थ इन्शुरन्सचा आरोग्य विमा"
-                                primaryTypographyProps={{ fontSize: "20px" }}
+                                primaryTypographyProps={{ fontSize: "16px" }}
                             />
                         </ListItem>
 
                         <ListItem disableGutters>
                             <ListItemText
                                 primary="• ICICI चा Three in Account – यात मिळते आरडी/एसआयपी, बँकेचे बचत खाते व डीमॅट खाते आणि शेअर खरेदी-विक्रीसाठी ट्रेडिंग खाते."
-                                primaryTypographyProps={{ fontSize: "20px" }}
+                                primaryTypographyProps={{ fontSize: "16px" }}
                             />
                         </ListItem>
                     </List>

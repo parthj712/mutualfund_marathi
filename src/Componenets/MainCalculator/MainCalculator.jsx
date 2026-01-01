@@ -112,13 +112,13 @@ const MainCalculator = () => {
                         onClick={() => router.push("/calculator/home-loan")}
                     />
                     <GoalOptionCard
-                        title="ईएमआय (EMI)"
-                        description="तुमच्या कर्जावरील ईएमआयची गणना करा गृहकर्ज, कार कर्ज किंवा वैयक्तिक कर्ज"
+                        title="(लम्पसम) Lumpsum"
+                        description="तुमची आर्थिक उद्दिष्टे साध्य करण्यासाठी एकरकमी गुंतवणुकीवरील परताव्यांची गणना करा"
                         Icon={HiCalculator}
                         iconSize={isMobile ? 100 : 120}
                         backgroundGradient="linear-gradient(135deg, #EAAFC8, #654EA3)"
                         iconGradient="linear-gradient(135deg, rgba(101,78,163,100), rgba(234,175,200,100))"
-                        onClick={() => router.push("/calculator/emi")}
+                        onClick={() => router.push("/calculator/lumpsum-calculator")}
                     />
                     <GoalOptionCard
                         title="कमी खर्च कॅल्क्युलेटर"

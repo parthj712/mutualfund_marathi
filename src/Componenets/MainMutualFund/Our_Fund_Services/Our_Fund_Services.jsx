@@ -19,7 +19,7 @@ const Our_Fund_Services = () => {
     return (
         <div>
             <HeaderMutualFund
-                image="/services/mutual-fund.png"
+                image="/header/MutualFund.jpg"
                 heading="म्युच्युअल फंडाचे प्रकार"
                 description="सेवा व सुविधा"
                 imagePosition="left"
@@ -28,8 +28,8 @@ const Our_Fund_Services = () => {
 
 
             <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={6}>
-                <GradientHeading text="आमच्या मार्फत दिल्या जाणाऱ्या सेवा व सुविधा" />
-                <Typography fontSize={isMobile ? "16px" : "18px"}>
+                <GradientHeading text="सेवा व सुविधा" />
+                <Typography lineHeight={2} letterSpacing={1} fontSize={isMobile ? "16px" : "18px"}>
                     • गुंतवणुकीचा योग्य तोच सल्ला दिला जातो. <br/>
                     • शेअरबाजार, म्युच्युअल फंड याबात Whatsapp आणि ईमेलने नियमितपणे अपडेट देत रहातो.<br/>
                     • गुंतवणूक केल्यानंतर जर तुम्हाला कोणतीही सेवा आमच्या कडून हवी असेल, खाते उतारा (Account Statement) हवा असेल किंवा तुमच्या खात्यात काही फरक असेल किंवा अन्य कोणतीही शंका असेल तर आमच्या कस्टमर केअर नंबर 9834079813 येथे संपर्क साधून सेवा मिळेल/तुमच्या शंकेचे निरसन केले जाईल.<br/>

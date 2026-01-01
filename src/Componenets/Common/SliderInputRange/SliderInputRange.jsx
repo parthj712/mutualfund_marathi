@@ -32,7 +32,7 @@ export default function SliderInputRange({
     return (
         <Box
             sx={{ width: "100%" }}
-            px={isMobile ? 4 : 2}
+            // px={isMobile ? 2 : 2}
             display="flex"
             flexDirection="column"
             alignItems="flex-start"

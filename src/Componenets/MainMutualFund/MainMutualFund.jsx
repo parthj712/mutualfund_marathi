@@ -11,7 +11,7 @@ const MainMutualFund = () => {
     return (
         <div>
             <HeaderMutualFund
-                image="/services/mutual-fund.png"
+                image="/header/MutualFund.jpg"
                 heading="म्युच्युअल फंड म्हणजे काय ?"
                 description="तुमच्या गरजेनुसार वेगवेगळ्या प्रकारचे फंड एकत्र करून व्यावसायिक पद्धतीने केलेली गुंतवणूक म्हणजे म्युच्युअल फंड."
                 imagePosition="left"
