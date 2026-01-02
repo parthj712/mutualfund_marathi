@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function InfoBox({
     icon = null,
@@ -16,6 +16,11 @@ export default function InfoBox({
 
     sx = {},
 }) {
+
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
     return (
         <Box
             sx={{
@@ -24,7 +29,7 @@ export default function InfoBox({
                 borderRadius: "16px",
                 padding: { xs: 2.5, sm: 3 },
                 display: "flex",
-                justifyContent :"center",
+                justifyContent: "center",
                 gap: 2,
                 alignItems: "center",
                 ...sx, // 🔥 full style override
@@ -51,7 +56,7 @@ export default function InfoBox({
 
                 {subText && (
                     <Typography
-                        fontSize="18px"
+                        fontSize={isMobile ? "16px" : "18px"}
                         lineHeight={1.7}
                         sx={{ color: subTextColor }}
                     >

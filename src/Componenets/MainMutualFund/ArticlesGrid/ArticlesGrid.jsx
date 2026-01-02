@@ -36,8 +36,8 @@ export default function ArticlesGrid() {
 
     return (
         <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={6}>
-            <GradientHeading text="म्युच्युअल फंडा बाबत माहिती देणारे लेख वाचा" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <GradientHeading text="म्युच्युअल फंडावरील लेख वाचा" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {articles.map((item, index) => (
                     <ArticleCard
                         key={index}

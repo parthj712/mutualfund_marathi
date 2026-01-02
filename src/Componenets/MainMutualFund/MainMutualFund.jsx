@@ -8,6 +8,7 @@ import ArticlesGrid from "./ArticlesGrid/ArticlesGrid";
 import ScrollReveal from "../Common/ScrollReveal/ScrollReveal";
 
 const MainMutualFund = () => {
+
   return (
     <div>
       <HeaderMutualFund

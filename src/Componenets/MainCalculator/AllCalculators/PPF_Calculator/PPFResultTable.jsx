@@ -27,22 +27,22 @@ const PPFResultTable = ({ data }) => {
                     color: "#fff",
                 }}
             >
-                Result
+                निकाल
             </Typography>
 
             <Table>
                 <TableHead sx={{ background: "#111827" }}>
                     <TableRow>
                         {[
-                            "Year",
-                            "Interest Rate (%)",
-                            "Opening Balance (Rs.)",
-                            "Annual Investment (Rs.)",
-                            "Total Investment (Rs.)",
-                            "Interest (Rs.)",
-                            "Closing Balance (Rs.)",
-                            "Premature Withdrawal Limit (Rs.)",
-                            "Loan Possible (Rs.)",
+                            "वर्ष",
+                            "व्याजदर (%)",
+                            "सुरुवातीची शिल्लक (रु.)",
+                            "वार्षिक गुंतवणूक (रु.)",
+                            "एकूण गुंतवणूक (रु.)",
+                            "व्याज (रु.)",
+                            "बंद शिल्लक (रु.)",
+                            "मुदतपूर्व पैसे काढण्याची मर्यादा (रु.)",
+                            "कर्ज शक्य (रु.)",
                         ].map((h) => (
                             <TableCell
                                 key={h}

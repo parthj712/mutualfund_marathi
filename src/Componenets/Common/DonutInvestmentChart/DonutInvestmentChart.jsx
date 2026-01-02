@@ -8,7 +8,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 const COLORS = ["#0f3d5e", "#ff0000"]; // Invested, Growth
 
@@ -18,9 +18,17 @@ export default function DonutInvestmentChart({
     futureValue = 0,
 }) {
     const data = [
-        { name: "Amount Invested", value: investedAmount },
-        { name: "Growth Amount", value: growthAmount },
+        { name: "गुंतवलेली रक्कम", value: investedAmount },
+        { name: "वाढीची रक्कम", value: growthAmount },
     ];
+
+
+    const theme = useTheme();
+
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
     return (
         <Box
@@ -66,7 +74,7 @@ export default function DonutInvestmentChart({
                     }}
                 >
                     <Typography fontSize={14} color="text.secondary">
-                        Future Value
+                        भविष्यातील मूल्य
                     </Typography>
                     <Typography fontSize={16} fontWeight={700}>
                         ₹ {futureValue.toLocaleString("en-IN")}
@@ -75,14 +83,14 @@ export default function DonutInvestmentChart({
             </Box>
 
             {/* LEGEND */}
-            <Box display="flex" flexDirection="column" gap={1}>
+            <Box display="flex" flexDirection="column" gap={1} px={isMobile ? 2 : 0 }>
                 <LegendItem
                     color={COLORS[1]}
-                    label="Growth Amount"
+                    label="वाढीची रक्कम"
                 />
                 <LegendItem
                     color={COLORS[0]}
-                    label="Amount Invested"
+                    label="गुंतवलेली रक्कम"
                 />
             </Box>
         </Box>

@@ -38,7 +38,7 @@ const CarLoanCalculator = () => {
 
     return (
         <Box p={isMobile ? 4 : 10}>
-            <GradientHeading text="Car Loan EMI Calculator" />
+            <GradientHeading text="कारलोन EMI Calculator" />
 
             <Box
                 sx={{
@@ -51,7 +51,7 @@ const CarLoanCalculator = () => {
                 {/* ================= LEFT : SLIDERS ================= */}
                 <Box flex={1} display="flex" flexDirection="column" gap={4}>
                     <SliderInputRange
-                        label="Loan amount"
+                        label="कर्जाची रक्कम"
                         value={loanAmount}
                         min={100000}
                         max={5000000}
@@ -61,7 +61,7 @@ const CarLoanCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="Rate of interest (p.a)"
+                        label="व्याजदर (दरसाल)"
                         value={interestRate}
                         min={1}
                         max={15}
@@ -71,7 +71,7 @@ const CarLoanCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="Loan tenure"
+                        label="कर्जाचा कालावधी"
                         value={tenureYears}
                         min={1}
                         max={10}
@@ -83,19 +83,19 @@ const CarLoanCalculator = () => {
                     {/* SUMMARY TEXT */}
                     <Box mt={4} display="flex" flexDirection="column" gap={1.5}>
                         <SummaryRow
-                            label="Monthly EMI"
+                            label="मासिक EMI"
                             value={format(calculation.emi)}
                         />
                         <SummaryRow
-                            label="Principal amount"
+                            label="मूळ रक्कम"
                             value={format(loanAmount)}
                         />
                         <SummaryRow
-                            label="Total interest"
+                            label="एकूण व्याज"
                             value={format(calculation.totalInterest)}
                         />
                         <SummaryRow
-                            label="Total amount"
+                            label="एकूण रक्कम"
                             value={format(calculation.totalAmount)}
                         />
                     </Box>

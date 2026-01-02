@@ -10,7 +10,11 @@ const format = (v) => `₹ ${v.toLocaleString("en-IN")}`;
 
 const CrorepatiCalculator = () => {
     const theme = useTheme();
+
+    // BREAKPOINTS
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
     /* ================= STATES ================= */
     const [targetWealth, setTargetWealth] = useState(50000000); // 5 Cr
@@ -64,9 +68,11 @@ const CrorepatiCalculator = () => {
         currentSavings,
     ]);
 
+
+
     return (
         <Box p={isMobile ? 4 : 10}>
-            <GradientHeading text="Become a Crorepati Calculator" />
+            <GradientHeading text="बना करोडपती" />
 
             <Box
                 boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
@@ -77,13 +83,13 @@ const CrorepatiCalculator = () => {
                     gap: 6,
                     backgroundColor: "#FFFFFF",
                     borderRadius: 5,
-                    p: 5
+                    p: isMobile ? 3 : 5
                 }}
             >
                 {/* ================= LEFT : INPUTS ================= */}
                 <Box flex={1} display="flex" flexDirection="column" gap={4}>
                     <SliderInputRange
-                        label="How many Crores (at current value) you would need to consider yourself wealthy (Rs)"
+                        label="स्वतःला श्रीमंत होण्यासाठी तुम्हाला किती कोटी (सध्याच्या किमतीनुसार) लागतील (रु.)"
                         value={targetWealth}
                         min={10000000}
                         max={100000000}
@@ -92,7 +98,7 @@ const CrorepatiCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="Your current age (in years)"
+                        label="तुमचे सध्याचे वय (वर्षांमध्ये)"
                         value={currentAge}
                         min={18}
                         max={70}
@@ -100,7 +106,7 @@ const CrorepatiCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="The age when you want to become a Crorepati (in years)"
+                        label="तुम्हाला करोडपती व्हायचे वय (वर्षांमध्ये)"
                         value={targetAge}
                         min={30}
                         max={80}
@@ -108,7 +114,7 @@ const CrorepatiCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="The expected rate of inflation over the years (% per annum)"
+                        label="गेल्या काही वर्षांमध्ये महागाईचा अपेक्षित दर (% प्रतिवर्ष)"
                         value={inflationRate}
                         min={1}
                         max={15}
@@ -117,7 +123,7 @@ const CrorepatiCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="What rate of return would you expect your SIP investment to generate (% per annum)"
+                        label="तुमच्या एसआयपी गुंतवणुकीतून तुम्हाला किती परतावा मिळेल अशी अपेक्षा आहे (दरवर्षी %)"
                         value={returnRate}
                         min={5}
                         max={30}
@@ -126,7 +132,7 @@ const CrorepatiCalculator = () => {
                     />
 
                     <SliderInputRange
-                        label="How much savings you have now (Rs)"
+                        label="तुमच्याकडे आता किती बचत आहे (रु.)"
                         value={currentSavings}
                         min={0}
                         max={100000000}
@@ -139,8 +145,8 @@ const CrorepatiCalculator = () => {
                 <Box
                     flex={1}
                     sx={{
-                       background: "#EAF0FF",
-                        border : "5px solid #F8FBFF",
+                        background: "#EAF0FF",
+                        border: "5px solid #F8FBFF",
                         borderRadius: 4,
                         p: isMobile ? 3 : 5,
                         display: "flex",
@@ -166,32 +172,32 @@ const CrorepatiCalculator = () => {
                         gap={3}
                     >
                         <SummaryCard
-                            label="Monthly SIP Amount"
+                            label="मासिक एसआयपी (SIP) रक्कम"
                             value={format(calculation.monthlySip)}
                         />
 
                         <SummaryCard
-                            label="Total Growth Amount"
+                            label="एकूण वाढीची रक्कम"
                             value={format(calculation.growthAmount)}
                         />
 
                         <SummaryCard
-                            label={`Amount Invested through SIP in ${calculation.years} years`}
+                            label={`एसआयपी द्वारे गुंतवलेली रक्कम ${calculation.years} वर्षे`}
                             value={format(calculation.investedThroughSip)}
                         />
 
                         <SummaryCard
-                            label="Your targeted Wealth Amount (Inflation adjusted)"
+                            label="तुमची टारगेटेड संपत्ती रक्कम (चलनवाढ समायोजित)"
                             value={format(calculation.futureValue)}
                         />
 
                         <SummaryCard
-                            label="Growth Amount"
+                            label="वाढीची रक्कम"
                             value={format(calculation.growthAmount)}
                         />
 
                         <SummaryCard
-                            label="Future Value"
+                            label="भविष्यातील मूल्य"
                             value={format(calculation.futureValue)}
                         />
                     </Box>

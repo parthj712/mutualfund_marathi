@@ -1,68 +1,44 @@
-import GradientHeading from '@/Componenets/Common/GradientHeading/GradientHeading'
-import StatusPill from '@/Componenets/Common/StatusPill/StatusPill'
-import { Box, useMediaQuery, useTheme } from '@mui/material'
+"use client";
+
+import GradientHeading from '@/Componenets/Common/GradientHeading/GradientHeading';
+import StatusPill from '@/Componenets/Common/StatusPill/StatusPill';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import PlagiarismRoundedIcon from '@mui/icons-material/PlagiarismRounded';
-import React from 'react'
+import React from 'react';
+import ScrollReveal from '@/Componenets/Common/ScrollReveal/ScrollReveal';
+
+const WHAT_TO_CHECK_IN_DEBT = [
+    "मागील कामगिरी",
+    "AMC ची कर्ज रोखे अनुभव",
+    "फंड मॅनेजरची कामगिरी",
+    "पोर्टफोलिओतील कर्ज रोखे",
+    "रेटिंग (High rating = Low risk)",
+];
 
 const What_to_check_in_debt = () => {
-
-        const theme = useTheme();
-
-    // BREAKPOINTS
+    const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
 
     return (
-        <div>
-            <div>
-                <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10} gap={6}>
-                    <GradientHeading text="Equity Mutual Fund मध्ये गुंतवणूक का करावी?" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Box display="flex" flexDirection="column" p={isMobile ? 4 : 10} gap={6}>
+            <GradientHeading text="Debt Mutual Fund मध्ये गुंतवणूक करताना काय तपासावे?" />
 
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {WHAT_TO_CHECK_IN_DEBT.map((text, index) => (
+                    <ScrollReveal>
                         <StatusPill
+                            key={index}
                             icon={<PlagiarismRoundedIcon />}
-                            text="मागील कामगिरी"
+                            text={text}
                             bgColor="#FFF7CF"
                             borderColor="#FFD400"
                             textColor="#111827"
                         />
-                        <StatusPill
-                            icon={<PlagiarismRoundedIcon />}
-                            text="AMC ची कर्ज रोखे अनुभव"
-                            bgColor="#FFF7CF"
-                            borderColor="#FFD400"
-                            textColor="#111827"
-                        />
-                        <StatusPill
-                            icon={<PlagiarismRoundedIcon />}
-                            text="फंड मॅनेजरची कामगिरी"
-                            bgColor="#FFF7CF"
-                            borderColor="#FFD400"
-                            textColor="#111827"
-                        />
-                        <StatusPill
-                            icon={<PlagiarismRoundedIcon />}
-                            text="पोर्टफोलिओतील कर्ज रोखे"
-                            bgColor="#FFF7CF"
-                            borderColor="#FFD400"
-                            textColor="#111827"
-                        />
-                        <StatusPill
-                            icon={<PlagiarismRoundedIcon />}
-                            text="रेटिंग (High rating = Low risk)"
-                            bgColor="#FFF7CF"
-                            borderColor="#FFD400"
-                            textColor="#111827"
-                        />
-
-
-                    </div>
-                </Box>
+                    </ScrollReveal>
+                ))}
             </div>
-        </div>
-    )
-}
+        </Box>
+    );
+};
 
-export default What_to_check_in_debt
+export default What_to_check_in_debt;
