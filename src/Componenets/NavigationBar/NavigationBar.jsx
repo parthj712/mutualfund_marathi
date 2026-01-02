@@ -385,8 +385,14 @@ export default function NavigationBar() {
                     </Box>
 
                     <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                        <RedButton sx={{ px: 3 , fontSize : "16px"}}>साइन इन</RedButton>
+                        <RedButton
+                            sx={{ px: 3, fontSize: "16px" }}
+                            onClick={() => window.open("https://shrithakur.themfbox.com/", "_blank")}
+                        >
+                            साइन इन
+                        </RedButton>
                     </Box>
+
                 </Box>
             </Toolbar>
 
@@ -584,11 +590,19 @@ export default function NavigationBar() {
                     </List>
 
 
-                    <Box sx={{ display: { xs: "none", lg: "block" }, ml: 4 }}>
-                        <RedButton fullWidth sx={{ mt: 3, py: 1.2 }}>
+                    <Box sx={{ mt: 3 }}>
+                        <RedButton
+                            fullWidth
+                            sx={{ py: 1.2 }}
+                            onClick={() => {
+                                window.open("https://shrithakur.themfbox.com/", "_blank");
+                                setOpen(false);
+                            }}
+                        >
                             साइन इन
                         </RedButton>
                     </Box>
+
 
                 </Box>
             </Drawer>
