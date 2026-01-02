@@ -7,9 +7,12 @@ export default async function BlogPage({ params }) {
   let blog;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/blogs/${slug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://mutualfund-admin-backend.vercel.app/api/blogs/${slug}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) notFound();
 

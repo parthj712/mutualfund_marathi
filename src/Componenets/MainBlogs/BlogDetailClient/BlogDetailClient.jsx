@@ -71,16 +71,24 @@ export default function BlogDetailClient({ blog }) {
           </Box>
 
           <Typography fontSize={18}>
-            {blog.publishDate} • {blog.creator}
+            {new Date(blog.publishDate).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}{" "}
+            -{blog.creator}
           </Typography>
         </Box>
 
         {/* Content */}
         <Box display="flex" gap={6} flexDirection={isMobile ? "column" : "row"}>
           <Box flex={1}>
-            <Typography fontSize={16} lineHeight={1.9}>
-              {blog.content}
-            </Typography>
+            <Typography
+              fontSize={16}
+              lineHeight={1.9}
+              component="div"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
           </Box>
 
           {/* Side Images */}

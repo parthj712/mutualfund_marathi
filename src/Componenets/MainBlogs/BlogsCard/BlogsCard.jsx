@@ -21,6 +21,7 @@ export default function BlogExpandableGrid() {
   const fetchBlogs = async () => {
     try {
       const res = await API.get("/blogs");
+      console.log(res);
 
       // supports both { blogs: [] } and direct []
       setBlogs(res.data.blogs || res.data);
@@ -201,8 +202,12 @@ export default function BlogExpandableGrid() {
                   </Typography>
 
                   <Typography fontSize="14px" opacity={0.85}>
-                    {new Date(blog.createdAt).toLocaleDateString()} •{" "}
-                    {blog.creator}
+                    {new Date(blog.publishDate).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}{" "}
+                    -{blog.creator}
                   </Typography>
                 </Box>
               </Box>
