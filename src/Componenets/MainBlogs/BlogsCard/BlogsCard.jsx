@@ -8,7 +8,7 @@ import API from "@/service/api";
 
 const CARDS_PER_ROW = 3;
 
-export default function BlogExpandableGrid() {
+export default function BlogExpandableGrid({ selectedCategory = "all" }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const router = useRouter();
@@ -45,17 +45,32 @@ export default function BlogExpandableGrid() {
     );
   }
 
+  const filteredBlogs =
+    selectedCategory === "all"
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category?.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
+  if (!loading && filteredBlogs.length === 0) {
+    return (
+      <Box textAlign="center" py={6}>
+        <Typography>No blogs found in this category</Typography>
+      </Box>
+    );
+  }
   /* Split blogs into rows */
   const rows = [];
-  for (let i = 0; i < blogs.length; i += CARDS_PER_ROW) {
-    rows.push(blogs.slice(i, i + CARDS_PER_ROW));
+  for (let i = 0; i < filteredBlogs.length; i += CARDS_PER_ROW) {
+    rows.push(filteredBlogs.slice(i, i + CARDS_PER_ROW));
   }
 
   /* -------------------- MOBILE VIEW -------------------- */
   if (isMobile) {
     return (
       <Box display="flex" flexDirection="column" gap={2}>
-        {blogs.map((blog) => (
+        {filteredBlogs.map((blog) => (
           <Box
             key={blog._id}
             onClick={() => router.push(`/blogs/${blog.slug}`)}
