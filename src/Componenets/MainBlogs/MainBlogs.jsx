@@ -1,19 +1,29 @@
 "use client";
 
-import React from 'react'
-import HeaderMutualFund from '../MainMutualFund/HeaderMutualFund.jsx/HeaderMutualFund'
-import BlogsCard from './BlogsCard/BlogsCard'
+import React, { useState } from "react";
+import HeaderMutualFund from "../MainMutualFund/HeaderMutualFund.jsx/HeaderMutualFund";
+import BlogsCard from "./BlogsCard/BlogsCard";
 
-import { Box, useMediaQuery, useTheme } from '@mui/material'
+import {
+    Box,
+    useMediaQuery,
+    useTheme,
+    FormControl,
+    Select,
+    MenuItem,
+    Typography,
+} from "@mui/material";
 
 const MainBlogs = () => {
-
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
+    const [category, setCategory] = useState("all");
 
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+        // 👉 later: pass this value to BlogsCard for filtering
+    };
 
     return (
         <div>
@@ -24,12 +34,47 @@ const MainBlogs = () => {
                 imagePosition="left"
                 radius={100}
             />
-            <Box display={"flex"} flexDirection={"column"} p={isMobile ? 4 : 10}>
 
-                <BlogsCard />
+            <Box
+                display="flex"
+                flexDirection="column"
+                px={isMobile ? 4 : 10}
+                py={6}
+                gap={4}
+            >
+                {/* FILTER DROPDOWN */}
+                <Box display="flex" justifyContent="flex-end">
+                    <FormControl size="small" sx={{ minWidth: 220 }}>
+                        <Select
+                            value={category}
+                            onChange={handleChange}
+                            displayEmpty
+                            sx={{
+                                borderRadius: 2,
+                                backgroundColor: "#fff",
+                            }}
+                        >
+                            <MenuItem value="all">
+                                <Typography>सर्व ब्लॉग्ज</Typography>
+                            </MenuItem>
+                            <MenuItem value="what-is-mf">
+                                What is Mutual Fund
+                            </MenuItem>
+                            <MenuItem value="mf-in-shares">
+                                Mutual Fund in Shares
+                            </MenuItem>
+                            <MenuItem value="mf-in-fo">
+                                Mutual Fund in F &amp; O
+                            </MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+
+                {/* BLOG LIST */}
+                <BlogsCard selectedCategory={category} />
             </Box>
         </div>
-    )
-}
+    );
+};
 
-export default MainBlogs
+export default MainBlogs;
