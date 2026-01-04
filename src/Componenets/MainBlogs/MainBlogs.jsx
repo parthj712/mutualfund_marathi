@@ -58,7 +58,7 @@ const MainBlogs = () => {
                 <Typography>सर्व ब्लॉग्ज</Typography>
               </MenuItem>
               <MenuItem value="Mutual fund">What is Mutual Fund</MenuItem>
-              <MenuItem value="hares">Mutual Fund in Shares</MenuItem>
+              <MenuItem value="shares">Mutual Fund in Shares</MenuItem>
               <MenuItem value="Future And Options">
                 Mutual Fund in F &amp; O
               </MenuItem>

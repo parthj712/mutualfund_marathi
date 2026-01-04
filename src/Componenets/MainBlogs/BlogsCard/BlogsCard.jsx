@@ -20,7 +20,7 @@ export default function BlogExpandableGrid({ selectedCategory = "all" }) {
   /* Fetch blogs from API */
   const fetchBlogs = async () => {
     try {
-      const res = await API.get("/blogs");
+      const res = await API.get("/blogs/active-blogs");
       console.log(res);
 
       // supports both { blogs: [] } and direct []
@@ -83,7 +83,10 @@ export default function BlogExpandableGrid({ selectedCategory = "all" }) {
             }}
           >
             <Image
-              src={blog.images?.[0]}
+              src={
+                blog.images?.[0] ||
+                "https://www.bing.com/images/search?view=detailV2&ccid=qt5DlFWz&id=45E5FB3776E1797F198E14A0E74FCD0F3DE3EDEB&thid=OIP.qt5DlFWzIXEJB__YcuBsIwHaE5&mediaurl=https%3a%2f%2fcdn.mos.cms.futurecdn.net%2fTUBEH5DbN4jD73RKzkFvui.jpg&exph=1409&expw=2127&q=mutual+fund&FORM=IRPRST&ck=B60C9B36B6EB4EE7F6B2198670144646&selectedIndex=9&itb=0"
+              }
               alt={blog.title}
               fill
               className="object-cover"
