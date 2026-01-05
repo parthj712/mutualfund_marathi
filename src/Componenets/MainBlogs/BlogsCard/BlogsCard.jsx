@@ -8,7 +8,7 @@ import API from "@/service/api";
 
 const CARDS_PER_ROW = 3;
 
-export default function BlogExpandableGrid() {
+export default function BlogExpandableGrid({ selectedCategory = "all" }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function BlogExpandableGrid() {
   /* Fetch blogs from API */
   const fetchBlogs = async () => {
     try {
-      const res = await API.get("/blogs");
+      const res = await API.get("/blogs/active-blogs");
       console.log(res);
 
       // supports both { blogs: [] } and direct []
@@ -45,17 +45,32 @@ export default function BlogExpandableGrid() {
     );
   }
 
+  const filteredBlogs =
+    selectedCategory === "all"
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category?.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
+  if (!loading && filteredBlogs.length === 0) {
+    return (
+      <Box textAlign="center" py={6}>
+        <Typography>No blogs found in this category</Typography>
+      </Box>
+    );
+  }
   /* Split blogs into rows */
   const rows = [];
-  for (let i = 0; i < blogs.length; i += CARDS_PER_ROW) {
-    rows.push(blogs.slice(i, i + CARDS_PER_ROW));
+  for (let i = 0; i < filteredBlogs.length; i += CARDS_PER_ROW) {
+    rows.push(filteredBlogs.slice(i, i + CARDS_PER_ROW));
   }
 
   /* -------------------- MOBILE VIEW -------------------- */
   if (isMobile) {
     return (
       <Box display="flex" flexDirection="column" gap={2}>
-        {blogs.map((blog) => (
+        {filteredBlogs.map((blog) => (
           <Box
             key={blog._id}
             onClick={() => router.push(`/blogs/${blog.slug}`)}
@@ -68,7 +83,10 @@ export default function BlogExpandableGrid() {
             }}
           >
             <Image
-              src={blog.images?.[0]}
+              src={
+                blog.images?.[0] ||
+                "https://www.bing.com/images/search?view=detailV2&ccid=qt5DlFWz&id=45E5FB3776E1797F198E14A0E74FCD0F3DE3EDEB&thid=OIP.qt5DlFWzIXEJB__YcuBsIwHaE5&mediaurl=https%3a%2f%2fcdn.mos.cms.futurecdn.net%2fTUBEH5DbN4jD73RKzkFvui.jpg&exph=1409&expw=2127&q=mutual+fund&FORM=IRPRST&ck=B60C9B36B6EB4EE7F6B2198670144646&selectedIndex=9&itb=0"
+              }
               alt={blog.title}
               fill
               className="object-cover"
