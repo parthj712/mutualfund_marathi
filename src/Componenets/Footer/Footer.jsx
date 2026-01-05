@@ -39,9 +39,10 @@ export default function Footer() {
                 color="white"
                 className="w-full max-w-8xl mx-auto relative"
                 sx={{
-                    background: "linear-gradient(90deg, #1C76A9 0%,  #004A74 100%)",
-                  
+                    // background: "linear-gradient(60deg, #2980B9 0%, #6DD5FA 60%, #C5E2FF 100%)",
+                    backgroundColor : "#2980B9"
                 }}
+
             >
 
                 {/* Background diagonal tone (optional like screenshot) */}
@@ -56,21 +57,21 @@ export default function Footer() {
 
 
                 <Box py={isMobile || isTablet ? 4 : 0} className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
+
                     {isDesktop && (
                         <Image
-                            src="/Logo.jpeg"
+                            src="/MainLogo.png"
                             alt="Thakur Finserv Logo"
                             width={400}
                             height={80}
                         />
                     )}
-
                     {/* LEFT COLUMN — LOGO + ADDRESS */}
                     <div className="flex flex-col gap-5 items-start">
 
                         <Box display={"flex"} flexDirection={"column"} gap={2} textAlign={"left"}>
                             <GradientUnderlineHeading text="नोंदणीकृत पत्ता" />
-                            <p className="leading-relaxed mt-2 text-[18px]">
+                            <p className="leading-relaxed mt-2 text-[18px] font-semibold" >
                                 301, श्री संस्कृती, <br />
                                 रावतळे, मराठी शाळेजवळ, <br />
                                 चिपळूण, रत्नागिरी - 415605
@@ -131,6 +132,7 @@ export default function Footer() {
                             <p className="text-[18px] mt-2">admin@thakurfinserv.com</p>
                         </Box>
                     </Box>
+
                 </Box>
 
                 <Box display={"flex"} flexDirection={"column"} gap={4} pt={isMobile ? 2 : 4}>
