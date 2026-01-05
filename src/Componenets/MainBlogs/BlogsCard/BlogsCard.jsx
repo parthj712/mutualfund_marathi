@@ -49,9 +49,9 @@ export default function BlogExpandableGrid({ selectedCategory = "all" }) {
     selectedCategory === "all"
       ? blogs
       : blogs.filter(
-          (blog) =>
-            blog.category?.toLowerCase() === selectedCategory.toLowerCase()
-        );
+        (blog) =>
+          blog.category?.toLowerCase() === selectedCategory.toLowerCase()
+      );
 
   if (!loading && filteredBlogs.length === 0) {
     return (
@@ -73,7 +73,7 @@ export default function BlogExpandableGrid({ selectedCategory = "all" }) {
         {filteredBlogs.map((blog) => (
           <Box
             key={blog._id}
-            onClick={() => router.push(`/blogs/${blog.slug}`)}
+            onClick={() => window.open(`/blogs/${blog.slug}`, "_blank", "noopener,noreferrer")}
             sx={{
               height: 260,
               borderRadius: 6,
@@ -145,7 +145,9 @@ export default function BlogExpandableGrid({ selectedCategory = "all" }) {
                     [rowIndex]: cardIndex,
                   }))
                 }
-                onClick={() => router.push(`/blogs/${blog.slug}`)}
+                onClick={() =>
+                  window.open(`/blogs/${blog.slug}`, "_blank", "noopener,noreferrer")
+                }
                 sx={{
                   flex: isActive ? 3 : 1,
                   transition: "all 0.45s ease",

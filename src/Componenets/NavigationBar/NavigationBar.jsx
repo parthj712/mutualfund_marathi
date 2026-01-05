@@ -1,53 +1,40 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import {
-    AppBar,
-    Toolbar,
-    Box,
-    IconButton,
-    Drawer,
-    List,
-    ListItemButton,
-    ListItemText,
-    Typography,
-    Menu,
-    MenuItem,
-    Divider,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    Menu,
+    X,
+    ChevronDown,
+} from "lucide-react"; // optional icons
+import { HiMenuAlt2 } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 import RedButton from "../Common/RedButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
-import { useRouter } from "next/navigation";
-
-
+import { HiExternalLink } from "react-icons/hi";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 export default function NavigationBar() {
     const pathname = usePathname();
-    const [open, setOpen] = useState(false);
-    const [fundMenuOpen, setFundMenuOpen] = useState(false);
-
-    const [mobileFundOpen, setMobileFundOpen] = useState(false);
-
-    const [mobileSubMenu, setMobileSubMenu] = useState(null);
     const router = useRouter();
 
 
+    const theme = useTheme();
 
+    // BREAKPOINTS
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
-    const [subMenu, setSubMenu] = useState({
-        anchorEl: null,
-        name: null,
-    });
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [fundMenuOpen, setFundMenuOpen] = useState(false);
+    const [subMenu, setSubMenu] = useState(null);
+    const [mobileFundOpen, setMobileFundOpen] = useState(false);
+    const [mobileSubMenu, setMobileSubMenu] = useState(null);
 
-
-
+    const fundRef = useRef(null);
 
     const navItems = [
         { name: "मुख्यपृष्ठ", path: "/" },
@@ -55,557 +42,348 @@ export default function NavigationBar() {
         { name: "आर्थिक नियोजन", path: "/financial-planning" },
         { name: "कॅल्क्युलेटर", path: "/calculator" },
         { name: "म्युच्युअल फंड", path: "/funds" },
-        // { name: "विमा", path: "/insurance" },g
-        { name: "ब्लॉग्ज", path: "/blogs" },
+        // { name: "ब्लॉग्ज", path: "/blogs" },
         { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
     ];
 
-    const mutualFundItems = useMemo(() => [
-        {
-            name: "म्युच्युअल फंड म्हणजे काय?",
-            path: "/funds",
-        },
-        {
-            name: "म्युच्युअल फंडाचे प्रकार",
-            children: [
-                { name: "समभाग आधारित", path: "/funds/fund-types/equity-type" },
-                { name: "कर्ज रोखे", path: "/funds/fund-types/debt_type" },
-            ],
-        },
-        {
-            name: "शेअर बाजार",
-            path: "/funds/shares",
-        },
-        {
-            name: "सेवा व सुविधा",
-            path: "/funds/our_funds_services",
-        },
-    ], []); // 👈 empty dependency = build once
-
-
-
-    // const isMenuOpen = Boolean(anchorEl);
-    const fundRef = React.useRef(null);
-
-    let closeTimeout;
-
-    const handleSubMenuEnter = (itemName, anchor) => {
-        setSubMenu({
-            name: itemName,
-            anchorEl: anchor,
-        });
-    };
-
-
-    const handleSubMenuLeave = () => {
-        closeTimeout = setTimeout(() => {
-            setSubMenu({ name: null, anchorEl: null });
-        }, 150);
-    };
-
-
-    const handleSubMenuClose = () => {
-        setSubMenu({ name: null, anchorEl: null });
-    };
-
-
+    const mutualFundItems = useMemo(
+        () => [
+            { name: "म्युच्युअल फंड म्हणजे काय?", path: "/funds" },
+            {
+                name: "म्युच्युअल फंडाचे प्रकार",
+                children: [
+                    { name: "समभाग आधारित", path: "/funds/fund-types/equity-type" },
+                    { name: "कर्ज रोखे", path: "/funds/fund-types/debt_type" },
+                ],
+            },
+            { name: "शेअर बाजार", path: "/funds/shares" },
+            { name: "सेवा व सुविधा", path: "/funds/our_funds_services" },
+        ],
+        []
+    );
 
     return (
-        <AppBar position="sticky" elevation={1} sx={{ backgroundColor: "white", color: "black", py: 1 }}>
-            <Toolbar
-                sx={{
-                    maxWidth: "1400px",
-                    width: "100%",
-                    mx: "auto",
-                    minHeight: 72,              // 🔥 taller navbar
-                    px: { xs: 2, md: 4 },       // 🔥 breathing space
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: { xs: "space-between", lg: "flex-start" },
-                }}
-            >
+        <>
+            {/* ================= NAVBAR ================= */}
+            <nav className="sticky top-0 z-50 bg-white border-b">
+                <Box className="max-w-8xl" px={4} py={isMobile ? 3 : 2} display={"flex"} flexDirection={"row"} alignItems={"center"} justifyContent={isMobile ? "space-between" : "space-evenly"}>
 
-                {/* LEFT — Mobile Menu / Desktop Logo */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <IconButton sx={{ display: { xs: "flex", lg: "none" } }} onClick={() => setOpen(true)}>
-                        <MenuIcon fontSize="large" />
-                    </IconButton>
-
-                    <Box
-                        sx={{ display: { xs: "none", lg: "flex", cursor: "pointer" } }}
-                        onClick={() => router.push("/")}
-                    >
-                        <Image src="/MainLogo.png" alt="Logo" width={120} height={60} />
-                    </Box>
-
-                </Box>
-
-                {/* CENTER — Desktop Navigation */}
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        display: { xs: "none", lg: "flex" },
-                        justifyContent: "center",
-                        gap: 5,
-                    }}
-                >
-                    {navItems.map((item) => {
-                        // MUTUAL FUND WITH DROPDOWN
-                        if (item.name === "म्युच्युअल फंड") {
-                            const isActive = pathname.startsWith("/funds");
-
-                            return (
-                                <Box
-                                    key={item.name}
-                                    onMouseEnter={() => setFundMenuOpen(true)}
-                                    onMouseLeave={() => setFundMenuOpen(false)}
-                                    sx={{ position: "relative" }}
+                    {/* LEFT */}
+                    <div className="flex items-center gap-2">
+                        <AnimatePresence>
+                            {!drawerOpen && (
+                                <motion.button
+                                    key="menu-icon"
+                                    className="lg:hidden"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0, opacity: 0 }}
+                                    transition={{
+                                        duration: 0.25,
+                                        ease: "easeInOut",
+                                    }}
+                                    onClick={() => setDrawerOpen(true)}
                                 >
-                                    {/* TEXT + UNDERLINE */}
-                                    <Box
+                                    <HiMenuAlt2 size={28} />
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
+
+
+                        <div
+                            className="hidden lg:block cursor-pointer"
+                            onClick={() => router.push("/")}
+                        >
+                            <Image src="/MainLogo.png" alt="Logo" width={120} height={60} />
+                        </div>
+                    </div>
+
+
+                    {/* CENTER (DESKTOP) */}
+                    <div className="hidden lg:flex gap-8 items-center">
+                        {navItems.map((item) => {
+                            if (item.name === "म्युच्युअल फंड") {
+                                const isActive = pathname.startsWith("/funds");
+
+                                return (
+                                    <div
+                                        key={item.name}
                                         ref={fundRef}
-                                        component={motion.div}
-                                        initial="rest"
-                                        animate={isActive ? "active" : "rest"}
-                                        whileHover="hover"
-                                        sx={{ position: "relative", cursor: "pointer" }}
+                                        onMouseEnter={() => setFundMenuOpen(true)}
+                                        onMouseLeave={() => {
+                                            setFundMenuOpen(false);
+                                            setSubMenu(null);
+                                        }}
+                                        className="relative"
                                     >
-                                        <Typography
-                                            fontSize={18}
-                                            fontWeight={600}
-                                            sx={{
-                                                color: isActive ? "#2563eb" : "#111827",
-                                                position: "relative",
-                                                cursor: "pointer",
-
-                                                "&::after": {
-                                                    content: '""',
-                                                    position: "absolute",
-                                                    left: 0,
-                                                    bottom: -8,
-                                                    width: "100%",
-                                                    height: 3,
-                                                    borderRadius: 2,
-                                                    background: "linear-gradient(90deg,#2563eb,#22c55e)",
-                                                    transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                                                    transformOrigin: "left",
-                                                    transition: "transform 0.35s ease",
-                                                },
-
-                                                "&:hover::after": {
-                                                    transform: "scaleX(1)", // 🔥 LEFT → RIGHT
-                                                },
-                                            }}
+                                        <span
+                                            className={`cursor-pointer font-semibold ${isActive ? "text-blue-600" : ""
+                                                }`}
                                         >
                                             {item.name}
-                                        </Typography>
+                                        </span>
 
-
-
-                                        {/* <motion.span
-                                            variants={{
-                                                rest: { scaleX: 0 },
-                                                hover: { scaleX: 1 },
-                                                active: { scaleX: 1 },
-                                            }}
-                                            transition={{ duration: 0.35, ease: "easeInOut" }}
-                                            style={{
-                                                position: "absolute",
-                                                left: 0,
-                                                bottom: -6,
-                                                width: "100%",
-                                                height: "3px",
-                                                backgroundColor: "#ED0000",
-                                                borderRadius: "4px",
-                                                transformOrigin: "left",
-                                            }}
-                                        /> */}
-                                    </Box>
-
-                                    {/* DROPDOWN */}
-                                    <Menu
-                                        anchorEl={fundRef.current}
-                                        open={fundMenuOpen}
-                                        keepMounted
-                                        PaperProps={{
-                                            sx: {
-                                                mt: 1,
-                                                borderRadius: 2,
-                                                boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
-                                                minWidth: 240,
-                                            },
-                                        }}
-                                        MenuListProps={{
-                                            onMouseLeave: handleSubMenuClose,
-                                        }}
-                                    >
-
-
-
-                                        {mutualFundItems.map((item) => {
-                                            // ✅ HAS CHILDREN (second-level menu)
-                                            if (item.children) {
-                                                const isThisSubMenuOpen = subMenu.name === item.name;
-
-                                                return (
-                                                    <MenuItem
-                                                        key={item.name}
-                                                        onMouseEnter={(e) =>
-                                                            handleSubMenuEnter(item.name, e.currentTarget)
-                                                        }
-                                                        sx={{
-                                                            display: "flex",
-                                                            justifyContent: "space-between",
-                                                            minWidth: 220,
-                                                        }}
-                                                    >
-                                                        {item.name}
-                                                        <ExpandMoreIcon sx={{ transform: "rotate(-90deg)" }} />
-
-                                                        <Menu
-                                                            anchorEl={subMenu.anchorEl}
-                                                            open={subMenu.name === item.name}
-                                                            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                                                            transformOrigin={{ vertical: "top", horizontal: "left" }}
-                                                            MenuListProps={{
-                                                                onMouseLeave: handleSubMenuClose,
-                                                            }}
-                                                        >
-                                                            {item.children.map((child) => (
-                                                                <MenuItem
-                                                                    key={child.name}
-                                                                    component={Link}
-                                                                    href={child.path}
-                                                                    onClick={() => handleSubMenuClose()}
+                                        {/* FIRST LEVEL */}
+                                        {fundMenuOpen && (
+                                            <Box
+                                                px={2}
+                                                py={2}
+                                                borderRadius={2}
+                                                className="absolute top-full mt-3 bg-white shadow rounded min-w-[280px]"
+                                            >
+                                                <Box display={"flex"} flexDirection={"column"} gap={1} >
+                                                    {mutualFundItems.map((mf) => {
+                                                        if (mf.children) {
+                                                            return (
+                                                                <motion.div
+                                                                    key={mf.name}
+                                                                    onMouseEnter={() => setSubMenu(mf.name)}
+                                                                    initial={{ opacity: 0, x: -6 }}
+                                                                    animate={{ opacity: 1, x: 0 }}
+                                                                    transition={{ duration: 0.2 }}
+                                                                    className="relative px-4 py-3 cursor-pointer flex items-center justify-between rounded-lg hover:bg-gray-50"
                                                                 >
-                                                                    {child.name}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Menu>
-                                                    </MenuItem>
+                                                                    <span className="text-[15px] font-medium">{mf.name}</span>
+                                                                    <ChevronDown className="-rotate-90 w-4 h-4" />
 
-                                                );
-                                            }
+                                                                    {/* SECOND LEVEL */}
+                                                                    {subMenu === mf.name && (
+                                                                        <motion.div
+                                                                            initial={{ opacity: 0, x: -6 }}
+                                                                            animate={{ opacity: 1, x: 0 }}
+                                                                            transition={{ duration: 0.2 }}
+                                                                            className="absolute left-full top-0 ml-3 bg-white shadow rounded-lg min-w-[220px] p-2"
+                                                                        >
+                                                                            <Box p={2} display={"flex"} flexDirection={"column"} gap={1} className="flex flex-col gap-1">
+                                                                                {mf.children.map((child) => (
+                                                                                    <motion.div
+                                                                                        key={child.name}
+                                                                                        whileHover={{ x: 4 }}
+                                                                                        className="rounded-md"
+                                                                                    >
+                                                                                        
+                                                                                        <Link
+                                                                                            href={child.path}
+                                                                                            className="block px-4 py-2.5 text-[15px] font-medium hover:bg-gray-50"
+                                                                                        >
+                                                                                            {child.name}
+                                                                                        </Link>
+                                                                                    </motion.div>
+                                                                                ))}
+                                                                            </Box>
+                                                                        </motion.div>
+                                                                    )}
+                                                                </motion.div>
 
+                                                            );
+                                                        }
 
-                                            // ✅ NORMAL ITEM
-                                            return (
-                                                <MenuItem
-                                                    key={item.name}
-                                                    component={Link}
-                                                    href={item.path}
-                                                    onClick={() => setAnchorEl(null)}
-                                                >
-                                                    {item.name}
-                                                </MenuItem>
-                                            );
-                                        })}
-                                    </Menu>
+                                                        return (
+                                                            <Link
 
-                                </Box>
-                            );
-                        }
+                                                                key={mf.name}
+                                                                href={mf.path}
+                                                                className="block px-4 py-2 hover:bg-gray-100"
+                                                            >
+                                                                {mf.name}
+                                                            </Link>
+                                                        );
+                                                    })}
+                                                </Box>
+                                            </Box>
+                                        )}
+                                    </div>
+                                );
+                            }
 
-                        // NORMAL NAV ITEMS
-                        const isActive = pathname === item.path;
-
-                        return (
-                            <Link key={item.name} href={item.path} style={{ textDecoration: "none" }}>
-                                <Box
-                                    component={motion.div}
-                                    initial="rest"
-                                    animate={isActive ? "active" : "rest"}
-                                    whileHover="hover"
-                                    sx={{ position: "relative", cursor: "pointer" }}
-                                >
-                                    <Typography
-                                        fontSize={18}
-                                        fontWeight={600}
-                                        sx={{
-                                            color: isActive ? "#2563eb" : "#111827",
-                                            position: "relative",
-                                            cursor: "pointer",
-
-                                            "&::after": {
-                                                content: '""',
-                                                position: "absolute",
-                                                left: 0,
-                                                bottom: -8,
-                                                width: "100%",
-                                                height: 3,
-                                                borderRadius: 2,
-                                                background: "linear-gradient(90deg,#2563eb,#22c55e)",
-                                                transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                                                transformOrigin: "left",
-                                                transition: "transform 0.35s ease",
-                                            },
-
-                                            "&:hover::after": {
-                                                transform: "scaleX(1)", // 🔥 LEFT → RIGHT
-                                            },
-                                        }}
+                            return (
+                                <Link href={item.path} className="relative group">
+                                    <span
+                                        className={`
+      font-semibold transition-colors duration-300
+      ${pathname === item.path ? "text-blue-600" : "text-gray-900"}
+      group-hover:text-blue-600 text-[17px]
+    `}
                                     >
                                         {item.name}
-                                    </Typography>
+                                    </span>
 
-
-
-                                    {/* <motion.span
-                                        variants={{
-                                            rest: { scaleX: 0 },
-                                            hover: { scaleX: 1 },
-                                            active: { scaleX: 1 },
-                                        }}
-                                        transition={{ duration: 0.35, ease: "easeInOut" }}
-                                        style={{
-                                            position: "absolute",
-                                            left: 0,
-                                            bottom: -6,
-                                            width: "100%",
-                                            height: "3px",
-                                            backgroundColor: "#ED0000",
-                                            borderRadius: "4px",
-                                            transformOrigin: "left",
-                                        }}
-                                    /> */}
-                                </Box>
-                            </Link>
-                        );
-                    })}
-                </Box>
-
-                {/* RIGHT — Mobile Logo / Desktop Button */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <Box sx={{ display: { xs: "flex", lg: "none" } }} onClick={() => {
-                        router.push("/");
-                        setOpen(false); // close drawer
-                    }}>
-                        <Image src="/ShriThaku.jpeg" alt="Logo" width={100} height={60} />
-                    </Box>
-
-                    <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                        <RedButton
-                            sx={{ px: 3, fontSize: "16px" }}
-                            onClick={() => window.open("https://shrithakur.themfbox.com/", "_blank")}
-                        >
-                            साइन इन
-                        </RedButton>
-                    </Box>
-
-                </Box>
-            </Toolbar>
-
-            {/* MOBILE DRAWER */}
-            <Drawer
-                anchor="right"
-                open={open}
-                onClose={() => setOpen(false)}
-                ModalProps={{
-                    keepMounted: true, // 🔥 HUGE improvement
-                }}
-            >
-
-
-                <Box sx={{ width: 280, p: 3 }}>
-                    <IconButton onClick={() => setOpen(false)}>
-                        <CloseIcon />
-                    </IconButton>
-
-
-                    {/* <Divider sx={{ mb: 2 }} /> */}
-
-
-                    <List >
-                        {/* NORMAL ITEMS BEFORE MUTUAL FUND */}
-                        {navItems
-                            .filter((item) => item.name !== "म्युच्युअल फंड")
-                            .map((item) => (
-                                <ListItemButton
-                                    component={Link}
-                                    href={item.path}
-                                    onClick={() => setOpen(false)}
-                                    sx={{
-                                        borderRadius: 2,
-                                        mb: 0.5,
-                                        backgroundColor: pathname === item.path ? "#eff6ff" : "transparent",
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={item.name}
-                                        primaryTypographyProps={{
-                                            fontSize: 18,
-                                            fontWeight: pathname === item.path ? 600 : 600,
-                                            color: pathname === item.path ? "#2563eb" : "#111827",
-                                        }}
+                                    <span
+                                        className={`
+      absolute left-0 -bottom-2 h-[3px] w-full rounded
+      bg-gradient-to-r from-blue-600 to-green-500
+      transform transition-transform duration-300 origin-left
+      ${pathname === item.path ? "scale-x-100" : "scale-x-0"}
+      group-hover:scale-x-100
+    `}
                                     />
-                                </ListItemButton>
+                                </Link>
 
-                            ))}
+                            );
+                        })}
+                    </div>
 
-                        {/* MUTUAL FUND DROPDOWN */}
-                        {/* MUTUAL FUND DROPDOWN */}
-                        <ListItemButton
-                            onClick={() => setMobileFundOpen(!mobileFundOpen)}
-                            sx={{
-                                borderRadius: 2,
-                                mb: 0.5,
-                                backgroundColor: mobileFundOpen ? "#f8fafc" : "transparent",
-                            }}
-                        >
-                            <ListItemText
-                                primary="म्युच्युअल फंड"
-                                primaryTypographyProps={{
-                                    fontSize: 18,
-                                    fontWeight: 600,
-                                }}
-                            />
-                            <ExpandMoreIcon
-                                sx={{
-                                    transform: mobileFundOpen ? "rotate(180deg)" : "rotate(0deg)",
-                                    transition: "0.3s",
-                                }}
-                            />
-                        </ListItemButton>
+                    {/* RIGHT */}
+                    <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={4} >
+                        <div className="lg:hidden">
+                            <Image src="/ShriThaku.jpeg" alt="Logo" width={90} height={50} />
+                        </div>
 
-
-                        <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-
-                                {mutualFundItems.map((item) => {
-                                    // 🔹 ITEM WITH CHILDREN
-                                    if (item.children) {
-                                        const isOpen = mobileSubMenu === item.name;
-
-                                        return (
-                                            <Box key={item.name}>
-                                                {/* PARENT */}
-                                                <ListItemButton
-                                                    onClick={() =>
-                                                        setMobileSubMenu(isOpen ? null : item.name)
-                                                    }
-                                                    sx={{
-                                                        pl: 4,
-                                                        borderRadius: 2,
-                                                        backgroundColor: isOpen ? "#f8fafc" : "transparent",
-                                                    }}
-                                                >
-                                                    <ListItemText
-                                                        primary={item.name}
-                                                        primaryTypographyProps={{
-                                                            fontSize: 16,
-                                                            fontWeight: 600,
-                                                        }}
-                                                    />
-                                                    <ExpandMoreIcon
-                                                        sx={{
-                                                            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                                                            transition: "0.3s",
-                                                        }}
-                                                    />
-                                                </ListItemButton>
-
-                                                {/* CHILD ITEMS */}
-                                                <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                                                    <List component="div" disablePadding>
-                                                        {item.children.map((child) => (
-                                                            <ListItemButton
-                                                                key={child.name}
-                                                                component={Link}
-                                                                href={child.path}
-                                                                sx={{
-                                                                    pl: 6,
-                                                                    borderLeft: "3px solid",
-                                                                    borderColor:
-                                                                        pathname === child.path
-                                                                            ? "#2563eb"
-                                                                            : "transparent",
-                                                                    backgroundColor:
-                                                                        pathname === child.path
-                                                                            ? "#eff6ff"
-                                                                            : "transparent",
-                                                                }}
-                                                                onClick={() => {
-                                                                    setOpen(false);
-                                                                    setMobileFundOpen(false);
-                                                                    setMobileSubMenu(null);
-                                                                }}
-                                                            >
-                                                                <ListItemText
-                                                                    primary={child.name}
-                                                                    primaryTypographyProps={{
-                                                                        fontSize: 15,
-                                                                        fontWeight:
-                                                                            pathname === child.path ? 600 : 500,
-                                                                        color:
-                                                                            pathname === child.path
-                                                                                ? "#2563eb"
-                                                                                : "#374151",
-                                                                    }}
-                                                                />
-                                                            </ListItemButton>
-                                                        ))}
-                                                    </List>
-                                                </Collapse>
-                                            </Box>
-                                        );
-                                    }
-
-                                    // 🔹 NORMAL ITEM (NO CHILDREN)
-                                    return (
-                                        <ListItemButton
-                                            key={item.name}
-                                            component={Link}
-                                            href={item.path}
-                                            sx={{ pl: 4 }}
-                                            onClick={() => {
-                                                setOpen(false);
-                                                setMobileFundOpen(false);
-                                            }}
-                                        >
-                                            <ListItemText
-                                                primary={item.name}
-                                                primaryTypographyProps={{ fontSize: 16 }}
-                                            />
-                                        </ListItemButton>
-                                    );
-                                })}
-                            </List>
-                        </Collapse>
-
-
-
-                        {/* SUB ITEMS */}
-                        <Collapse in={mobileFundOpen} timeout="auto" unmountOnExit>
-                            <List disablePadding>
-                                {mutualFundItems.map((item) => {
-                                    if (item.children) {
-                                        // nested dropdown (types / share bazar)
-                                    } else {
-                                        // single link (what is MF, services)
-                                    }
-                                })}
-                            </List>
-                        </Collapse>
-                    </List>
-
-
-                    <Box sx={{ mt: 3 }}>
-                        <RedButton
-                            fullWidth
-                            sx={{ py: 1.2 }}
-                            onClick={() => {
-                                window.open("https://shrithakur.themfbox.com/", "_blank");
-                                setOpen(false);
-                            }}
-                        >
-                            साइन इन
-                        </RedButton>
+                        <Box display={isMobile ? "none" : "block"}>
+                            <RedButton fullWidth sx={{ py: 1.2 }} onClick={() => { window.open("https://shrithakur.themfbox.com/", "_blank"); setOpen(false); }} > साइन इन </RedButton>
+                        </Box>
                     </Box>
-
-
                 </Box>
-            </Drawer>
-        </AppBar>
+            </nav>
+
+            {/* ================= MOBILE DRAWER ================= */}
+            <AnimatePresence>
+                {drawerOpen && (
+                    <>
+                        {/* BACKDROP */}
+                        <motion.div
+                            className="fixed inset-0 z-40 bg-black/40"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setDrawerOpen(false)}
+                        />
+
+                        {/* DRAWER */}
+                        <motion.div
+                            className="fixed top-0 right-0 z-50 h-full w-[300px] bg-white"
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 260,
+                                damping: 30,
+                            }}
+                        >
+                            <Box px={4} py={2} className="h-full flex flex-col">
+
+                                {/* CLOSE + EXTERNAL ICON */}
+                                <Box
+                                    display="flex"
+                                    flexDirection="row"
+                                    justifyContent="space-between"
+                                    my={3}
+                                >
+                                    <button onClick={() => setDrawerOpen(false)}>
+                                        <IoClose size={28} />
+                                    </button>
+
+                                    <RedButton
+                                        onClick={() =>
+                                            window.open("https://shrithakur.themfbox.com/", "_blank")
+                                        }
+                                        sx={{ px: 0.5, py: 1 }}
+                                    >
+                                        <HiExternalLink size={28} />
+                                    </RedButton>
+                                </Box>
+
+                                {/* MENU LIST */}
+                                <div className="flex flex-col gap-5 grow my-3">
+                                    {navItems
+                                        .filter((i) => i.name !== "म्युच्युअल फंड")
+                                        .map((item) => (
+                                            <Link
+                                                key={item.name}
+                                                href={item.path}
+                                                onClick={() => setDrawerOpen(false)}
+                                                className={`text-[16px] font-semibold ${pathname === item.path ? "text-blue-600" : ""
+                                                    }`}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        ))}
+
+                                    {/* MUTUAL FUND */}
+                                    <button
+                                        onClick={() => setMobileFundOpen(!mobileFundOpen)}
+                                        className="flex justify-between items-center"
+                                    >
+                                        <p className="text-[17px] font-semibold">म्युच्युअल फंड</p>
+                                        <ChevronDown
+                                            className={`transition ${mobileFundOpen ? "rotate-180" : ""
+                                                }`}
+                                        />
+                                    </button>
+
+                                    {mobileFundOpen && (
+                                        <div className="pl-4 flex flex-col gap-2">
+                                            {mutualFundItems.map((mf) => {
+                                                if (mf.children) {
+                                                    const open = mobileSubMenu === mf.name;
+
+                                                    return (
+                                                        <div key={mf.name}>
+                                                            <button
+                                                                onClick={() =>
+                                                                    setMobileSubMenu(open ? null : mf.name)
+                                                                }
+                                                                className="flex justify-between w-full text-[14px] font-semibold"
+                                                            >
+                                                                {mf.name}
+                                                                <ChevronDown
+                                                                    className={`transition ${open ? "rotate-180" : ""
+                                                                        }`}
+                                                                />
+                                                            </button>
+
+                                                            <AnimatePresence>
+                                                                {open && (
+                                                                    <motion.div
+                                                                        initial={{ height: 0, opacity: 0 }}
+                                                                        animate={{ height: "auto", opacity: 1 }}
+                                                                        exit={{ height: 0, opacity: 0 }}
+                                                                        transition={{ duration: 0.25 }}
+                                                                        className="pl-4 flex flex-col gap-1 mt-2 overflow-hidden"
+                                                                    >
+                                                                        {mf.children.map((child) => (
+                                                                            <Link
+                                                                                key={child.name}
+                                                                                href={child.path}
+                                                                                onClick={() => {
+                                                                                    setDrawerOpen(false);
+                                                                                    setMobileFundOpen(false);
+                                                                                    setMobileSubMenu(null);
+                                                                                }}
+                                                                                className="text-[14px] font-semibold"
+                                                                            >
+                                                                                {child.name}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </motion.div>
+                                                                )}
+                                                            </AnimatePresence>
+                                                        </div>
+                                                    );
+                                                }
+
+                                                return (
+                                                    <Link
+                                                        key={mf.name}
+                                                        href={mf.path}
+                                                        onClick={() => setDrawerOpen(false)}
+                                                        className="text-[15px] font-semibold"
+                                                    >
+                                                        {mf.name}
+                                                    </Link>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            </Box>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+        </>
     );
 }
