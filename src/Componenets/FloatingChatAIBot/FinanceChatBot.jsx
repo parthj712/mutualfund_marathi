@@ -1,6 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Paper, IconButton, Avatar, Box, Button, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Paper,
+  IconButton,
+  Avatar,
+  Box,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import API from "@/service/api";
@@ -11,12 +19,10 @@ import { IoSend } from "react-icons/io5";
 import { motion } from "framer-motion";
 
 export default function FinanceChatBot() {
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
 
   const [open, setOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -59,7 +65,12 @@ export default function FinanceChatBot() {
     setMessages((prev) => [
       ...prev,
       { role: "user", text: q.questions },
-      { role: "bot", text: q.answer },
+      {
+        role: "bot",
+        text: q.answer,
+        route: q.route || null,
+        buttonText: q.buttonText || null,
+      },
     ]);
 
     setRelatedQuestions((prev) => prev.filter((item) => item._id !== q._id));
@@ -148,19 +159,32 @@ export default function FinanceChatBot() {
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
                 <Box
                   p={1.5}
                   m={1.5}
                   fontWeight={600}
-                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${msg.role === "user"
+                  className={` px-4 py-2.5 text-xs rounded-xl max-w-[75%] shadow-sm leading-relaxed ${
+                    msg.role === "user"
                       ? "bg-green-500 text-white rounded-br-none"
                       : "bg-white text-gray-800 rounded-bl-none"
-                    }`}
+                  }`}
                 >
                   <p>{msg.text}</p>
+
+                  {msg.route && (
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={() => router.push(`/${msg.route}`)}
+                      className="mt-2 text-[11px] rounded-full"
+                    >
+                      {msg.buttonText || "Open"}
+                    </Button>
+                  )}
 
                   {msg.phone && (
                     <a
