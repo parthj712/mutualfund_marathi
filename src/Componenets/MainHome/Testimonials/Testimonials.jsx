@@ -192,7 +192,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <Box
+        {/* <Box
           display="flex"
           justifyContent="flex-end"
           py={4}
@@ -204,7 +204,7 @@ export default function Testimonials() {
           >
             <Typography fontSize={"20px"}> अधिक वाचा →</Typography>
           </a>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
