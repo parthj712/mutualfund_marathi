@@ -25,9 +25,9 @@ const MainMutualFund = () => {
 
       <HowMutualFundWork />
 
-      <ScrollReveal>
+      {/* <ScrollReveal>
         <ArticlesGrid />
-      </ScrollReveal>
+      </ScrollReveal> */}
     </div>
   );
 };

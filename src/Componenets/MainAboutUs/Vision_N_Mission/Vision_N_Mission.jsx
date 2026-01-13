@@ -15,7 +15,7 @@ const Vision_N_Mission = () => {
         //  className="w-full bg-[#00487b] text-white"
         <div>
             <Box display={"flex"} p={isMobile ? 4 : 10} flexDirection={"column"} gap={isMobile ? 4 : 6} className="w-full bg-[#00487b] text-white">
-                <GradientUnderlineHeading text="आमचे ध्येय आणि दृष्टी" />
+                <GradientUnderlineHeading text="आमचे ध्येय आणि दृष्टी"/>
 
 
 
