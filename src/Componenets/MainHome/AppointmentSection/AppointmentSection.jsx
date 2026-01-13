@@ -9,8 +9,24 @@ import ContactPageRoundedIcon from "@mui/icons-material/ContactPageRounded";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import API from "@/service/api";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 export default function AppointmentSection() {
+
+  const [loading, setLoading] = useState(false);
+
+
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPhone = (phone) => {
+    return /^[0-9]{10}$/.test(phone);
+  };
+
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,14 +39,67 @@ export default function AppointmentSection() {
   };
 
   const handleSubmit = async () => {
+    const { name, email, phone, message } = formData;
+
+
+    if (!name || !email || !phone) {
+      alert("कृपया सर्व आवश्यक माहिती भरा");
+      return;
+    }
+
+    // 📧 Email validation
+    if (!isValidEmail(email)) {
+      alert("कृपया वैध ईमेल पत्ता भरा");
+      return;
+    }
+
+    // 📞 Phone validation (10 digits)
+    if (!isValidPhone(phone)) {
+      alert("कृपया १० अंकी मोबाईल नंबर भरा");
+      return;
+    }
+
     try {
+      setLoading(true); // 🔄 start loader
+      // 1️⃣ Save data to backend
       await API.post("/contact-us/", formData);
+
+      // 2️⃣ Prepare WhatsApp message
+      const whatsappMessage = `
+नवीन अपॉइंटमेंट विनंती:
+
+नाव: ${name}
+ईमेल: ${email}
+फोन: ${phone}
+संदेश: ${message}
+    `.trim();
+
+      const whatsappNumber = "+919518752605"; // country code + number
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
+
+      // 3️⃣ Open WhatsApp
+      window.open(whatsappURL, "_blank");
+
+      // 4️⃣ Success feedback
       alert("संदेश यशस्वीरीत्या पाठवला");
-      setFormData({ name: "", email: "", phone: "", message: "" });
+
+      // 5️⃣ Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false); // 🔄 stop loader
     }
   };
+
 
   const theme = useTheme();
 
@@ -148,7 +217,7 @@ export default function AppointmentSection() {
               label="संदेश"
               name="message"
               multiline
-              rows={3}
+              rows={4}
               value={formData.message}
               onChange={handleChange}
             />
@@ -158,9 +227,15 @@ export default function AppointmentSection() {
               bg={"#FF1F1F"}
               sx={{ px: 4, py: 1.5 }}
               onClick={handleSubmit}
+              disabled={loading}
             >
-              संदेश पाठवा
+              {loading ? (
+                <CircularProgress size={22} sx={{ color: "#fff" }} />
+              ) : (
+                "संदेश पाठवा"
+              )}
             </RedButton>
+
           </Box>
         </div>
       </div>

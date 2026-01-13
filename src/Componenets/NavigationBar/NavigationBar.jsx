@@ -43,7 +43,7 @@ export default function NavigationBar() {
         { name: "कॅल्क्युलेटर", path: "/calculator" },
         { name: "म्युच्युअल फंड", path: "/funds" },
         // { name: "ब्लॉग्ज", path: "/blogs" },
-        { name: "डाउनलोड", path: "/downloads" },
+        // { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
     ];
 

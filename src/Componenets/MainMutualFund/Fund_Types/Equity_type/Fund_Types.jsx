@@ -71,9 +71,9 @@ const Fund_Types = () => {
                 <RiskNReturn />
             </ScrollReveal> */}
 
-            <ScrollReveal>
+            {/* <ScrollReveal>
                 <RiskVsReturn />
-            </ScrollReveal>
+            </ScrollReveal> */}
 
 
             <ScrollReveal>
