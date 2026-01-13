@@ -21,7 +21,7 @@ export default async function InfoDetailPage({ params }) {
                 {data.description
                     .split("\n\n")
                     .map((para, index) => (
-                        <Typography key={index} fontWeight={600}>
+                        <Typography key={index} fontWeight={500}>
                             {para}
                         </Typography>
                     ))}

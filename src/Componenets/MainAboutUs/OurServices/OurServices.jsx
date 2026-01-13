@@ -3,25 +3,29 @@
 import { Box, Typography, Button, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 const services = [
     {
         title: "आर्थिक नियोजन",
         image: "/Services/finance.png",
-        path : "/financial-planning"
+        path: "/financial-planning"
     },
     {
         title: "म्युच्युअल फंड",
         image: "/Services/mutual-fund.png",
-        path : "/funds"
+        path: "/funds"
     },
     {
         title: "फिक्स्ड डिपॉझिट",
         image: "/Services/fd.png",
+        path: "/funds"
     },
     {
         title: "इक्विटी ट्रेडिंग",
         image: "/Services/trade.png",
+        path: "/funds"
     },
 ];
 
@@ -33,6 +37,9 @@ export default function OurServices() {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+    const router = useRouter();
+
 
     return (
         <Box
@@ -100,10 +107,16 @@ export default function OurServices() {
                         </Typography>
 
                         <Button
+                            onClick={(e) => {
+                                e.stopPropagation(); // 🔥 prevents hover card issues
+                                if (service.path) {
+                                    router.push(service.path);
+                                }
+                            }}
                             variant="contained"
                             size="medium"
                             sx={{
-                                fontSize : "16px",
+                                fontSize: "16px",
                                 textTransform: "none",
                                 borderRadius: 20,
                                 backgroundColor: "#ffffff",

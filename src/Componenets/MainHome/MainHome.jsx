@@ -74,7 +74,8 @@ const MainHome = () => {
               "
           >
             <DisclaimerBox
-              icon={HiInformationCircle}
+              align="center"
+              // icon={HiInformationCircle}
               title="अनिवार्य सूचना (Disclaimers)"
               description={`www.thakurfinserv.com ही श्री ठाकुर Finserv प्रायव्हेट लिमिटेडची एक ऑनलाइन वेबसाइट आहे
                   जी ARN-328893 वर म्युच्युअल फंड विक्रेत्या म्हणून नोंदणीकृत आहे.

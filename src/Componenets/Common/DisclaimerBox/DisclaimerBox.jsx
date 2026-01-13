@@ -30,7 +30,7 @@ export default function DisclaimerBox({
                     {title}
                 </Typography> */}
 
-                <GradientHeading text={title} align="left"/>
+                <GradientHeading text={title} align="center"/>
             </Box>
 
             {/* Description */}
