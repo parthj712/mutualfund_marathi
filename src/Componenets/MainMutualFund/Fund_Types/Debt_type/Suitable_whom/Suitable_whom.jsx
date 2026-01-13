@@ -3,7 +3,7 @@
 import GradientHeading from '@/Componenets/Common/GradientHeading/GradientHeading';
 import InfoBox from '@/Componenets/Common/InfoBox/InfoBox';
 import ScrollReveal from '@/Componenets/Common/ScrollReveal/ScrollReveal';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 
 const SUITABLE_FOR_WHOM = [
@@ -52,6 +52,10 @@ const Suitable_whom = () => {
                     </ScrollReveal>
                 ))}
             </div>
+
+            <Typography>
+                या योजनेतील पैसे हे योजनेच्या उद्दिष्टांनुसार निश्चित उत्पन्न देणाऱ्या साधनात गुंतवले जातात. यामध्ये शेअर बाजाराची जोखीम असत नाही त्यामुळे या प्रकारच्या योजनेत तुलनेने कमी जोखीम असते. या प्रकारच्या योजनेच्या Fact Sheet मध्ये YTM (Yield to Maturity) म्हणजेच मुदत पुर्तीला मिळू शकणारे व्याजाचे उत्पन्न दर्शवलेले असते. तसेच सोबत (Average Maturity) कर्ज रोख्यांचा सरासरी मुदत संपण्याचा कालावधी दिलेला असतो. त्याचप्रमाणे योजनेचा (Total Expense Ratio) एकूण खर्चाचे प्रमाण यांचा उल्लेख केलेला असतो. याचा वापर करून आपल्याला या योजनेतून किती परतावा मिळू शकेल हे समजू शकते. जर का गुंतवणूक करणाऱ्या व्यक्तीने Average Maturity इतक्या कालावधीसाठी गुंतवणूक केली तर त्या व्यक्तीला YTM - Total Expense Ratio = मुदती नंतर मिळणारा परतावा योजनेतून मिळू शकतो समजू शकते.
+            </Typography>
         </Box>
     );
 };

@@ -26,30 +26,35 @@ export default function CustomInput({
       value={value}
       onChange={onChange}
       fullWidth
+      InputLabelProps={{
+        shrink: true, // ✅ stops floating
+      }}
       InputProps={{
         disableUnderline: true,
       }}
       sx={{
-        backgroundColor: "#FFF5F5", // light pink
-        borderRadius: isMobile ? "10px" : "10px",
+        backgroundColor: "#FFF5F5",
+        borderRadius: "10px",
+
         "& .MuiFilledInput-root": {
           borderRadius: "10px",
         },
+
         "& .MuiFilledInput-input": {
           padding: "14px",
           fontSize: isMobile ? "14px" : "16px",
-          fontWeight: 700,
+          fontWeight: 500,
           color: "#000",
         },
+
         "& .MuiInputLabel-root": {
+          display: value ? "none" : "block", // ✅ hide label on typing
           fontSize: isMobile ? "15px" : "16px",
           color: "#000",
           fontWeight: 600,
         },
-        "& .MuiInputLabel-shrink": {
-          color: "#000",
-        },
       }}
     />
+
   );
 }

@@ -30,7 +30,8 @@ export default function StatusPill({
     <Box
       sx={{
         display: "inline-flex",
-        alignItems: "center",
+        width: "fit-content",
+        alignItems: "baseline",
         gap: 1.5,
         backgroundColor: bgColor,
         border: `2px solid ${borderColor}`,

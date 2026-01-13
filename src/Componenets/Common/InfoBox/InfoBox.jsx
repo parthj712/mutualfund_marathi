@@ -47,7 +47,7 @@ export default function InfoBox({
                 {heading && (
                     <Typography
                         fontWeight={700}
-                        fontSize="20px"
+                        fontSize={isMobile ? "16px" : "20px"}
                         sx={{ color: headingColor }}
                     >
                         {heading}

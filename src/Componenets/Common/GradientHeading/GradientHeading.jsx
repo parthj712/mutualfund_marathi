@@ -63,7 +63,7 @@ export default function GradientHeading({
             >
                 {/* Heading text */}
                 <p
-                    className="text-[22px] md:text-[20px] lg:text-[24px] font-semibold"
+                    className="text-[20px] md:text-[20px] lg:text-[24px] font-semibold"
                     style={{
                         ...getTextStyle(),
                         textAlign: alignment.textAlign,
