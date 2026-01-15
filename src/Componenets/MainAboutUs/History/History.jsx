@@ -4,10 +4,10 @@ import React from 'react'
 
 const History = () => {
 
-      const theme = useTheme();
-      const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-      const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-      const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
 
     return (
@@ -17,7 +17,7 @@ const History = () => {
 
                 <Box>
                     <Typography fontSize={isMobile ? "16px" : "20px"}>
-                        Thakur Financial Services या नावाने आर्थिक सेवा देणारा व्यवसाय १ जानेवारी २००० रोजी सुरु करण्यात आला.
+                        Thakur Financial Services या नावाने आर्थिक सेवा देणारा व्यवसाय १ जानेवारी २००० रोजी सुरु करण्यात आला आणि दिनांक 11 मार्च 2025 रोजी श्री ठाकूर फिनसर्व्ह प्रायव्हेट लिमिटेड ची स्थापना कंपनी कायद्या अंतर्गत करणायात आली.
                     </Typography>
 
                     <List sx={{ pl: 4 }}>

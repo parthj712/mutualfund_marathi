@@ -4,7 +4,7 @@ import React from "react";
 import HeaderMutualFund from "./HeaderMutualFund.jsx/HeaderMutualFund";
 import History from "./History/History";
 import HowMutualFundWork from "./HowMutualFundWork/HowMutualFundWork";
-import ArticlesGrid from "./ArticlesGrid/ArticlesGrid";
+import ArticlesGrid from "../MainArticle/ArticlesGrid/ArticlesGrid";
 import ScrollReveal from "../Common/ScrollReveal/ScrollReveal";
 
 const MainMutualFund = () => {
