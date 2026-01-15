@@ -43,7 +43,7 @@ const MainBlogs = () => {
         gap={4}
       >
         {/* FILTER DROPDOWN */}
-        <Box display="flex" justifyContent="flex-end">
+        {/* <Box display="flex" justifyContent="flex-end">
           <FormControl size="small" sx={{ minWidth: 220 }}>
             <Select
               value={category}
@@ -64,7 +64,7 @@ const MainBlogs = () => {
               </MenuItem>
             </Select>
           </FormControl>
-        </Box>
+        </Box> */}
 
         {/* BLOG LIST */}
         <BlogsCard selectedCategory={category} />

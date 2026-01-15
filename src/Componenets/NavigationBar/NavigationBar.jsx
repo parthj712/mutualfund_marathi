@@ -42,7 +42,7 @@ export default function NavigationBar() {
         { name: "आर्थिक नियोजन", path: "/financial-planning" },
         { name: "कॅल्क्युलेटर", path: "/calculator" },
         { name: "म्युच्युअल फंड", path: "/funds" },
-        // { name: "ब्लॉग्ज", path: "/blogs" },
+        { name: "लेख", path: "/article" },
         // { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
     ];
@@ -162,7 +162,7 @@ export default function NavigationBar() {
                                                                                         whileHover={{ x: 4 }}
                                                                                         className="rounded-md"
                                                                                     >
-                                                                                        
+
                                                                                         <Link
                                                                                             href={child.path}
                                                                                             className="block px-4 py-2.5 text-[15px] font-medium hover:bg-gray-50"
@@ -198,7 +198,7 @@ export default function NavigationBar() {
                             }
 
                             return (
-                                <Link href={item.path} className="relative group">
+                                <Link key={item.name} href={item.path} className="relative group">
                                     <span
                                         className={`
       font-semibold transition-colors duration-300
