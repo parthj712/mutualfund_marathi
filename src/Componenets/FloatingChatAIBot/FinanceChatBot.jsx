@@ -118,7 +118,7 @@ export default function FinanceChatBot() {
         <Paper
           elevation={10}
           sx={{ borderRadius: 7, my: 2 }}
-          className="fixed bottom-22 p-3  right-6 lg:w-95 w-80 h-[400px] rounded-2xl z-50 flex flex-col overflow-hidden"
+          className="fixed bottom-22 p-3 right-6 lg:w-95 w-80 h-[400px] rounded-2xl z-50 flex flex-col overflow-hidden"
         >
           {/* HEADER */}
           <motion.div
