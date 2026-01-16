@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import RedButton from "../RedButton";
 
-export default function ArticleCard({ date, title, cta }) {
+export default function ArticleCard({ date, creator, title, cta }) {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -28,10 +28,10 @@ export default function ArticleCard({ date, title, cta }) {
                     "&::before": {
                         content: '""',
                         position: "absolute",
-                        top: "-40%",
-                        right: "-30%",
-                        width: "460px",
-                        height: "260px",
+                        top: "-70%",
+                        right: "0%",
+                        width: "660px",
+                        height: "560px",
                         background:
                             "radial-gradient(circle at top right, rgba(22,131,240,30%), transparent 80%)",
                         zIndex: 0,
@@ -48,23 +48,31 @@ export default function ArticleCard({ date, title, cta }) {
                     <Typography
                         fontSize={isMobile ? "14px" : "16px"}
                         fontWeight={600}
-                        color="text.secondary"
+                        // color="text.secondary"
                         mb={1}
                     >
                         {date}
                     </Typography>
 
                     <Typography
-                        fontSize={isMobile ? "16px" : "18px"}
-                        fontWeight={700}
+                        fontSize={isMobile ? "16px" : "22px"}
+                        fontWeight={600}
                         mb={2}
                     >
                         {title}
                     </Typography>
 
+                    <Typography
+                        fontSize={isMobile ? "14px" : "16px"}
+                        fontWeight={500}
+                 
+                    >
+                        Author : {creator}
+                    </Typography>
+
                     {/* CTA */}
                     <Box display="flex" justifyContent="flex-end">
-                        <RedButton sx={{ fontSize: isMobile ? "13px" : "15px" }}>
+                        <RedButton sx={{width : isMobile ? null : "20%" , fontSize: isMobile ? "13px" : "17px" }}>
                             {cta}
                         </RedButton>
                     </Box>
