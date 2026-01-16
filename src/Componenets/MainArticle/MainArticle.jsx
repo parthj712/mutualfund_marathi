@@ -14,11 +14,13 @@ import {
 import ArticlesGrid from "./ArticlesGrid/ArticlesGrid";
 import API from "@/service/api";
 
+const DEFAULT_CATEGORY = "म्युचुअल फंडाबाबत";
+
 const MainArticle = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState(DEFAULT_CATEGORY);
   const [articles, setArticles] = useState([]);
 
   const fetchArticle = async () => {
@@ -34,10 +36,10 @@ const MainArticle = () => {
     fetchArticle();
   }, []);
 
-  // ✅ Extract UNIQUE categories from articles
+  // ✅ Extract unique categories (NO "all")
   const categories = useMemo(() => {
     const unique = new Set(articles.map((a) => a.category));
-    return ["all", ...unique];
+    return [DEFAULT_CATEGORY, ...[...unique].filter(c => c !== DEFAULT_CATEGORY)];
   }, [articles]);
 
   return (
@@ -67,7 +69,7 @@ const MainArticle = () => {
             >
               {categories.map((cat) => (
                 <MenuItem key={cat} value={cat}>
-                  <Typography>{cat === "all" ? "सर्व लेख" : cat}</Typography>
+                  <Typography>{cat}</Typography>
                 </MenuItem>
               ))}
             </Select>
