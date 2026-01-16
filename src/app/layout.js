@@ -9,6 +9,7 @@ import TopProgressBar from "@/Componenets/Loader/TopProgressBar";
 import "../styles/nprogress-custom.css";
 import PageTransition from "@/Componenets/Common/ScrollReveal/PageTransition";
 import FinanceChatBot from "@/Componenets/FloatingChatAIBot/FinanceChatBot";
+import GlobalScrollToTop from "@/Componenets/Common/GlobalScrollToTop/GlobalScrollToTop";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -54,6 +55,9 @@ export default function RootLayout({ children }) {
             <PageTransition>
               <TopProgressBar />
               <RouteLoader />
+
+              <GlobalScrollToTop />
+
               <HeaderWrapper />
 
               <main className="site-content">

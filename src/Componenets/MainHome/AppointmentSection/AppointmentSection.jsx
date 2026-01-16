@@ -109,7 +109,7 @@ export default function AppointmentSection() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Box py={12}>
+    <Box py={6}>
       <div className="py-20 w-full max-w-8xl flex flex-col lg:flex-col gap-2 lg:gap-6 md:gap-10">
         <Box alignItems={"center"} px={isMobile ? 4 : isTablet ? 6 : 10}>
           <GradientHeading text="अपॉइंटमेंट" />
@@ -118,7 +118,7 @@ export default function AppointmentSection() {
             my={isMobile ? 2.5 : 4}
             fontSize={"20px"}
             fontWeight={600}
-            textAlign={isMobile ? "left" : "center"}
+            textAlign={isMobile ? "center" : "center"}
           >
             तुमचा प्रस्ताव आम्हाला पाठवा
           </Typography>
@@ -139,7 +139,7 @@ export default function AppointmentSection() {
             gap={isMobile ? 4 : 6}
             px={isMobile ? 4 : isTablet ? 6 : 6}
             py={isMobile ? 6 : isTablet ? 6 : 6}
-            className="bg-[#fe3c4f] lg:bg-[#ED0000] text-white rounded-tr-3xl md:rounded-tr-3xl rounded-br-3xl md:rounded-br-3xl lg:rounded-3xl lg:w-[35%] md:w-[92%] w-full"
+            className="bg-[#ff3e3e]  lg:bg-[#ED0000] text-white rounded-tr-3xl md:rounded-tr-3xl rounded-br-3xl md:rounded-br-3xl lg:rounded-3xl lg:w-[35%] md:w-[92%] w-full"
           >
             {/* Icon */}
             <div className="w-12 h-12 flex items-center justify-center text-2xl rounded-full bg-white/20">
@@ -187,7 +187,7 @@ export default function AppointmentSection() {
             gap={isMobile ? 4 : 4}
             px={isMobile ? 4 : isTablet ? 6 : 6}
             py={isMobile ? 6 : isTablet ? 6 : 6}
-            className="bg-[#005896] text-white rounded-tl-3xl md:rounded-tl-3xl lg:rounded-3xl rounded-bl-3xl md:rounded-bl-3xl lg:rounded-3xl lg:w-[65%] md:w-[95%] w-full"
+            className="bg-[#1168a6] lg:bg-[#005896] text-white rounded-tl-3xl md:rounded-tl-3xl lg:rounded-3xl rounded-bl-3xl md:rounded-bl-3xl lg:rounded-3xl lg:w-[65%] md:w-[95%] w-full"
           >
             {/* Icon */}
             <div className="w-12 h-12 flex items-center justify-center text-2xl rounded-full bg-white/20">

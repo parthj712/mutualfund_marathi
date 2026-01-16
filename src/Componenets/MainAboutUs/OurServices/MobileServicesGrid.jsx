@@ -2,6 +2,7 @@
 
 import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 const services = [
@@ -18,14 +19,19 @@ const services = [
     {
         title: "फिक्स्ड डिपॉझिट",
         image: "/Services/fd.png",
+        path: "/funds"
     },
     {
         title: "इक्विटी ट्रेडिंग",
         image: "/Services/trade.png",
+        path: "/funds"
     },
 ];
 
 export default function MobileServicesGrid() {
+
+        const router = useRouter();
+
     return (
         <Box
             display="grid"
@@ -77,6 +83,12 @@ export default function MobileServicesGrid() {
                         </Typography>
 
                         <Button
+                            onClick={(e) => {
+                                e.stopPropagation(); // 🔥 prevents hover card issues
+                                if (service.path) {
+                                    router.push(service.path);
+                                }
+                            }}
                             size="small"
                             variant="contained"
                             sx={{

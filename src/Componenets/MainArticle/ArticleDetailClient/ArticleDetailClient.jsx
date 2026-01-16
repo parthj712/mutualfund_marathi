@@ -15,82 +15,82 @@ import { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Fab, Zoom } from "@mui/material";
 
-import {
-  Tooltip,
-  CircularProgress,
-  useScrollTrigger,
-} from "@mui/material";
-import { useEffect } from "react";
+// import {
+//   Tooltip,
+//   CircularProgress,
+//   useScrollTrigger,
+// } from "@mui/material";
+// import { useEffect } from "react";
 
-function ScrollToTopButton() {
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 200,
-  });
+// function ScrollToTopButton() {
+//   const trigger = useScrollTrigger({
+//     disableHysteresis: true,
+//     threshold: 200,
+//   });
 
-  const [progress, setProgress] = useState(0);
+//   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY;
+//       const docHeight =
+//         document.documentElement.scrollHeight -
+//         document.documentElement.clientHeight;
 
-      const scrolled = (scrollTop / docHeight) * 100;
-      setProgress(scrolled);
-    };
+//       const scrolled = (scrollTop / docHeight) * 100;
+//       setProgress(scrolled);
+//     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
 
-  const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+//   const handleClick = () => {
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+//   };
 
-  return (
-    <Zoom in={trigger}>
-      <Tooltip title="Back to top" placement="left" arrow>
-        <Fab
-          onClick={handleClick}
-          sx={{
-            position: "fixed",
-            bottom: 112,
-            right: 26,
-            zIndex: 1400,
-            width: 64,
-            height: 64,
-            backdropFilter: "blur(12px)",
-            background:
-              "linear-gradient(135deg, rgba(37,99,235,0.9), rgba(29,78,216,0.9))",
-            boxShadow: "0 12px 30px rgba(37,99,235,0.35)",
-            color: "#fff",
-            "&:hover": {
-              background:
-                "linear-gradient(135deg, rgba(29,78,216,1), rgba(30,64,175,1))",
-            },
-          }}
-        >
-          {/* Progress Ring */}
-          <CircularProgress
-            variant="determinate"
-            value={progress}
-            size={44}
-            thickness={3}
-            sx={{
-              position: "absolute",
-              color: "#93C5FD",
-            }}
-          />
+//   return (
+//     <Zoom in={trigger}>
+//       <Tooltip title="Back to top" placement="left" arrow>
+//         <Fab
+//           onClick={handleClick}
+//           sx={{
+//             position: "fixed",
+//             bottom: 112,
+//             right: 26,
+//             zIndex: 1400,
+//             width: 64,
+//             height: 64,
+//             backdropFilter: "blur(12px)",
+//             background:
+//               "linear-gradient(135deg, rgba(37,99,235,0.9), rgba(29,78,216,0.9))",
+//             boxShadow: "0 12px 30px rgba(37,99,235,0.35)",
+//             color: "#fff",
+//             "&:hover": {
+//               background:
+//                 "linear-gradient(135deg, rgba(29,78,216,1), rgba(30,64,175,1))",
+//             },
+//           }}
+//         >
+//           {/* Progress Ring */}
+//           <CircularProgress
+//             variant="determinate"
+//             value={progress}
+//             size={44}
+//             thickness={3}
+//             sx={{
+//               position: "absolute",
+//               color: "#93C5FD",
+//             }}
+//           />
 
-          {/* Arrow */}
-          <KeyboardArrowUpIcon sx={{ fontSize: 28 }} />
-        </Fab>
-      </Tooltip>
-    </Zoom>
-  );
-}
+//           {/* Arrow */}
+//           <KeyboardArrowUpIcon sx={{ fontSize: 28 }} />
+//         </Fab>
+//       </Tooltip>
+//     </Zoom>
+//   );
+// }
 
 
 
@@ -134,7 +134,7 @@ export default function ArticleDetailClient({ article }) {
         )}
 
         {/* Category + Date */}
-        <Box display="flex" justifyContent="space-between" py={2}>
+        <Box display="flex" flexDirection={isMobile ? "column" : "row"} justifyContent="space-between" py={2}>
           <Box
             sx={{
               px: 3,
@@ -225,7 +225,7 @@ export default function ArticleDetailClient({ article }) {
       </Dialog>
 
 
-      <ScrollToTopButton />
+      {/* <ScrollToTopButton /> */}
 
     </>
   );
