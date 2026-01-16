@@ -60,12 +60,13 @@ const MainArticle = () => {
         gap={4}
       >
         {/* FILTER DROPDOWN */}
-        <Box display="flex" justifyContent="flex-end">
-          <FormControl size="small" sx={{ minWidth: 220 }}>
+        <Box display="flex" flexDirection={"column"} gap={1.5} justifyContent="flex-end">
+          <p className="font-semibold text-[18px]">तुम्हाला वाचायचा असलेला विषय निवडा</p>
+          <FormControl fullWidth size="small" >
             <Select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              sx={{ borderRadius: 2, backgroundColor: "#fff" }}
+              sx={{ borderRadius: 2, backgroundColor: "#fff" , p:1 , borderRadius : 4}}
             >
               {categories.map((cat) => (
                 <MenuItem key={cat} value={cat}>

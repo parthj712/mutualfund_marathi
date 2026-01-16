@@ -22,9 +22,9 @@ export default function DisclaimerBox({
                 justifyContent={align === "center" ? "center" : "flex-start"}
                 gap={2}
             >
-                {!isMobile && Icon && (
+                {/* {!isMobile && Icon && (
                     <Icon className={`${iconColor} text-3xl`} />
-                )}
+                )} */}
 
                 {/* <Typography fontWeight={700} fontSize="20px" textAlign={align}>
                     {title}
@@ -35,10 +35,11 @@ export default function DisclaimerBox({
 
             {/* Description */}
             <Typography
-                fontSize="16px"
+                fontSize="18px"
                 textAlign={align}
                 lineHeight={1.8}
                 className="leading-relaxed"
+                fontWeight={500}
             >
                 {description}
             </Typography>
