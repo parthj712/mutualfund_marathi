@@ -37,9 +37,9 @@ const MainContactus = () => {
                     textColor="#D82D7E"
                     subTextColor="black"
                     subText={
-                        <div className="flex flex-col gap-3 text-sm leading-relaxed">
+                        <div className="flex flex-col gap-3 text-[18px] leading-relaxed">
                             <p>
-                                <strong>
+                                <strong >
                                     रत्नागिरी येथे आम्ही आपल्या भेटीसाठी, दर महिन्याच्या दुसऱ्या आणि चौथ्या
                                     शनिवारी व रविवारी येत असतो.
                                 </strong>
@@ -78,7 +78,7 @@ const MainContactus = () => {
                     textColor="#008BDA"
                     subTextColor="black"
                     subText={
-                        <div className="flex flex-col gap-3 text-sm leading-relaxed">
+                        <div className="flex flex-col gap-3 text-[18px] leading-relaxed">
                             <p>
                                 <strong>
                                     पुणे येथे आम्ही महिन्यातून एकदा आपल्या भेटीसाठी येत असतो.

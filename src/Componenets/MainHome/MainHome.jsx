@@ -11,6 +11,7 @@ import ScrollReveal from "../Common/ScrollReveal/ScrollReveal";
 import DisclaimerBox from "../Common/DisclaimerBox/DisclaimerBox";
 import { HiInformationCircle } from "react-icons/hi";
 import MobileAppSection from "./MobileAppSection/MobileAppSection";
+import SipComparisonCalculator from "./ThakurUseful/SipComparisonCalculator";
 
 const MainHome = () => {
 
@@ -40,6 +41,11 @@ const MainHome = () => {
 
         <ScrollReveal>
           <FundCategoryList />
+        </ScrollReveal>
+
+
+        <ScrollReveal>
+          <SipComparisonCalculator />
         </ScrollReveal>
 
         <ScrollReveal>

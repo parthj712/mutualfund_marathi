@@ -28,7 +28,7 @@ export default function UpperNavbar() {
             }}
         >
             <Container
-                maxWidth="lg"
+                maxWidth="xl"
                 sx={{
                     py: isMobile ? 1.5 : 2,
                     display: "flex",
@@ -44,13 +44,13 @@ export default function UpperNavbar() {
                     sx={{
                         display: "flex",
                         flexDirection: isMobile ? "column" : "row",
-                        gap: isMobile ? 1.5 : 3,
+                        gap: isMobile ? 1.5 : 8,
                         alignItems: isMobile ? "center" : "flex-start",
                     }}
                 >
                     {[
-                        { name: "सुजय", value: "9503718779", href: "tel:+919503718779" },
-                        { name: "सदानंद", value: "9518752605", href: "tel:+919518752605" },
+                        { name: "Customer Care 1", value: "8080876433", href: "tel:+918080876433" },
+                        { name: "Customer Care 2", value: "98340 79813", href: "tel:+919834079813" },
                         {
                             name: "ईमेल",
                             value: "admin@thakurfinserv.com",
@@ -69,13 +69,13 @@ export default function UpperNavbar() {
                                 },
                             }}
                         >
-                            <Typography fontSize={12.5} fontWeight={500} color="text.secondary">
+                            <Typography fontSize={13} fontWeight={500} color="text.secondary">
                                 {item.name}
                             </Typography>
                             <Typography
                                 component="a"
                                 href={item.href}
-                                fontSize={15}
+                                fontSize={16}
                                 fontWeight={600}
                                 sx={{
                                     color: "inherit",
@@ -108,7 +108,7 @@ export default function UpperNavbar() {
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        gap: 2,
+                        gap: 8,
                         flexWrap: "wrap",
                         justifyContent: isMobile ? "center" : "flex-end",
                     }}
@@ -128,7 +128,7 @@ export default function UpperNavbar() {
                             },
                         }}
                     >
-                        <Typography fontSize={13} fontWeight={600} color="#065F46">
+                        <Typography fontSize={15} fontWeight={600} color="#065F46">
                             ✔ AMFI नोंदणीकृत म्युच्युअल फंड वितरक
                         </Typography>
                     </Box>

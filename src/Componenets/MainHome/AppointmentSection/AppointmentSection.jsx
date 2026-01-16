@@ -158,19 +158,22 @@ export default function AppointmentSection() {
             <Box display={"flex"} flexDirection={"column"} gap={1.5}>
               <p className="text-[20px] font-extrabold mb-1">फोन</p>
               <Box>
-                <p className="text-[18px] leading-relaxed">+91 9823049634</p>
-                <p className="text-[18px] leading-relaxed">+91 7020659833</p>
-                <p className="text-[18px] leading-relaxed">+91 9423037750</p>
+                <p className="text-[18px] leading-relaxed">+91 9834079813</p>
+                <p className="text-[18px] leading-relaxed">+91 8080876433</p>
+                <p className="text-[18px] leading-relaxed">+91 9766134167</p>
               </Box>
             </Box>
 
             {/* Email */}
-            <Box display={"flex"} flexDirection={"column"} gap={1}>
-              <p className="text-[20px] font-extrabold">ईमेल</p>
-              <p className="text-[20px] leading-relaxed">
-                admin@thakurfinserv.com
-              </p>
-            </Box>
+            <a href="mailto:admin@thakurfinserv.com">
+              <Box display="flex" flexDirection="column" gap={1}>
+                <p className="text-[20px] font-extrabold">ईमेल</p>
+                <p className="text-[20px] leading-relaxed">
+                  admin@thakurfinserv.com
+                </p>
+              </Box>
+            </a>
+
           </Box>
 
           {/* RIGHT BLUE FORM */}
