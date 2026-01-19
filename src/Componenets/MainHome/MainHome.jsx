@@ -13,6 +13,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import MobileAppSection from "./MobileAppSection/MobileAppSection";
 import SipComparisonCalculator from "./ThakurUseful/SipComparisonCalculator";
 import GoalPlannerSection from "./GoalPlannerSection/GoalPlannerSection";
+import ModelAssetAllocation from "./ModelAssentAllocation/ModelAssentAllocation";
 
 const MainHome = () => {
 
@@ -49,10 +50,13 @@ const MainHome = () => {
           <SipComparisonCalculator />
         </ScrollReveal>
 
+        <ScrollReveal>
+          <GoalPlannerSection />
+        </ScrollReveal>
 
 
         <ScrollReveal>
-          <GoalPlannerSection />
+          <ModelAssetAllocation />
         </ScrollReveal>
 
         <ScrollReveal>

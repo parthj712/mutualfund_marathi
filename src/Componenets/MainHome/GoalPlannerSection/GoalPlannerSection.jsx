@@ -44,6 +44,7 @@ export default function RadialGoalPlanner() {
         if (videoRef.current) {
             observer.observe(videoRef.current);
         }
+        
 
         return () => {
             if (videoRef.current) {
@@ -55,7 +56,7 @@ export default function RadialGoalPlanner() {
 
 
     return (
-        <Box px={isMobile ? 3 : 10} py={isMobile ? 10 : 16}>
+        <Box px={isMobile ? 3 : 10} py={isMobile ? 10 : 10}>
             {/* Heading */}
             <Box pb={4} className="text-center mb-16 px-4">
 
@@ -67,7 +68,7 @@ export default function RadialGoalPlanner() {
             </Box>
 
             {/* Radial Layout */}
-            <Box display={isMobile ? "none" : "block"} className="relative max-w-8xl mx-auto h-[600px] hidden lg:block">
+            <Box display={isMobile || isTablet ? "none" : "block"} className="relative max-w-8xl mx-auto h-[600px] hidden lg:block">
 
 
                 {/* Center Image with Gradient Ring */}
@@ -75,12 +76,12 @@ export default function RadialGoalPlanner() {
                     {/* Gradient Ring */}
                     <Box
                         className="
-    w-[800px] h-[460px]
+    w-[1000px] h-[460px]
     rounded-[220px]
     flex items-center justify-center
   "
                         sx={{
-                            background: "linear-gradient(180deg, #ED0000, #004A74)",
+                            background: "linear-gradient(270deg, #ED0000, #004A74)",
                         }}
                     >
                         {/* White Spacer */}
@@ -118,7 +119,7 @@ export default function RadialGoalPlanner() {
 
 
             {/* Mobile Grid */}
-            <Box sx={{display : isMobile ? "block" : "none"}} display={"flex"} flexDirection={"column"} gap={4}>
+            <Box sx={{display : isMobile || isTablet ? "block" : "none"}} display={"flex"} flexDirection={"column"} gap={4}>
 
                 <Box 
                     className="
@@ -149,7 +150,7 @@ export default function RadialGoalPlanner() {
                     </Box>
                 </Box>
 
-                <Box className="grid grid-cols-1 sm:grid-cols-1 gap-6 px-6 lg:hidden">
+                <Box pt={6} className="grid grid-cols-1 sm:grid-cols-1 gap-6 px-6 lg:hidden">
                     {GOAL_PLANNER_ITEMS.map((goal) => (
                         <GoalTile
                             key={goal.key}

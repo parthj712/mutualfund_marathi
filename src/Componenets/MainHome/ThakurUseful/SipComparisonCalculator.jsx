@@ -85,7 +85,7 @@ export default function SipComparisonGradient() {
                         color: "#fff",
                     }}
                 >
-                    <Typography variant={isMobile ? "h5"  : "h4"} fontWeight={700} mb={2}>
+                    <Typography variant={isMobile ? "h5"  : isTablet ? "h5" : "h4"} fontWeight={600} mb={2}>
                         श्री ठाकूर फिनसर्व तुमच्या
                      हितासाठी कसे काम करते
                     </Typography>
@@ -100,7 +100,7 @@ export default function SipComparisonGradient() {
                             px: 4,
                             py: 1.5,
                             mb: 4,
-                            fontSize : isMobile ? 18 :  20,
+                            fontSize : isMobile ? 18 : isTablet ? 19 :  20,
                             borderRadius: 999,
                             fontWeight: 700,
                             background:
@@ -139,7 +139,7 @@ export default function SipComparisonGradient() {
                         backdropFilter: "blur(12px)",
                     }}
                 >
-                    <Typography variant={isMobile ? "h5" : "h4"} fontWeight={700} mb={3}>
+                    <Typography variant={isMobile ? "h5" : isTablet ? "h6" : "h4"} fontWeight={700} mb={3}>
                         25 वर्षांनंतर, तुमचे पैसे इतके होतील
                     </Typography>
 
@@ -151,14 +151,14 @@ export default function SipComparisonGradient() {
                                 py={2}
                             >
                                 <Typography
-                                fontSize={isMobile ? 16 : 18}
+                                fontSize={isMobile ? 16 : isTablet ? 15 : 18}
                                     fontWeight={i.highlight ? 700 : 500}
                                 >
                                     {i.label}
                                 </Typography>
 
                                 <Typography
-                                fontSize={isMobile ? 16 : 18}
+                                fontSize={isMobile ? 16 : isTablet ? 15 : 18}
                                     fontWeight={600}
                                     color={i.highlight ? "#0f766e" : "#111"}
                                 >
