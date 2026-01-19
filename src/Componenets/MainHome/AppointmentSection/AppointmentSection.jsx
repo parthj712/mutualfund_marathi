@@ -74,7 +74,7 @@ export default function AppointmentSection() {
 संदेश: ${message}
     `.trim();
 
-      const whatsappNumber = "+919518752605"; // country code + number
+      const whatsappNumber = "+919834079813"; // country code + number
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
         whatsappMessage
       )}`;

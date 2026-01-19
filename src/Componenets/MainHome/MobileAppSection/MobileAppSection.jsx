@@ -99,7 +99,7 @@ export default function MobileAppSection() {
                 {/* MOBILE IMAGE */}
                 <Box className="w-full lg:w-[30%]">
                     <Image
-                        src="/Home/MobileApp.webp"   // replace with your image path
+                        src="/Home/App.png"   // replace with your image path
                         alt="Mobile App"
                         width={450}
                         height={500}

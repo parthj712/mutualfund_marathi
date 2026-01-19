@@ -34,7 +34,18 @@ export default function NavigationBar() {
     const [mobileFundOpen, setMobileFundOpen] = useState(false);
     const [mobileSubMenu, setMobileSubMenu] = useState(null);
 
+    const [researchMenuOpen, setResearchMenuOpen] = useState(false);
+    const [mobileResearchOpen, setMobileResearchOpen] = useState(false);
+    const [researchSubMenu, setResearchSubMenu] = useState(null);
+    const [mobileResearchSubMenu, setMobileResearchSubMenu] = useState(null);
+
+
+
+
+
+
     const fundRef = useRef(null);
+    const researchRef = useRef(null);
 
     const navItems = [
         { name: "मुख्यपृष्ठ", path: "/" },
@@ -42,6 +53,7 @@ export default function NavigationBar() {
         { name: "आर्थिक नियोजन", path: "/financial-planning" },
         { name: "कॅल्क्युलेटर", path: "/calculator" },
         { name: "म्युच्युअल फंड", path: "/funds" },
+        { name: "म्युच्युअल फंड रिसर्च", path: "/funds" },
         { name: "लेख", path: "/article" },
         // { name: "डाउनलोड", path: "/downloads" },
         { name: "संपर्क साधा", path: "/contact" },
@@ -62,6 +74,67 @@ export default function NavigationBar() {
         ],
         []
     );
+
+
+
+
+    const mutualFundResearchItems = useMemo(
+        () => [
+            {
+                name: "कामगिरी तुलना",
+                external: true,
+                children: [
+                    { name: "म्युच्युअल फंड ट्रेलिंग रिटर्न्स", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/top-performing-mutual-funds" },
+                    { name: "निधी तुलना", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-funds-performance-comparison" },
+                    { name: "टॉप कंसस्टंट म्युच्युअल फंड", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/top-consistent-mutual-fund-performers" },
+                    { name: "म्युच्युअल फंड वार्षिक परतावा", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-fund-annual-returns" },
+                ]
+            },
+            {
+                name: "SIP परतावा",
+                external: true,
+                children: [
+                    { name: "टॉप परफॉर्मिंग एसआयपी फंड्स", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/top-performing-systematic-investment-plan" },
+                ]
+            },
+            {
+                name: "लम्पसम रिटर्न",
+                external: true,
+                children: [
+                    { name: "म्युच्युअल फंड लम्पसम रिटर्न्स", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/top-performing-lumpsum-funds" },
+                ]
+            },
+            {
+                name: "रोलिंग रिटर्न",
+                external: true,
+                children: [
+                    { name: "रोलिंग रिटर्न Vs वर्ग", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/rolling-returns" },
+                    { name: "रोलिंग रिटर्न Vs बेंचमार्क", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/rolling-return-vs-benchmark" },
+                    { name: "रोलिंग रिटर्न Vs सेन्सेक्स आणि सोने", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-fund-rolling-returns-comparison-with-gold-and-sensex" },
+                ]
+            },
+            {
+                name: "प्रगत साधने",
+                external: true,
+                children: [
+                    { name: "PPF Vs Elss", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/ppf-vs-elss" },
+                    { name: "सर्वाधिक लाभांश देणारे म्युच्युअल फंड", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/top-dividend-paying-mutual-funds" },
+                    { name: "म्युच्युअल फंड ऐतिहासिक लाभांश", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-funds-historical-dividends" },
+                ]
+            },
+            {
+                name: "SIP Vs SWP रिटर्न",
+                external: true,
+                children: [
+                    { name: "STP Calculators", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-fund-stp-investment-calculator" },
+                    { name: "STP Calculator Profit Transfer", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/stp-calculator-profit-transfer" },
+                    { name: "SWP Calculators", external: true, url: "https://www.thakurfinserv.com/mutual-funds-research/mutual-fund-swp-investment-calculator" },
+                ]
+            },
+        ],
+        []
+    );
+
 
     return (
         <>
@@ -103,6 +176,8 @@ export default function NavigationBar() {
                     {/* CENTER (DESKTOP) */}
                     <div className="hidden lg:flex gap-8 items-center">
                         {navItems.map((item) => {
+
+                            // ✅ 1) Mutual Fund dropdown (internal)
                             if (item.name === "म्युच्युअल फंड") {
                                 const isActive = pathname.startsWith("/funds");
 
@@ -115,7 +190,7 @@ export default function NavigationBar() {
                                             setFundMenuOpen(false);
                                             setSubMenu(null);
                                         }}
-                                        className="relative"
+                                        className=" relative"
                                     >
                                         <span
                                             className={`cursor-pointer font-semibold ${isActive ? "text-blue-600" : ""
@@ -124,7 +199,6 @@ export default function NavigationBar() {
                                             {item.name}
                                         </span>
 
-                                        {/* FIRST LEVEL */}
                                         {fundMenuOpen && (
                                             <Box
                                                 px={2}
@@ -132,7 +206,7 @@ export default function NavigationBar() {
                                                 borderRadius={2}
                                                 className="absolute top-full mt-3 bg-white shadow rounded min-w-[280px]"
                                             >
-                                                <Box display={"flex"} flexDirection={"column"} gap={1} >
+                                                <Box display={"flex"} flexDirection={"column"} gap={1}>
                                                     {mutualFundItems.map((mf) => {
                                                         if (mf.children) {
                                                             return (
@@ -147,7 +221,6 @@ export default function NavigationBar() {
                                                                     <span className="text-[15px] font-medium">{mf.name}</span>
                                                                     <ChevronDown className="-rotate-90 w-4 h-4" />
 
-                                                                    {/* SECOND LEVEL */}
                                                                     {subMenu === mf.name && (
                                                                         <motion.div
                                                                             initial={{ opacity: 0, x: -6 }}
@@ -155,14 +228,13 @@ export default function NavigationBar() {
                                                                             transition={{ duration: 0.2 }}
                                                                             className="absolute left-full top-0 ml-3 bg-white shadow rounded-lg min-w-[220px] p-2"
                                                                         >
-                                                                            <Box p={2} display={"flex"} flexDirection={"column"} gap={1} className="flex flex-col gap-1">
+                                                                            <Box p={2} display={"flex"} flexDirection={"column"} gap={1}>
                                                                                 {mf.children.map((child) => (
                                                                                     <motion.div
                                                                                         key={child.name}
                                                                                         whileHover={{ x: 4 }}
                                                                                         className="rounded-md"
                                                                                     >
-
                                                                                         <Link
                                                                                             href={child.path}
                                                                                             className="block px-4 py-2.5 text-[15px] font-medium hover:bg-gray-50"
@@ -175,13 +247,11 @@ export default function NavigationBar() {
                                                                         </motion.div>
                                                                     )}
                                                                 </motion.div>
-
                                                             );
                                                         }
 
                                                         return (
                                                             <Link
-
                                                                 key={mf.name}
                                                                 href={mf.path}
                                                                 className="block px-4 py-2 hover:bg-gray-100"
@@ -197,32 +267,123 @@ export default function NavigationBar() {
                                 );
                             }
 
+                            // ✅ 2) Mutual Fund Research dropdown (external)
+                            if (item.name === "म्युच्युअल फंड रिसर्च") {
+                                return (
+                                    <div
+                                        key={item.name}
+                                        ref={researchRef}
+                                        onMouseEnter={() => setResearchMenuOpen(true)}
+                                        onMouseLeave={() => {
+                                            setResearchMenuOpen(false);
+                                            setResearchSubMenu(null);
+                                        }}
+
+                                        className="relative"
+                                    >
+                                        <span className="cursor-pointer font-semibold text-[16px]">
+                                            {item.name}
+                                        </span>
+
+                                        {researchMenuOpen && (
+                                            <Box
+                                                px={2}
+                                                py={2}
+                                                borderRadius={2}
+                                                className="absolute top-full mt-3 bg-white shadow rounded min-w-[280px]"
+                                            >
+                                                <Box display={"flex"} flexDirection={"column"} gap={1}>
+                                                    {mutualFundResearchItems.map((r) => {
+                                                        // ✅ If has children → show submenu on hover
+                                                        if (r.children) {
+                                                            return (
+                                                                <motion.div
+                                                                    key={r.name}
+                                                                    onMouseEnter={() => setResearchSubMenu(r.name)}
+                                                                    initial={{ opacity: 0, x: -6 }}
+                                                                    animate={{ opacity: 1, x: 0 }}
+                                                                    transition={{ duration: 0.2 }}
+                                                                    className="relative px-5 py-4 cursor-pointer flex items-center justify-between rounded-xl hover:bg-gray-50"
+                                                                >
+                                                                    <span className="text-[16px] font-medium">{r.name}</span>
+                                                                    <ChevronDown className="-rotate-90 w-4 h-4" />
+
+                                                                    {/* ✅ SECOND LEVEL SUBMENU */}
+                                                                    {researchSubMenu === r.name && (
+                                                                        <motion.div
+                                                                            initial={{ opacity: 0, x: -6 }}
+                                                                            animate={{ opacity: 1, x: 0 }}
+                                                                            transition={{ duration: 0.2 }}
+                                                                            className="absolute left-full top-0 ml-3 bg-white shadow rounded-lg min-w-[260px] p-2 cursor-pointer"
+                                                                        >
+                                                                            <Box p={2} display="flex" flexDirection="column" gap={1}>
+                                                                                {r.children.map((child) => (
+                                                                                    <motion.button
+                                                                                    
+                                                                                        key={child.name}
+                                                                                        whileHover={{ x: 4 }}
+                                                                                        onClick={() => window.open(child.url, "_blank")}
+                                                                                        className="cursor-pointer text-left px-4 py-2.5 rounded-md hover:bg-gray-50 flex items-center justify-between"
+                                                                                    >
+                                                                                        <span className="text-[17px] font-medium">{child.name}</span>
+                                                                                        <HiExternalLink size={16} />
+                                                                                    </motion.button>
+                                                                                ))}
+                                                                            </Box>
+                                                                        </motion.div>
+                                                                    )}
+                                                                </motion.div>
+                                                            );
+                                                        }
+
+                                                        // ✅ Normal external link item
+                                                        return (
+                                                            <motion.button
+                                                                key={r.name}
+                                                                onClick={() => window.open(r.url, "_blank")}
+                                                                whileHover={{ x: 4 }}
+                                                                className="text-left px-4 py-3 cursor-pointer flex items-center justify-between rounded-lg hover:bg-gray-50"
+                                                            >
+                                                                <span className="text-[15px] font-medium">{r.name}</span>
+                                                                <HiExternalLink size={18} />
+                                                            </motion.button>
+                                                        );
+                                                    })}
+
+                                                </Box>
+                                            </Box>
+                                        )}
+                                    </div>
+                                );
+                            }
+
+                            // ✅ Normal links
                             return (
                                 <Link key={item.name} href={item.path} className="relative group">
                                     <span
                                         className={`
-      font-semibold transition-colors duration-300
-      ${pathname === item.path ? "text-blue-600" : "text-gray-900"}
-      group-hover:text-blue-600 text-[17px]
-    `}
+            font-semibold transition-colors duration-300
+            ${pathname === item.path ? "text-blue-600" : "text-gray-900"}
+            group-hover:text-blue-600 text-[16px]
+          `}
                                     >
                                         {item.name}
                                     </span>
 
                                     <span
                                         className={`
-      absolute left-0 -bottom-2 h-[3px] w-full rounded
-      bg-gradient-to-r from-blue-600 to-green-500
-      transform transition-transform duration-300 origin-left
-      ${pathname === item.path ? "scale-x-100" : "scale-x-0"}
-      group-hover:scale-x-100
-    `}
+            absolute left-0 -bottom-2 h-[3px] w-full rounded
+            bg-gradient-to-r from-blue-600 to-green-500
+            transform transition-transform duration-300 origin-left
+            ${pathname === item.path ? "scale-x-100" : "scale-x-0"}
+            group-hover:scale-x-100
+          `}
                                     />
                                 </Link>
-
                             );
                         })}
                     </div>
+
 
                     {/* RIGHT */}
                     <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={4} >
@@ -285,10 +446,13 @@ export default function NavigationBar() {
                                     </RedButton>
                                 </Box>
 
+
                                 {/* MENU LIST */}
-                                <div className="flex flex-col gap-5 grow my-3">
+                                <div className="flex flex-col gap-5 my-3 overflow-y-auto pr-2" style={{ maxHeight: "calc(100vh - 90px)" }}>
+
+
                                     {navItems
-                                        .filter((i) => i.name !== "म्युच्युअल फंड")
+                                        .filter((i) => i.name !== "म्युच्युअल फंड" && i.name !== "म्युच्युअल फंड रिसर्च")
                                         .map((item) => (
                                             <Link
                                                 key={item.name}
@@ -377,6 +541,100 @@ export default function NavigationBar() {
                                             })}
                                         </div>
                                     )}
+
+                                    {/* ✅ MUTUAL FUND RESEARCH */}
+                                    <button
+                                        onClick={() => {
+                                            setMobileResearchOpen(!mobileResearchOpen);
+                                            setMobileResearchSubMenu(null);
+                                        }}
+                                        className="flex justify-between items-center"
+                                    >
+
+                                        <p className="text-[17px] font-semibold">म्युच्युअल फंड रिसर्च</p>
+                                        <ChevronDown
+                                            className={`transition ${mobileResearchOpen ? "rotate-180" : ""}`}
+                                        />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {mobileResearchOpen && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.25 }}
+                                                className="pl-4 flex flex-col gap-2"
+                                            >
+                                                {mutualFundResearchItems.map((r) => {
+                                                    // ✅ If item has children (nested)
+                                                    if (r.children) {
+                                                        const open = mobileResearchSubMenu === r.name;
+
+                                                        return (
+                                                            <div key={r.name}>
+                                                                <button
+                                                                    onClick={() => setMobileResearchSubMenu(open ? null : r.name)}
+                                                                    className="flex justify-between w-full text-[15px] font-semibold text-left"
+                                                                >
+                                                                    {r.name}
+                                                                    <ChevronDown className={`transition ${open ? "rotate-180" : ""}`} />
+                                                                </button>
+
+                                                                <AnimatePresence>
+                                                                    {open && (
+                                                                        <motion.div
+                                                                            initial={{ height: 0, opacity: 0 }}
+                                                                            animate={{ height: "auto", opacity: 1 }}
+                                                                            exit={{ height: 0, opacity: 0 }}
+                                                                            transition={{ duration: 0.25 }}
+                                                                            className="pl-4 flex flex-col gap-2 mt-2 overflow-hidden"
+                                                                        >
+                                                                            {r.children.map((child) => (
+                                                                                <button
+                                                                                    key={child.name}
+                                                                                    onClick={() => {
+                                                                                        window.open(child.url, "_blank");
+                                                                                        setDrawerOpen(false);
+                                                                                        setMobileResearchOpen(false);
+                                                                                        setMobileResearchSubMenu(null);
+                                                                                    }}
+                                                                                    className="flex justify-between items-center text-[14px] font-semibold text-left"
+                                                                                >
+                                                                                    {child.name}
+                                                                                    <HiExternalLink size={16} />
+                                                                                </button>
+                                                                            ))}
+                                                                        </motion.div>
+                                                                    )}
+                                                                </AnimatePresence>
+                                                            </div>
+                                                        );
+                                                    }
+
+                                                    // ✅ Normal external link item
+                                                    return (
+                                                        <button
+                                                            key={r.name}
+                                                            onClick={() => {
+                                                                window.open(r.url, "_blank");
+                                                                setDrawerOpen(false);
+                                                                setMobileResearchOpen(false);
+                                                                setMobileResearchSubMenu(null);
+                                                            }}
+                                                            className="flex justify-between items-center text-[15px] font-semibold text-left"
+                                                        >
+                                                            {r.name}
+                                                            <HiExternalLink size={16} />
+                                                        </button>
+                                                    );
+                                                })}
+
+
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+
                                 </div>
                             </Box>
                         </motion.div>

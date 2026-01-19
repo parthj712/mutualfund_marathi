@@ -11,6 +11,8 @@ import {
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
 
 import Image from "next/image";
 
@@ -30,12 +32,12 @@ export default function UpperNavbar() {
             <Container
                 maxWidth="xl"
                 sx={{
-                    py: isMobile ? 1.5 : 2,
+                    py: isMobile ? 1.5 : 2.5,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    justifyContent: "space-around",
                     flexDirection: isMobile ? "column" : "row",
-                    gap: isMobile ? 2 : isTablet ? 4 : 6,
+                    gap: isMobile ? 2 : isTablet ? 4 : 0,
                     textAlign: isMobile ? "center" : "left",
                 }}
             >
@@ -43,47 +45,39 @@ export default function UpperNavbar() {
                 <Box
                     sx={{
                         display: "flex",
+                        gap: 3,
                         flexDirection: isMobile ? "column" : "row",
-                        gap: isMobile ? 1.5 : 8,
                         alignItems: isMobile ? "center" : "flex-start",
                     }}
                 >
                     {[
-                        { name: "Customer Care 1", value: "8080876433", href: "tel:+918080876433" },
-                        { name: "Customer Care 2", value: "98340 79813", href: "tel:+919834079813" },
-                        {
-                            name: "ईमेल",
-                            value: "admin@thakurfinserv.com",
-                            href: "mailto:admin@thakurfinserv.com",
-                        },
+                        { icon: <PhoneIcon sx={{ fontSize: 18 }} />, value: "8080876433", href: "tel:+918080876433" },
+                        { icon: <PhoneIcon sx={{ fontSize: 18 }} />, value: "98340 79813", href: "tel:+919834079813" },
+                        { icon: <EmailIcon sx={{ fontSize: 18 }} />, value: "admin@thakurfinserv.com", href: "mailto:admin@thakurfinserv.com" },
                     ].map((item, i) => (
                         <Box
                             key={i}
+                            component="a"
+                            href={item.href}
                             sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 1,
                                 px: 1.5,
-                                py: 0.5,
+                                py: 0.8,
                                 borderRadius: "8px",
+                                textDecoration: "none",
+                                color: "inherit",
                                 transition: "0.3s",
                                 "&:hover": {
                                     backgroundColor: "#F9FAFB",
+                                    color: "#EF4444",
                                 },
                             }}
                         >
-                            <Typography fontSize={13} fontWeight={500} color="text.secondary">
-                                {item.name}
-                            </Typography>
-                            <Typography
-                                component="a"
-                                href={item.href}
-                                fontSize={16}
-                                fontWeight={600}
-                                sx={{
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                    cursor: "pointer",
-                                    "&:hover": { color: "#EF4444" },
-                                }}
-                            >
+                            {item.icon}
+
+                            <Typography fontSize={14} fontWeight={600}>
                                 {item.value}
                             </Typography>
                         </Box>
@@ -95,7 +89,7 @@ export default function UpperNavbar() {
                     <Image
                         src="/ShriThaku.jpeg"
                         alt="Shri Thakur Logo"
-                        width={130}
+                        width={105}
                         height={45}
                         loading="lazy"
                         sizes="(max-width: 600px) 120px, 150px"
@@ -108,7 +102,7 @@ export default function UpperNavbar() {
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        gap: 8,
+                        gap: 5,
                         flexWrap: "wrap",
                         justifyContent: isMobile ? "center" : "flex-end",
                     }}
@@ -128,7 +122,7 @@ export default function UpperNavbar() {
                             },
                         }}
                     >
-                        <Typography fontSize={15} fontWeight={600} color="#065F46">
+                        <Typography fontSize={13} fontWeight={600} color="#065F46">
                             ✔ AMFI नोंदणीकृत म्युच्युअल फंड वितरक
                         </Typography>
                     </Box>
@@ -138,7 +132,7 @@ export default function UpperNavbar() {
                         sx={{
                             display: "flex",
                             alignItems: "center",
-                            gap: 1,
+                            gap: 2.5,
                         }}
                     >
                         {/* Instagram */}
@@ -150,7 +144,7 @@ export default function UpperNavbar() {
                                 transition: "0.3s",
 
                                 "&:hover svg": {
-                                   color: "#ED0000",
+                                    color: "#ED0000",
                                     transform: "scale(1.15)",
                                 },
                             }}
@@ -209,7 +203,7 @@ export default function UpperNavbar() {
             {/* GRADIENT DIVIDER */}
             <Box
                 sx={{
-                    height: "2px",
+                    height: "3px",
                     background:
                         "linear-gradient(to right, transparent, #EF4444, transparent)",
                 }}
