@@ -23,7 +23,7 @@ export default function GoalTile({
         <Link href={link}>
             <Tooltip title={desscription} arrow placement="top">
                 <Card
-                    elevation={isMobile ? 3 : 0}
+                    elevation={isMobile ? 3 : 6}
                     sx={{ p: 3, borderRadius: 3  , position : isMobile || isTablet ? "none" : "absolute"}}
                     className={`
                     
