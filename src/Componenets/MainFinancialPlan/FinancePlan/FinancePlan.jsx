@@ -96,7 +96,7 @@ const FinancePlan = () => {
             onClick={() => router.push("/financial-planning/child-marriage")}
           />
           <GoalOptionCard
-            title="आणीबाणी"
+            title="आपत्कालीन निधी"
             Icon={GrEmergency}
             iconSize={isMobile ? 100 : 120}
             backgroundGradient="linear-gradient(135deg, #EAAFC8, #654EA3)"
