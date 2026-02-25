@@ -40,7 +40,7 @@ export default function Footer() {
                 className="w-full max-w-8xl mx-auto relative"
                 sx={{
                     // background: "linear-gradient(60deg, #2980B9 0%, #6DD5FA 60%, #C5E2FF 100%)",
-                    backgroundColor : "#2980B9"
+                    backgroundColor: "#2980B9"
                 }}
 
             >
@@ -72,9 +72,7 @@ export default function Footer() {
                         <Box display={"flex"} flexDirection={"column"} gap={2} textAlign={"left"}>
                             <GradientUnderlineHeading text="नोंदणीकृत पत्ता" />
                             <p className="leading-relaxed mt-2 text-[18px] font-semibold" >
-                                301, श्री संस्कृती, <br />
-                                रावतळे, मराठी शाळेजवळ, <br />
-                                चिपळूण, रत्नागिरी - 415605
+                                फ्लॅट क्र. ०७, पहिला मजला, माऊली अपार्टमेंट, पाटणकर हॉस्पिटलजवळ, चिंचनाका, चिपळूण ४१५६०५
                             </p>
                         </Box>
 
@@ -82,9 +80,7 @@ export default function Footer() {
 
                             <GradientUnderlineHeading text="पत्ता" />
                             <p className="leading-relaxed mt-2 text-[18px]">
-                                पहिला मजला, माऊली अपार्टमेंट,<br />
-                                भोगले, पाटणकर रुग्णालयाजवळ,<br />
-                                चिपळूण, रत्नागिरी - 415605
+                                फ्लॅट क्र. ०७, पहिला मजला, माऊली अपार्टमेंट, पाटणकर हॉस्पिटलजवळ, चिंचनाका, चिपळूण ४१५६०५
                             </p>
                         </Box>
                     </div>
